@@ -33,7 +33,18 @@ const dark = {
   // ...
 };
 
+const deviceSizes = {
+  mobile: "500px",
+  laptop: "900px",
+};
+
+const device = {
+  mobile: `screen and (max-width: ${deviceSizes.mobile})`,
+  laptop: `screen and (max-width: ${deviceSizes.laptop})`,
+};
+
 const defaultTheme = {
+  device,
   fontSizes: [
     "14px", // 0
     "16px", // 1
@@ -55,7 +66,6 @@ const defaultTheme = {
     heading: 1.3,
     code: 1.6,
   },
-  // ...
 };
 
 export const lightTheme = { ...defaultTheme, ...light };
