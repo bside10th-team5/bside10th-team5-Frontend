@@ -1,5 +1,6 @@
-import Head from 'next/head';
-import styles from '../styles/Home.module.css';
+import Head from "next/head";
+import styled from "styled-components";
+import styles from "../styles/Home.module.css";
 
 export default function Home() {
   return (
@@ -10,6 +11,12 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       영준님 안녕하세요~ 오늘 무슨 회의 할까요?
+      <Wrapper>영준님 안녕하세요~ 오늘 무슨 회의 할까요?</Wrapper>
     </div>
   );
 }
+
+const Wrapper = styled("div")`
+  background-color: ${({ theme }) => theme.bg.primary};
+  color: ${({ theme }) => theme.text.primary};
+`;
