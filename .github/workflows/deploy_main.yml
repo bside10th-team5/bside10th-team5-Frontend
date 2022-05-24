@@ -1,0 +1,31 @@
+name: Deploy-main
+
+on:
+  push:
+    branches:
+      - "si/main_cicd"
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+      - name: ssh proxy command
+        uses: appleboy/ssh-action@master
+        with:
+          timeout: 40s
+          host: ${{ secrets.SSH_HOST }}
+          username: root
+          # password: ${{ secrets.SSH_PASSWORD }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          # cd bside10th-team5-Frontend
+          #   git pull origin si/main_cicd
+          #   npm install
+          #   npm run build
+          #   pm2 restart 0
+          script: |
+            whoami
