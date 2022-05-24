@@ -1,9 +1,9 @@
 // @ts-nocheck
-import { AppProps } from "next/app";
 import React, { useState } from "react";
+import { AppProps } from "next/app";
 import { ThemeProvider } from "styled-components";
-import "../styles/globals.css";
 import { darkTheme, lightTheme } from "../styles/theme";
+import GlobalStyle from "../styles/GlobalStyle";
 
 function MyApp({ Component, pageProps }) {
   const [darkMode, setDarkMode] = useState(false);
@@ -11,6 +11,7 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <ThemeProvider theme={theme}>
+      <GlobalStyle />
       <button onClick={() => setDarkMode((e) => !e)}>다크모드</button>
       <Component {...pageProps} />;
     </ThemeProvider>

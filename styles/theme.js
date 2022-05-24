@@ -1,6 +1,7 @@
+//TODO: style 가이드 나오면 수정 해야댐
 const light = {
   bg: {
-    primary: "#eff0f5",
+    primary: "yellow",
     secondary: "#ffffff",
     inset: "#e2e4e8",
     input: "rgba(65,67,78,0.12)",

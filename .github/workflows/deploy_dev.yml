@@ -1,4 +1,4 @@
-name: Deploy easyk-dev
+name: Deploy dev
 
 on:
   push:
