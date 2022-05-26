@@ -12,8 +12,8 @@ function MyApp({ Component, pageProps }) {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <button onClick={() => setDarkMode((e) => !e)}>다크모드</button>
-      <Component {...pageProps} />;
+      {/* <button onClick={() => setDarkMode((e) => !e)}>다크모드</button> */}
+      <Component {...pageProps} />
     </ThemeProvider>
   );
 }
