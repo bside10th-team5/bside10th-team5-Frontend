@@ -1,2 +1,2 @@
-우리 작업할때 dev 에서 따서 작업하는 걸로 하는거 어때요?
-commit 규칙사항 관련 링크: https://koreapy.tistory.com/1150 
+elements > 공통사용가능한 가장 작은 단위의 컴포넌트
+articles > 공통사용가능한 컴포넌트 관리용 폴더
