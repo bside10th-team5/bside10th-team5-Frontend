@@ -1,26 +1,23 @@
-// @ts-nocheck
-import React, { useState } from "react";
-import { AppProps } from "next/app";
-import { ThemeProvider } from "styled-components";
-import { darkTheme, lightTheme } from "../styles/theme";
-import GlobalStyle from "../styles/GlobalStyle";
+import { RecoilRoot } from "recoil";
+import PropTypes from "prop-types";
+import AppThemeProvider from "../src/styles/AppThemeProvider";
 
 function MyApp({ Component, pageProps }) {
-  const [darkMode, setDarkMode] = useState(false);
-  const theme = darkMode ? darkTheme : lightTheme;
-
   return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      {/* <button onClick={() => setDarkMode((e) => !e)}>다크모드</button> */}
-      <Component {...pageProps} />
-    </ThemeProvider>
+    <RecoilRoot>
+      <AppThemeProvider>
+        <Component {...pageProps} />
+      </AppThemeProvider>
+    </RecoilRoot>
   );
 }
 
 export default MyApp;
 
-MyApp.propTypes = AppProps;
+MyApp.propTypes = {
+  Component: PropTypes.any,
+  pageProps: PropTypes.any,
+};
 
 // 일반적인 사용예
 // 페이지 전환 시에도 전체 레이아웃을 유지하고 싶을 경우
