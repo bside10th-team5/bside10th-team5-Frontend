@@ -1,18 +1,38 @@
+import { useRouter } from "next/router";
 import React, { useEffect, useRef, useState } from "react";
-import { Gnb, Observer, Section, Wrapper } from "./LandingPage.style";
+import MediumBtn from "../elements/MediumBtn";
+import { Gnb, WideWrapper } from "../elements/Wrapper";
+import { Observer, Section } from "./LandingPage.style";
 
 const LandingPage = () => {
   const toptarget = useRef();
+  const router = useRouter();
   const bottomTarget = useRef();
-  const [gnbVisible, setGnbVisible] = useState(false);
+  const [topObserve, setTopObserve] = useState(true);
+  const [bottomObserve, setBottomObserve] = useState(false);
 
-  const observerCallback = (entries) => {
+  const onClickLtBtn = () => {
+    router.push("/memories");
+  };
+
+  const topObserverCallback = (entries) => {
     const [entry] = entries;
-    if (entry.time > 1500) {
+    if (entry.time > 1200) {
       if (entry.isIntersecting) {
-        setGnbVisible(false);
+        setTopObserve(true);
       } else {
-        setGnbVisible(true);
+        setTopObserve(false);
+      }
+    }
+  };
+
+  const bottomObserverCallback = (entries) => {
+    const [entry] = entries;
+    if (entry.time > 1200) {
+      if (entry.isIntersecting) {
+        setBottomObserve(true);
+      } else {
+        setBottomObserve(false);
       }
     }
   };
@@ -21,30 +41,10 @@ const LandingPage = () => {
   useEffect(() => {
     const option = {
       root: null,
-      threshold: 0.6,
-    };
-
-    const observer = new IntersectionObserver(observerCallback, option);
-    const currentTarget = bottomTarget.current;
-
-    if (currentTarget) {
-      observer.observe(currentTarget);
-    }
-
-    return () => {
-      if (currentTarget) {
-        observer.unobserve(currentTarget);
-      }
-    };
-  }, [bottomTarget]);
-
-  useEffect(() => {
-    const option = {
-      root: null,
       threshold: 0.1,
     };
 
-    const observer = new IntersectionObserver(observerCallback, option);
+    const observer = new IntersectionObserver(topObserverCallback, option);
     const currentTarget = toptarget.current;
 
     if (currentTarget) {
@@ -58,19 +58,42 @@ const LandingPage = () => {
     };
   }, [toptarget]);
 
+  useEffect(() => {
+    const option = {
+      root: null,
+      threshold: 0.6,
+    };
+
+    const observer = new IntersectionObserver(bottomObserverCallback, option);
+    const currentTarget = bottomTarget.current;
+
+    if (currentTarget) {
+      observer.observe(currentTarget);
+    }
+
+    return () => {
+      if (currentTarget) {
+        observer.unobserve(currentTarget);
+      }
+    };
+  }, [bottomTarget]);
+
   return (
-    <Wrapper>
+    <WideWrapper>
       <Observer ref={toptarget} />
-      <Gnb theme={{ isVisible: gnbVisible }}>
+      <Gnb theme={{ isVisible: !topObserve && !bottomObserve }}>
         <div>로고</div>
-        <div>내예약</div>
+        <div>로그인</div>
       </Gnb>
       <Section theme={{ backgroundColor: "orange" }}>
         <div className="row-box">
           <span>로고</span>
-          <span>내예약</span>
+          <span>로그인</span>
         </div>
-        <div className="center-box">영역1</div>
+        <div className="center-box">
+          <MediumBtn text="임시 lt-page 이동버튼" onClick={onClickLtBtn} />
+          <div>영역1</div>
+        </div>
       </Section>
       <Section theme={{ backgroundColor: "blue" }}>
         <div className="center-box">영역2</div>
@@ -81,7 +104,7 @@ const LandingPage = () => {
       <Section ref={bottomTarget} theme={{ backgroundColor: "black", height: "30rem" }}>
         <div className="center-box">영역4</div>
       </Section>
-    </Wrapper>
+    </WideWrapper>
   );
 };
 
