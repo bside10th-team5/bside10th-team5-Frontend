@@ -1,11 +1,11 @@
 import { atom } from "recoil";
 
 export const userProfileState = atom({
-  key: "userProfile",
+  key: "state/userProfile",
   default: "",
 });
 
 export const darkModeState = atom({
-  key: "darkmode",
+  key: "state/darkmode",
   default: false,
 });

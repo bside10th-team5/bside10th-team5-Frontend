@@ -15,7 +15,15 @@ export const Gnb = styled.header`
   align-items: center;
   width: 100%;
   height: 5rem;
-  background-color: green;
+  background-color: #c4c196;
   transform: ${(props) => (props.theme.isVisible ? "translateY(0%)" : "translateY(-100%)")};
   transition: all 400ms ease-in-out 0s;
+`;
+
+export const Tag = styled.span`
+  background-color: ${(props) => props.theme.backgroundColor || "gold"};
+  color: ${(props) => props.theme.color || "white"};
+  padding: 0 0.5rem;
+  border-radius: 0.4rem;
+  margin-right: 1rem;
 `;
