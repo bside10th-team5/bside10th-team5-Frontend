@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import React, { useEffect, useRef, useState } from "react";
 import MediumBtn from "../elements/MediumBtn";
-import { Gnb, WideWrapper } from "../elements/Wrapper";
+import { Gnb, WideWrapper } from "../elements/Wrapper.style";
 import { Observer, Section } from "./LandingPage.style";
 
 const LandingPage = () => {
@@ -85,24 +85,37 @@ const LandingPage = () => {
         <div>로고</div>
         <div>로그인</div>
       </Gnb>
-      <Section theme={{ backgroundColor: "orange" }}>
+      <Section theme={{ backgroundColor: "#FDF5F5" }}>
         <div className="row-box">
           <span>로고</span>
           <span>로그인</span>
         </div>
         <div className="center-box">
-          <MediumBtn text="임시 lt-page 이동버튼" onClick={onClickLtBtn} />
-          <div>영역1</div>
+          <div className="column-box">
+            <div>서비스 기획자를 위한 회고록 서비스</div>
+            <img src="https://via.placeholder.com/300x300.jpg" />
+            <MediumBtn text="시작하기" onClick={onClickLtBtn} />
+          </div>
         </div>
       </Section>
-      <Section theme={{ backgroundColor: "blue" }}>
-        <div className="center-box">영역2</div>
+      <Section theme={{ backgroundColor: "#F5F7FD" }}>
+        <div className="center-box">
+          <div className="column-box">
+            <div style={{}}>
+              하루 단 5분만 투자하세요!
+              <br />
+              쉽고 간편한 회고록 서비스
+            </div>
+            <div style={{ display: "flex", gap: "1rem" }}>
+              <img src="https://via.placeholder.com/300x300.jpg" />
+              <img src="https://via.placeholder.com/300x300.jpg" />
+              <img src="https://via.placeholder.com/300x300.jpg" />
+            </div>
+          </div>
+        </div>
       </Section>
-      <Section theme={{ backgroundColor: "purple" }}>
-        <div className="center-box">영역3</div>
-      </Section>
-      <Section ref={bottomTarget} theme={{ backgroundColor: "black", height: "30rem" }}>
-        <div className="center-box">영역4</div>
+      <Section ref={bottomTarget} theme={{ backgroundColor: "#F6FDF5", height: "15rem" }}>
+        <div className="center-box">footer</div>
       </Section>
     </WideWrapper>
   );

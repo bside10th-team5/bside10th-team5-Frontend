@@ -15,14 +15,12 @@ export const Observer = styled.div`
 
 export const Section = styled.section`
   background-color: ${(props) => props.theme.backgroundColor || "white"};
-  height: ${(props) => props.theme.height || "55rem"};
+  height: ${(props) => props.theme.height || "45rem"};
   display: flex;
   flex-direction: column;
-  color: white;
 
   & > .row-box {
     box-sizing: border-box;
-    border: 1px solid black;
     margin: 23px 50px 17px;
     height: 4rem;
     display: flex;
@@ -30,7 +28,18 @@ export const Section = styled.section`
     align-items: center;
   }
 
-  & > .center-box {
+  & .column-box {
+    padding: 1rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid yellow;
+    gap: 2rem;
+  }
+
+  & .center-box {
     display: flex;
     flex: 1;
     align-items: center;
