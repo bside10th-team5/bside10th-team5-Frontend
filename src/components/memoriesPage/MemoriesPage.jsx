@@ -20,7 +20,7 @@ const MemoriesPage = () => {
 
   return (
     <WideWrapper>
-      <Gnb theme={{ isVisible: true }}>
+      <Gnb isVisible>
         <div>로고</div>
         <div onClick={onClickLogout}>로그아웃</div>
       </Gnb>

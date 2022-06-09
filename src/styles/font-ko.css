@@ -1,0 +1,59 @@
+@import url('https://webfontworld.github.io/SCoreDream/SCoreDream.css');
+
+.ko-headline-1 {
+  font: normal normal 200 96px/112px SCoreDream;
+  letter-spacing: -1.5px;
+}
+.ko-headline-2 {
+  font: normal normal 200 60px/72px SCoreDream;
+  letter-spacing: -0.5px;
+}
+.ko-headline-3 {
+  font: normal normal 200 48px/56px SCoreDream;
+}
+.ko-headline-4 {
+  font: normal normal 200 34px/36px SCoreDream;
+}
+.ko-headline-5 {
+  font: normal normal 200 24px/24px SCoreDream;
+  letter-spacing: 0.18px
+}
+.ko-headline-6 {
+  font: normal normal 600 20px/24px SCoreDream;
+  letter-spacing: 0.15px;
+}
+
+.ko-subtitle-1 {
+  font: normal normal 200 16px/24px SCoreDream;
+  letter-spacing: 0.15px;
+}
+.ko-subtitle-2 {
+  font: normal normal 600 14px/24px SCoreDream;
+  letter-spacing: 0.1px;
+}
+
+.ko-body-1 {
+  font: normal normal 200 16px/24px SCoreDream;
+  letter-spacing: 0.5px;
+}
+.ko-body-2 {
+  font: normal normal 200 14px/20px SCoreDream;
+  letter-spacing: 0.25px;
+}
+
+.ko-button {
+  font: normal normal 600 14px/16px SCoreDream;
+  letter-spacing: -0.05px;
+  text-transform: capitalize;
+}
+
+.ko-caption {
+  font: normal normal 200 12px/16px SCoreDream;
+  letter-spacing: 0.4px;
+}
+
+.ko-overline {
+  font: normal normal 200 10px/16px SCoreDream;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}

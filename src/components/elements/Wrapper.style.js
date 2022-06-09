@@ -5,7 +5,9 @@ export const WideWrapper = styled.div`
   overflowx: hidden;
 `;
 
-export const Gnb = styled.header`
+export const Gnb = styled.header.attrs((props) => ({
+  isVisible: props.isVisible,
+}))`
   position: fixed;
   top: 0;
   left: 0;
@@ -15,8 +17,8 @@ export const Gnb = styled.header`
   align-items: center;
   width: 100%;
   height: 5rem;
-  background-color: #c4c196;
-  transform: ${(props) => (props.theme.isVisible ? "translateY(0%)" : "translateY(-100%)")};
+  background-color: ${({ theme }) => theme.color.blue};
+  transform: ${(props) => (props.isVisible ? "translateY(0%)" : "translateY(-100%)")};
   transition: all 400ms ease-in-out 0s;
 `;
 
