@@ -46,27 +46,44 @@ const device = {
 
 const defaultTheme = {
   device,
-  fontSizes: [
-    "14px", // 0
-    "16px", // 1
-    "18px", // 2
-    "22px", // 3
-    "26px", // 4
-    "32px", // 5
-    "40px", // 6
-  ],
-  fontWeights: {
-    body: 400,
-    subheading: 500,
-    link: 600,
-    bold: 700,
-    heading: 800,
+  color: {
+    orange: "#FF5A00",
+    yellow: "#FF9F00",
+    green: "#03C348",
+    blue: "#0B70FE",
+    gray100: "#EFEFEF",
+    gray300: "#C8C8C8",
+    gray500: "#949494",
+    gray700: "#555555",
+    gray900: "#111111",
+    disabled: "#E4E4E4",
   },
-  lineHeights: {
-    body: 1.5,
-    heading: 1.3,
-    code: 1.6,
+  opacity: {
+    normal: "100%",
+    hover: "70%",
+    pressed: "50%",
   },
+  // fontSizes: [
+  //   "14px", // 0
+  //   "16px", // 1
+  //   "18px", // 2
+  //   "22px", // 3
+  //   "26px", // 4
+  //   "32px", // 5
+  //   "40px", // 6
+  // ],
+  // fontWeights: {
+  //   body: 400,
+  //   subheading: 500,
+  //   link: 600,
+  //   bold: 700,
+  //   heading: 800,
+  // },
+  // lineHeights: {
+  //   body: 1.5,
+  //   heading: 1.3,
+  //   code: 1.6,
+  // },
 };
 
 export const lightTheme = { ...defaultTheme, ...light };

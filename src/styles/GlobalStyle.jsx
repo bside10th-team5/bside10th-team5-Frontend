@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-import normalize from "styled-normalize"; 
+import normalize from "styled-normalize";
 
 //TODO: style 가이드 나오면 수정 해야댐
 const GlobalStyle = createGlobalStyle`
@@ -10,7 +10,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    font-family: "고딕", sans-serif;
+    font-family: Montserrat, sans-serif;
     line-height: 1.5;
   }
 `;

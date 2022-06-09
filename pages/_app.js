@@ -1,6 +1,8 @@
 import { RecoilRoot } from "recoil";
 import PropTypes from "prop-types";
 import AppThemeProvider from "../src/styles/AppThemeProvider";
+import "../src/styles/font-en.css";
+import "../src/styles/font-ko.css";
 
 function MyApp({ Component, pageProps }) {
   return (
