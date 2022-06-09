@@ -1,0 +1,57 @@
+.en-headline-1 {
+  font: normal normal 400 96px/112px 'Montserrat', sans-serif;
+  letter-spacing: -1.5px;
+}
+.en-headline-2 {
+  font: normal normal 400 60px/72px 'Montserrat', sans-serif;
+  letter-spacing: -0.5px;
+}
+.en-headline-3 {
+  font: normal normal 400 48px/56px 'Montserrat', sans-serif;
+}
+.en-headline-4 {
+  font: normal normal 400 34px/36px 'Montserrat', sans-serif;
+}
+.en-headline-5 {
+  font: normal normal 400 24px/24px 'Montserrat', sans-serif;
+  letter-spacing: 0.18px
+}
+.en-headline-6 {
+  font: normal normal 700 20px/24px 'Montserrat', sans-serif;
+  letter-spacing: 0.15px;
+}
+
+.en-subtitle-1 {
+  font: normal normal 400 16px/24px 'Montserrat', sans-serif;
+  letter-spacing: 0.15px;
+}
+.en-subtitle-2 {
+  font: normal normal 700 14px/24px 'Montserrat', sans-serif;
+  letter-spacing: 0.1px;
+}
+
+.en-body-1 {
+  font: normal normal 400 16px/24px 'Montserrat', sans-serif;
+  letter-spacing: 0.5px;
+}
+.en-body-2 {
+  font: normal normal 400 14px/20px 'Montserrat', sans-serif;
+  letter-spacing: 0.25px;
+}
+
+.en-button {
+  font: normal normal 700 14px/16px 'Montserrat', sans-serif;
+  letter-spacing: -0.05px;
+  text-transform: capitalize;
+}
+
+.en-caption {
+  font: normal normal 400 12px/16px 'Montserrat', sans-serif;
+  letter-spacing: 0.4px;
+}
+
+.en-overline {
+  font: normal normal 400 10px/16px 'Montserrat', sans-serif;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
