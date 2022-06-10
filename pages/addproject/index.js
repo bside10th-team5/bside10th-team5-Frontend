@@ -1,1 +1,1 @@
-export { default } from "../../src/components/addProjectPage";
+export { default } from "../../src/components/settingPage";

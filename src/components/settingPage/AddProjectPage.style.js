@@ -1,9 +1,11 @@
 import styled from "styled-components";
 
 export const Title = styled.div`
-  font-size: 2rem;
-  line-height: 2.5rem;
-  color: #5d5a5a;
+  color: #000000;
+
+  & span {
+    color: ${({ theme }) => theme.color.orange};
+  }
 `;
 
 export const Row = styled.div`
@@ -11,7 +13,7 @@ export const Row = styled.div`
 `;
 
 export const Box = styled.div`
-  background-color: #ededed;
+  border: 1px solid black;
   border-radius: 1rem;
   width: 80%;
   display: flex;
