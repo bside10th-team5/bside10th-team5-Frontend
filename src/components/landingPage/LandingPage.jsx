@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { ThemeContext } from "styled-components";
-import MediumBtn from "../elements/MediumBtn";
+import FlexibleBtn from "../elements/FlexibleBtn";
 import { Gnb, WideWrapper } from "../elements/Wrapper.style";
 import { Observer, Section } from "./LandingPage.style";
 
@@ -87,7 +87,7 @@ const LandingPage = () => {
         <div className="en-headline-2">로고</div>
         <div className="en-button">로그인</div>
       </Gnb>
-      <Section backgroundColor={themeContext.color.yellow}>
+      <Section backgroundColor={themeContext.color.orange}>
         <div className="row-box">
           <span className="ko-button">로고</span>
           <span className="en-button">로그인</span>
@@ -96,11 +96,11 @@ const LandingPage = () => {
           <div className="column-box">
             <div className="ko-headline-4">서비스 기획자를 위한 회고록 서비스</div>
             <img src="https://via.placeholder.com/300x300.jpg" />
-            <MediumBtn text="시작하기" onClick={onClickLtBtn} />
+            <FlexibleBtn text="시작하기" onClick={onClickLtBtn} />
           </div>
         </div>
       </Section>
-      <Section backgroundColor={themeContext.color.orange}>
+      <Section backgroundColor={themeContext.color.yellow}>
         <div className="center-box">
           <div className="column-box">
             <div style={{}}>
