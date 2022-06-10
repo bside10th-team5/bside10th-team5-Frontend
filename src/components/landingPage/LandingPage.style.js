@@ -38,7 +38,6 @@ export const Section = styled.section.attrs((props) => ({
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 1px solid yellow;
     gap: 2rem;
   }
 

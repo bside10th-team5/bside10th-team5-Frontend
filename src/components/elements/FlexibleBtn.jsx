@@ -1,3 +1,4 @@
+// TODO: 아직쓸일없어서 만들다가 맘
 import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
@@ -12,13 +13,13 @@ const Button = styled.button`
   height: 3rem;
 `;
 
-const MediumBtn = ({ text, onClick }) => {
+const FlexibleBtn = ({ text, onClick }) => {
   return <Button onClick={onClick}>{text}</Button>;
 };
 
-export default MediumBtn;
+export default FlexibleBtn;
 
-MediumBtn.propTypes = {
+FlexibleBtn.propTypes = {
   text: PropTypes.string,
   onClick: PropTypes.func,
 };
