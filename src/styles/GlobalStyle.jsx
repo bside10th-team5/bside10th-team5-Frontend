@@ -1,7 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 import normalize from "styled-normalize";
 
-//TODO: style 가이드 나오면 수정 해야댐
 const GlobalStyle = createGlobalStyle`
   ${normalize}
 
@@ -12,6 +11,12 @@ const GlobalStyle = createGlobalStyle`
   body {
     font-family: Montserrat, sans-serif;
     line-height: 1.5;
+  }
+
+  button {
+    background-color: transparent;
+    padding: 0;
+    cursor: pointer;
   }
 `;
 export default GlobalStyle;
