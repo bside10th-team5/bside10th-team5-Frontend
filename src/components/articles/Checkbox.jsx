@@ -16,6 +16,7 @@ const CheckboxLabel = styled.label.attrs((props) => ({
   border: ${({ theme }) => `1px solid ${theme.color.green}`};
   margin-right: ${(props) => props.marginRight};
   color: ${({ theme }) => theme.color.gray900};
+  cursor: pointer;
 
   & > input[type="checkbox"] {
     position: absolute;

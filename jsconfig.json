@@ -2,7 +2,7 @@
   "compilerOptions": {
     "module": "commonjs",
     "target": "es6",
-    "checkJs": true,
+    "checkJs": false, // 자꾸 타입검사 해서 꺼놈
     "jsx": "react-jsx",
   },
   "exclude": [

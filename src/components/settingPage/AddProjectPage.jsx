@@ -7,20 +7,21 @@ import CustomBtn from "../elements/CustomBtn";
 import { Gnb, WideWrapper } from "../elements/Wrapper.style";
 import { Box, Row, Title } from "./AddProjectPage.style";
 import ProjectTool from "./ProjectTool";
+import ProjectDate from "./ProjectDate";
 
 const AddProjectPage = () => {
   const router = useRouter();
   const themeContext = useContext(ThemeContext);
   const [isProjectChecked, setIsProjectChecked] = useState(true);
   const [isFreeChecked, setIsFreeChecked] = useState(false);
-  const [isOngingChecked, setIsOngingChecked] = useState(false);
+  // const [isOngingChecked, setIsOngingChecked] = useState(false);
   const [isWebChecked, setWebChecked] = useState(true);
   const [isMobileChecked, setMobileChecked] = useState(false);
 
   const handleCheckBox = (e) => {
     if (e.target.id === "mobile") setMobileChecked((prev) => !prev);
     if (e.target.id === "web") setWebChecked((prev) => !prev);
-    if (e.target.id === "ongoing") setIsOngingChecked((prev) => !prev);
+    // if (e.target.id === "ongoing") setIsOngingChecked((prev) => !prev);
     if (e.target.id === "projectType") setIsProjectChecked((prev) => !prev);
     if (e.target.id === "freeType") setIsFreeChecked((prev) => !prev);
   };
@@ -62,15 +63,7 @@ const AddProjectPage = () => {
           </Box>
         </Row>
         <Row>
-          <Title className="ko-headline-6">
-            프로젝트 기간<span>*</span>
-          </Title>
-          <div>
-            <span>datepicker1</span> ~ <span>datepicker2</span>
-          </div>
-          <Checkbox id="ongoing" isChecked={isOngingChecked} width="124px" onChange={handleCheckBox}>
-            <span className="ko-button">진행중</span>
-          </Checkbox>
+          <ProjectDate />
         </Row>
         <Row>
           <Title className="ko-headline-6">프로젝트 기본 정보(한번 등록하면 회고록 작성을 쉽게할 수 있어요)</Title>
