@@ -14,3 +14,13 @@ export const projectEndDateState = atom({
   key: "addProjectState/endDate",
   default: new Date(),
 });
+
+export const projectStartDateState = atom({
+  key: "addProjectState/startDate",
+  default: new Date(),
+});
+
+export const projectEndDateState = atom({
+  key: "addProjectState/endDate",
+  default: new Date(),
+});
