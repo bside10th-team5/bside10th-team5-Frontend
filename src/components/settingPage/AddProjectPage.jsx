@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { useRouter } from "next/router";
 import { ThemeContext } from "styled-components";
 import Checkbox from "../articles/Checkbox";
+import RadioCheckBox from "../articles/RadioCheckBox";
 import RadioWithImg from "../elements/RadioWithImg";
 import CustomBtn from "../elements/CustomBtn";
 import { Gnb, WideWrapper } from "../elements/Wrapper.style";
@@ -12,23 +13,22 @@ import ProjectDate from "./ProjectDate";
 const AddProjectPage = () => {
   const router = useRouter();
   const themeContext = useContext(ThemeContext);
-  const [isProjectChecked, setIsProjectChecked] = useState(true);
-  const [isFreeChecked, setIsFreeChecked] = useState(false);
-  // const [isOngingChecked, setIsOngingChecked] = useState(false);
+  const [projectRadio, setProjectRadio] = useState("project");
   const [isWebChecked, setWebChecked] = useState(true);
   const [isMobileChecked, setMobileChecked] = useState(false);
+
+  const handleRadioBox = (e) => {
+    setProjectRadio(e.target.value);
+  };
 
   const handleCheckBox = (e) => {
     if (e.target.id === "mobile") setMobileChecked((prev) => !prev);
     if (e.target.id === "web") setWebChecked((prev) => !prev);
-    // if (e.target.id === "ongoing") setIsOngingChecked((prev) => !prev);
-    if (e.target.id === "projectType") setIsProjectChecked((prev) => !prev);
-    if (e.target.id === "freeType") setIsFreeChecked((prev) => !prev);
   };
 
   const onClickSave = () => {
     //TODO: 저장하고 id 받아서 이동
-    router.push("/writing/exampleid");
+    router.push("/writing/[id]", "/writing/exampleid");
   };
 
   const onClickLogout = () => {
@@ -48,18 +48,23 @@ const AddProjectPage = () => {
           </Title>
           <Box>
             <input style={{ border: "none", backgroundColor: "transparent", flex: 1, height: "50px" }} type="text" />
-            <Checkbox
-              id="projectType"
-              isChecked={isProjectChecked}
-              width="150px"
+            <RadioCheckBox
+              name="project-type"
+              value="project"
+              onChange={handleRadioBox}
+              isChecked={projectRadio === "project"}
               marginRight="0.75rem"
-              onChange={handleCheckBox}
             >
               <span className="ko-button">프로젝트형</span>
-            </Checkbox>
-            <Checkbox id="freeType" isChecked={isFreeChecked} width="124px" onChange={handleCheckBox}>
+            </RadioCheckBox>
+            <RadioCheckBox
+              name="project-type"
+              value="free"
+              onChange={handleRadioBox}
+              isChecked={projectRadio === "free"}
+            >
               <span className="ko-button">자유형</span>
-            </Checkbox>
+            </RadioCheckBox>
           </Box>
         </Row>
         <Row>

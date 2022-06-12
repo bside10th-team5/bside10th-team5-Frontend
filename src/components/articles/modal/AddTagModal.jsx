@@ -26,9 +26,8 @@ const AddTagModal = () => {
 
   const onClickAddTag = () => {
     setTags((prev) => {
-      const newTag = tagName.toLowerCase();
-      if (!prev.includes(newTag)) {
-        return prev.concat(newTag);
+      if (!prev.includes(tagName)) {
+        return prev.concat(tagName);
       }
       return prev;
     });
