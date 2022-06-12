@@ -1,10 +1,9 @@
 import React, { forwardRef } from "react";
+import styled from "styled-components";
 import PropTypes from "prop-types";
 import CalendarIcon from "../elements/Calendaricon";
-import styled from "styled-components";
 
 const DatePickerWrapper = styled.div`
-  z-index: 999;
   position: relative;
   display: flex;
   align-items: center;

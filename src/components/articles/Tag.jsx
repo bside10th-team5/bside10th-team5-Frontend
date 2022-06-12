@@ -17,7 +17,7 @@ export const Wrapper = styled.span`
   & span {
     color: ${({ theme }) => theme.color.orange};
     margin-right: 12.33px;
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   & button {
