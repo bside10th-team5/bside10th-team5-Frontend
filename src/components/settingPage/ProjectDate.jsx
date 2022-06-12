@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import Checkbox from "../articles/Checkbox";
-import { Box, Title } from "./AddProjectPage.style";
+import { useRecoilState } from "recoil";
+import { projectStartDateState, projectEndDateState } from "../../state/addProjectState";
+import ToggleCheckbox from "../articles/ToggleCheckbox";
 import CustomInput from "./CustomInput";
+import { Box, Title } from "./AddProjectPage.style";
 
 const ProjectDate = () => {
   const [isOngingChecked, setIsOngingChecked] = useState(false);
-  const [startDate, setStartDate] = useState(new Date());
+
+  const [startDate, setStartDate] = useRecoilState(projectStartDateState);
+  const [endDate, setEndDate] = useRecoilState(projectEndDateState);
 
   const handleCheckBox = (e) => {
     if (e.target.id === "ongoing") setIsOngingChecked((prev) => !prev);
@@ -22,20 +26,19 @@ const ProjectDate = () => {
         <DatePicker
           selected={startDate}
           onChange={(date) => setStartDate(date)}
-          locale="ko"
           customInput={<CustomInput />}
           dateFormat="yyyy-MM-dd"
         />
         <DatePicker
-          selected={startDate}
-          onChange={(date) => setStartDate(date)}
+          selected={endDate}
+          onChange={(date) => setEndDate(date)}
           customInput={<CustomInput />}
           dateFormat="yyyy-MM-dd"
         />
       </div>
-      <Checkbox id="ongoing" isChecked={isOngingChecked} width="124px" onChange={handleCheckBox}>
+      <ToggleCheckbox id="ongoing" isChecked={isOngingChecked} width="124px" onChange={handleCheckBox}>
         <span className="ko-button">진행중</span>
-      </Checkbox>
+      </ToggleCheckbox>
     </Box>
   );
 };

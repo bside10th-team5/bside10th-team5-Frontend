@@ -15,7 +15,7 @@ const MemoriesPage = () => {
   };
 
   const onClickProject = () => {
-    router.push("/writing/exampleid");
+    router.push("/writing/[id]", "/writing/exampleid");
   };
 
   return (
