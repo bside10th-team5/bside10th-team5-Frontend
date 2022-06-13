@@ -10,7 +10,7 @@ const AddProjectPage = () => {
 
   const onClickSave = () => {
     //TODO: 저장하고 id 받아서 이동
-    router.push("/writing/exampleid");
+    router.push("/writing/[id]", "writing/exampleid");
   };
 
   const onClickLogout = () => {
