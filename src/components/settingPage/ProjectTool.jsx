@@ -3,7 +3,7 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 import { tagState } from "../../state/addProjectState";
 import { modalListState } from "../../state/modalState";
 import Tag from "../articles/Tag";
-import { Box } from "./AddProjectPage.style";
+import { Row, SubTitle } from "./AddProjectPage.style";
 
 const ProjectTool = () => {
   const tags = useRecoilValue(tagState);
@@ -14,13 +14,13 @@ const ProjectTool = () => {
   };
 
   return (
-    <Box>
-      <span>프로젝트 TOOL</span>
+    <Row marginBottom="0">
+      <SubTitle className="ko-subtitle-1">프로젝트 TOOL</SubTitle>
       {tags.map((tag) => (
         <Tag key={tag} text={tag} />
       ))}
       <span onClick={openTagModal}>+태그추가</span>
-    </Box>
+    </Row>
   );
 };
 

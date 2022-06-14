@@ -3,7 +3,7 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import CalendarIcon from "../elements/Calendaricon";
 
-const DatePickerWrapper = styled.div`
+const CustomInputWrapper = styled.div`
   position: relative;
   display: flex;
   align-items: center;
@@ -18,12 +18,6 @@ const DatePickerWrapper = styled.div`
     left: 18.35px;
   }
 
-  & .react-datepicker-wrapper {
-    box-sizing: border-box;
-    width: 100%;
-    height: 100%;
-  }
-
   & > button {
     border: none;
     height: 100%;
@@ -36,15 +30,16 @@ const DatePickerWrapper = styled.div`
 
 const CustomInput = ({ value, onClick }, ref) => {
   return (
-    <DatePickerWrapper onClick={onClick} ref={ref}>
+    <CustomInputWrapper onClick={onClick} ref={ref}>
       <CalendarIcon />
-      <button type="button" className="react-datepicker__input-container">
+      <button type="button">
         <span className="ko-body-2">{value}</span>
       </button>
-    </DatePickerWrapper>
+    </CustomInputWrapper>
   );
 };
 
+// @ts-ignore
 export default forwardRef(CustomInput);
 
 CustomInput.propTypes = {
