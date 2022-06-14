@@ -28,9 +28,11 @@ export const Title = styled.div.attrs((props) => ({
 export const Row = styled.div.attrs((props) => ({
   marginBottom: props.marginBottom || "0",
   justifyContent: props.justifyContent || "flex-start",
+  alignItems: props.alignItems || "center",
 }))`
   display: flex;
   justify-content: ${(props) => props.justifyContent};
+  align-items: ${(props) => props.alignItems};
   margin-bottom: ${(props) => props.marginBottom};
 `;
 

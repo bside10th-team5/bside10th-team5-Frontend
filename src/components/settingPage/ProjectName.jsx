@@ -1,9 +1,15 @@
 import React, { useState } from "react";
 import RadioCheckBox from "../articles/RadioCheckBox";
+import CustomTextInput from "../elements/CustomTextInput";
 import { Box, Row, Title } from "./AddProjectPage.style";
 
 const ProjectName = () => {
   const [projectRadio, setProjectRadio] = useState("project");
+  const [projectName, setProjectName] = useState("");
+
+  const onChangeTextInput = (e) => {
+    setProjectName(e.target.value);
+  };
 
   const handleRadioBox = (e) => {
     setProjectRadio(e.target.value);
@@ -14,16 +20,23 @@ const ProjectName = () => {
         프로젝트명<span>*</span>
       </Title>
       <Row>
-        <input
-          style={{ border: "1px solid black", backgroundColor: "transparent", flex: 1, height: "50px" }}
-          type="text"
+        <CustomTextInput
+          id="project-name"
+          placeholder="비사이드 왓헤픈 (서비스기획자를 위한 회고록 서비스)"
+          value={projectName}
+          onChange={onChangeTextInput}
+          width="632px"
+          height="44px"
+          desc={projectName.length > 24 && "25자 이상은 입력할 수 없어요"}
+          isError={projectName.length > 24}
         />
         <RadioCheckBox
           name="project-type"
           value="project"
           onChange={handleRadioBox}
           isChecked={projectRadio === "project"}
-          marginRight="0.75rem"
+          marginLeft="26px"
+          marginRight="1rem"
         >
           <span className="ko-button">프로젝트형</span>
         </RadioCheckBox>
