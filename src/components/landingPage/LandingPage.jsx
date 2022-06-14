@@ -1,8 +1,9 @@
-import { useRouter } from "next/router";
 import React, { useContext, useEffect, useRef, useState } from "react";
+import { useRouter } from "next/router";
 import { ThemeContext } from "styled-components";
+import Gnb from "../articles/Gnb";
 import FlexibleBtn from "../elements/FlexibleBtn";
-import { Gnb, WideWrapper } from "../elements/Wrapper.style";
+import { WideWrapper } from "../elements/Wrapper.style";
 import { Observer, Section } from "./LandingPage.style";
 
 const LandingPage = () => {
@@ -83,10 +84,7 @@ const LandingPage = () => {
   return (
     <WideWrapper>
       <Observer ref={toptarget} />
-      <Gnb isVisible={!topObserve && !bottomObserve}>
-        <div className="en-headline-2">로고</div>
-        <div className="en-button">로그인</div>
-      </Gnb>
+      <Gnb isVisible={!topObserve && !bottomObserve} />
       <Section backgroundColor={themeContext.color.orange}>
         <div className="row-box">
           <span className="ko-button">로고</span>

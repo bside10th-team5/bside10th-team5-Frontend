@@ -17,6 +17,7 @@ export const Section = styled.section.attrs((props) => ({
   backgroundColor: props.backgroundColor,
   height: props.height || "45rem",
 }))`
+  width: 100%;
   background-color: ${(props) => props.backgroundColor};
   height: ${(props) => props.height};
   display: flex;
