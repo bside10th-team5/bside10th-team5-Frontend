@@ -1,4 +1,9 @@
 export const GNB_H = 120;
+
+export const GRAY300 = "#C8C8C8";
+export const GRAY500 = "#949494";
+export const GRAY900 = "#111111";
+
 const defaultTheme = {
   color: {
     orange: "#FF5A00",

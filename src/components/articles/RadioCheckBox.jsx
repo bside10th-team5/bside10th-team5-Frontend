@@ -5,6 +5,7 @@ import styled, { css } from "styled-components";
 const RadioCheckBoxLabel = styled.label.attrs((props) => ({
   width: props.width || "auto",
   marginRight: props.marginRight || "0",
+  marginLeft: props.marginLeft || "0",
   isChecked: props.isChecked || false,
 }))`
   display: flex;
@@ -12,6 +13,7 @@ const RadioCheckBoxLabel = styled.label.attrs((props) => ({
   width: ${(props) => props.width};
   height: 50px;
   margin-right: ${(props) => props.marginRight};
+  margin-left: ${(props) => props.marginLeft};
   color: ${({ theme }) => theme.color.gray500};
   cursor: pointer;
 
@@ -34,9 +36,15 @@ const RadioCheckBoxLabel = styled.label.attrs((props) => ({
     `}
 `;
 
-const RadioCheckBox = ({ isChecked, onChange, children, width, marginRight, name, value }) => {
+const RadioCheckBox = ({ isChecked, onChange, children, width, marginRight, name, value, marginLeft }) => {
   return (
-    <RadioCheckBoxLabel htmlFor={value} width={width} marginRight={marginRight} isChecked={isChecked}>
+    <RadioCheckBoxLabel
+      htmlFor={value}
+      width={width}
+      marginRight={marginRight}
+      marginLeft={marginLeft}
+      isChecked={isChecked}
+    >
       <input type="radio" id={value} name={name} value={value} onChange={onChange} checked={isChecked} />
       {isChecked ? (
         <svg
@@ -77,4 +85,5 @@ RadioCheckBox.propTypes = {
   children: PropTypes.node,
   width: PropTypes.string,
   marginRight: PropTypes.string,
+  marginLeft: PropTypes.string,
 };
