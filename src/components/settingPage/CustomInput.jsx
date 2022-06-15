@@ -1,22 +1,23 @@
 import React, { forwardRef } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import PropTypes from "prop-types";
 import CalendarIcon from "../elements/Calendaricon";
 
 // TODO: datepicker custom 해서 폴더 article 로 이동해놔야됌
-const CustomInputWrapper = styled.div`
+const CustomInputWrapper = styled.div.attrs((props) => ({
+  disabled: props.disabled || false,
+}))`
   position: relative;
   display: flex;
   align-items: center;
   border-radius: 5px;
-  width: 216px;
+  width: auto;
   height: 50px;
-  padding-left: 57px;
   border: ${({ theme }) => `1px solid ${theme.color.gray300}`};
+  padding: 12px 16px;
 
   & > .icon {
-    position: absolute;
-    left: 18.35px;
+    margin-right: 12px;
   }
 
   & > button {
@@ -27,14 +28,25 @@ const CustomInputWrapper = styled.div`
     justify-content: flex-start;
     color: ${({ theme }) => theme.color.gray900};
   }
+
+  ${({ disabled }) =>
+    disabled &&
+    css`
+      border: ${({ theme }) => `1px solid ${theme.color.gray500}`};
+      background-color: ${({ theme }) => theme.color.gray100};
+
+      & > button {
+        color: ${({ theme }) => theme.color.gray500};
+      }
+    `}
 `;
 
-const CustomInput = ({ value, onClick }, ref) => {
+const CustomInput = ({ value, onClick, disabled }, ref) => {
   return (
-    <CustomInputWrapper onClick={onClick} ref={ref}>
+    <CustomInputWrapper onClick={onClick} ref={ref} disabled={disabled}>
       <CalendarIcon />
-      <button type="button">
-        <span className="ko-body-2">{value}</span>
+      <button type="button" className="ko-body-2">
+        {value}
       </button>
     </CustomInputWrapper>
   );
@@ -46,4 +58,5 @@ export default forwardRef(CustomInput);
 CustomInput.propTypes = {
   value: PropTypes.any.isRequired,
   onClick: PropTypes.func.isRequired,
+  disabled: PropTypes.bool,
 };

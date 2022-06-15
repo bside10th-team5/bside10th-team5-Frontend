@@ -14,6 +14,7 @@ const ProjectName = () => {
   const handleRadioBox = (e) => {
     setProjectRadio(e.target.value);
   };
+
   return (
     <Box>
       <Title className="ko-headline-6">
@@ -27,7 +28,7 @@ const ProjectName = () => {
           onChange={onChangeTextInput}
           width="632px"
           height="44px"
-          desc={projectName.length > 24 && "25자 이상은 입력할 수 없어요"}
+          desc={projectName.length > 24 ? "25자 이상은 입력할 수 없어요" : ""}
           isError={projectName.length > 24}
         />
         <RadioCheckBox

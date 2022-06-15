@@ -10,9 +10,9 @@ export const Wrapper = styled.span`
   height: 50px;
   display: flex;
   align-items: center;
-  padding: 0 17.33px 0 18px;
+  padding: 12px 16px;
   border-radius: 0.4rem;
-  margin-right: 0.75rem;
+  margin-right: 0.25rem;
 
   & span {
     color: ${({ theme }) => theme.color.orange};
