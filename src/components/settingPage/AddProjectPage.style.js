@@ -50,3 +50,8 @@ export const SubTitle = styled.div`
   align-items: center;
   color: ${({ theme }) => theme.color.gray500};
 `;
+
+export const AddTagButton = styled.button`
+  margin-left: 1rem;
+  color: ${({ theme }) => theme.color.gray500};
+`;

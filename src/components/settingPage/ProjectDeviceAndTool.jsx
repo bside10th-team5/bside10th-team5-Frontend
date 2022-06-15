@@ -4,7 +4,7 @@ import { tagState } from "../../state/addProjectState";
 import { modalListState } from "../../state/modalState";
 import Checkbox from "../articles/Checkbox";
 import Tag from "../articles/Tag";
-import { Row, SubTitle, Box, Title } from "./AddProjectPage.style";
+import { Row, SubTitle, Box, Title, AddTagButton } from "./AddProjectPage.style";
 
 const ProjectDeviceAndTool = () => {
   const [isWebChecked, setWebChecked] = useState(true);
@@ -40,7 +40,9 @@ const ProjectDeviceAndTool = () => {
         {tags.map((tag) => (
           <Tag key={tag} text={tag} />
         ))}
-        <span onClick={openTagModal}>+태그추가</span>
+        <AddTagButton className="ko-body-2" type="button" onClick={openTagModal}>
+          + 태그추가
+        </AddTagButton>
       </Row>
     </Box>
   );

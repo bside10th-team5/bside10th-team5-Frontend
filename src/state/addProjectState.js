@@ -2,7 +2,7 @@ import { atom } from "recoil";
 
 export const tagState = atom({
   key: "addProjectState/tag",
-  default: ["figma", "javascript", "react", "node", "java"],
+  default: ["PPT", "Figma", "Slack", "Notion"],
 });
 
 export const projectStartDateState = atom({
