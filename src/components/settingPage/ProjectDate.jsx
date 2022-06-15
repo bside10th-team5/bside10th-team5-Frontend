@@ -12,7 +12,7 @@ import { Row, Box, Title } from "./AddProjectPage.style";
 const DatePickerWrapper = styled.div``;
 
 const ProjectDate = () => {
-  const [isOngingChecked, setIsOngingChecked] = useState(false);
+  const [isOngingChecked, setIsOngingChecked] = useState(true);
 
   const [startDate, setStartDate] = useRecoilState(projectStartDateState);
   const [endDate, setEndDate] = useRecoilState(projectEndDateState);
@@ -35,12 +35,14 @@ const ProjectDate = () => {
             dateFormat="yyyy-MM-dd"
           />
         </DatePickerWrapper>
+        <span style={{ margin: "0 16px" }}>~</span>
         <DatePickerWrapper>
           <DatePicker
             selected={endDate}
             onChange={(date) => setEndDate(date)}
-            customInput={<CustomInput />}
+            customInput={<CustomInput disabled />}
             dateFormat="yyyy-MM-dd"
+            disabled={isOngingChecked}
           />
         </DatePickerWrapper>
         <ToggleCheckbox id="ongoing" isChecked={isOngingChecked} width="124px" onChange={handleCheckBox}>
