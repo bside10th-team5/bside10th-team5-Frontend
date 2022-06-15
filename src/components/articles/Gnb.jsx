@@ -17,11 +17,14 @@ const GnbWrapper = styled.header.attrs((props) => ({
   align-items: center;
   width: 100%;
   height: ${GNB_H}px;
-  padding: 31px 40px;
+  padding: 20px 40px;
   background-color: white;
   border-bottom: 1px solid #ececec;
   transform: ${(props) => (props.isVisible ? "translateY(0%)" : "translateY(-100%)")};
   transition: all 400ms ease-in-out 0s;
+  & button {
+    color: ${({ theme }) => theme.color.gray700};
+  }
 `;
 
 const Gnb = ({ isVisible }) => {
@@ -37,7 +40,7 @@ const Gnb = ({ isVisible }) => {
     <GnbWrapper isVisible={isVisible}>
       <div style={{ display: "flex", alignItems: "center" }}>
         <LogoIcon />
-        <button className="ko-headline-6" value="list-page" onClick={onClick} style={{ marginLeft: "3.75rem" }}>
+        <button className="ko-subtitle-2" value="list-page" onClick={onClick} style={{ marginLeft: "3.75rem" }}>
           회고록 리스트
         </button>
       </div>
