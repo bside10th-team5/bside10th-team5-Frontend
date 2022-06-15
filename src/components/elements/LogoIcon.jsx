@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const LogoIcon = ({ width = 158, height = 58 }) => {
+const LogoIcon = ({ width = 106, height = 40 }) => {
   return (
     <svg width={width} height={height} viewBox="0 0 158 58" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M35.2856 0.106934H78.851V57.2461H35.2856V0.106934Z" fill="#FF5A00" />
