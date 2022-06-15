@@ -8,11 +8,12 @@ const Button = styled.button.attrs((props) => ({
   borderRadius: props.borderRadius || "5px",
   color: props.color || "#FFFFFF",
   bgColor: props.bgColor,
+  border: props.border || "none",
 }))`
   display: flex;
   justify-content: center;
   align-items: center;
-  border: none;
+  border: ${(props) => props.border};
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   border-radius: ${(props) => props.borderRadius};
@@ -20,7 +21,7 @@ const Button = styled.button.attrs((props) => ({
   background-color: ${(props) => props.bgColor};
 `;
 
-const CustomBtn = ({ text, onClick, width, height, borderRadius, color, bgColor }) => {
+const CustomBtn = ({ text, onClick, width, height, borderRadius, color, bgColor, border }) => {
   return (
     <Button
       className="ko-button"
@@ -30,6 +31,7 @@ const CustomBtn = ({ text, onClick, width, height, borderRadius, color, bgColor 
       color={color}
       bgColor={bgColor}
       onClick={onClick}
+      border={border}
     >
       {text}
     </Button>
@@ -46,4 +48,5 @@ CustomBtn.propTypes = {
   borderRadius: PropTypes.string,
   color: PropTypes.string,
   bgColor: PropTypes.string,
+  border: PropTypes.string,
 };
