@@ -18,22 +18,29 @@ const MemoriesPage = () => {
   return (
     <WideWrapper>
       <Gnb isVisible />
-      <section style={{ marginTop: "7rem", width: "100%" }}>
+      <section style={{ marginTop: "80px", width: "100%" }}>
         <ItemWrapper>
-          <ItemBox onClick={onClickAddProject}>프로젝트 추가</ItemBox>
-          <ItemBox onClick={onClickProject}>프로젝트 샘플</ItemBox>
-          <ItemBox>프로젝트 1</ItemBox>
-          <ItemBox>프로젝트 1</ItemBox>
-          <ItemBox>프로젝트 1</ItemBox>
-          <ItemBox>프로젝트 1</ItemBox>
-          <ItemBox>프로젝트 1</ItemBox>
-          <ItemBox>프로젝트 1</ItemBox>
-          <ItemBox>프로젝트 1</ItemBox>
-          <ItemBox>프로젝트 1</ItemBox>
-          <ItemBox>프로젝트 1</ItemBox>
-          <ItemBox>프로젝트 1</ItemBox>
-          <ItemBox>프로젝트 1</ItemBox>
-          <ItemBox>프로젝트 1</ItemBox>
+          {/* <ItemBox onClick={onClickAddProject}>프로젝트 추가</ItemBox>
+          <ItemBox onClick={onClickProject}>프로젝트 샘플</ItemBox> */}
+          <ItemBox onClick={onClickAddProject}>
+            <img src="img/thumbnail/project.png" />
+            {/* <div>프로젝트형</div> */}
+          </ItemBox>
+          <ItemBox onClick={onClickProject}>
+            <img src="img/thumbnail/side_project.png" />
+          </ItemBox>
+          <ItemBox>
+            <img src="img/thumbnail/worklog.png" />
+          </ItemBox>
+          <ItemBox>
+            <img src="img/thumbnail/project.png" />
+          </ItemBox>
+          <ItemBox>
+            <img src="img/thumbnail/project.png" />
+          </ItemBox>
+          <ItemBox>
+            <img src="img/thumbnail/project.png" />
+          </ItemBox>
         </ItemWrapper>
       </section>
     </WideWrapper>
