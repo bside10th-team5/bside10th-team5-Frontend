@@ -68,15 +68,15 @@ const ProjectSummary = () => {
 
   return (
     <Box>
-      <Title className="ko-headline-6">프로젝트 한줄소개</Title>
+      <Title className="headline-6">프로젝트 한줄소개</Title>
       <TextAreaWrapper hasValue={summaryText.length > 0} isError={isError}>
         <textarea
-          className="ko-body-2"
+          className="body-2"
           placeholder="서비스 기획자를 대상으로한 회고록 서비스 입니다.&#13;&#10;ex) 쉬운 회고록 템플릿 제시하여 회고 습관 형성"
           value={summaryText}
           onChange={onChange}
         />
-        {isError && <Description className="ko-body-2">100자 이상은 입력할 수 없어요</Description>}
+        {isError && <Description className="body-2">100자 이상은 입력할 수 없어요</Description>}
       </TextAreaWrapper>
     </Box>
   );

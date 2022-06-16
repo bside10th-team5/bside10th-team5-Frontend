@@ -87,12 +87,12 @@ const LandingPage = () => {
       <Gnb isVisible={!topObserve && !bottomObserve} />
       <Section backgroundColor={themeContext.color.orange}>
         <div className="row-box">
-          <span className="ko-button">로고</span>
-          <span className="en-button">로그인</span>
+          <span className="button">로고</span>
+          <span className="button">로그인</span>
         </div>
         <div className="center-box">
           <div className="column-box">
-            <div className="ko-headline-4">서비스 기획자를 위한 회고록 서비스</div>
+            <div className="headline-4">서비스 기획자를 위한 회고록 서비스</div>
             <img src="https://via.placeholder.com/300x300.jpg" />
             <FlexibleBtn text="시작하기" onClick={onClickLtBtn} />
           </div>

@@ -45,7 +45,7 @@ const CustomInput = ({ value, onClick, disabled }, ref) => {
   return (
     <CustomInputWrapper onClick={onClick} ref={ref} disabled={disabled}>
       <CalendarIcon />
-      <button type="button" className="ko-body-2">
+      <button type="button" className="body-2">
         {value}
       </button>
     </CustomInputWrapper>

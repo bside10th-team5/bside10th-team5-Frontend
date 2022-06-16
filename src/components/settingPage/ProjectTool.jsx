@@ -15,7 +15,7 @@ const ProjectTool = () => {
 
   return (
     <Row marginBottom="0">
-      <SubTitle className="ko-subtitle-1">프로젝트 TOOL</SubTitle>
+      <SubTitle className="subtitle-1">프로젝트 TOOL</SubTitle>
       {tags.map((tag) => (
         <Tag key={tag} text={tag} />
       ))}
