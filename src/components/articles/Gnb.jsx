@@ -40,11 +40,11 @@ const Gnb = ({ isVisible }) => {
     <GnbWrapper isVisible={isVisible}>
       <div style={{ display: "flex", alignItems: "center" }}>
         <LogoIcon />
-        <button className="ko-subtitle-2" value="list-page" onClick={onClick} style={{ marginLeft: "3.75rem" }}>
+        <button className="subtitle-2" value="list-page" onClick={onClick} style={{ marginLeft: "3.75rem" }}>
           회고록 리스트
         </button>
       </div>
-      <button value="logout" className="ko-subtitle-2" onClick={onClick}>
+      <button value="logout" className="subtitle-2" onClick={onClick}>
         로그아웃
       </button>
     </GnbWrapper>
