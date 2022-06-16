@@ -45,7 +45,7 @@ const Tag = ({ text }) => {
   };
   return (
     <Wrapper>
-      <span className="ko-button">{text}</span>
+      <span className="button">{text}</span>
       <button onClick={() => onClickDeleteTag(text)}>
         <CloseIcon color={themeContext.color.orange} />
       </button>

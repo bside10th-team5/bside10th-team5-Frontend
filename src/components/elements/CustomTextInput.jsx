@@ -78,7 +78,7 @@ const CustomTextInput = ({ id, width, height, placeholder, value, onChange, isEr
   return (
     <Wrapper width={width} height={height} isError={isError} hasValue={value.length > 0}>
       <Input
-        className="ko-body-2"
+        className="body-2"
         id={id}
         height={height}
         type="text"
@@ -106,7 +106,7 @@ const CustomTextInput = ({ id, width, height, placeholder, value, onChange, isEr
           />
         </svg>
       )}
-      {desc && <Description className="ko-body-2">{desc}</Description>}
+      {desc && <Description className="body-2">{desc}</Description>}
     </Wrapper>
   );
 };

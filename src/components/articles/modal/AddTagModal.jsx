@@ -8,7 +8,7 @@ import CustomBtn from "../../elements/CustomBtn";
 import CustomTextInput from "../../elements/CustomTextInput";
 
 // TODO: 모달에 자주 쓰이는 요소 스타일드 컴포넌트 파일화, x 버튼 추가, 모달 배경 변경
-const Modal = styled.div`
+export const Modal = styled.div`
   width: 640px;
   height: 288px;
   background: #ffffff;
@@ -60,7 +60,7 @@ const AddTagModal = () => {
 
   return (
     <Modal>
-      <Title className="ko-headline-6">프로젝트 Tool 추가등록</Title>
+      <Title className="headline-6">프로젝트 Tool 추가등록</Title>
       <SubTitle>프로젝트 Tool</SubTitle>
       <CustomTextInput
         id="tag-name"

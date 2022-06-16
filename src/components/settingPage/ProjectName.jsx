@@ -17,7 +17,7 @@ const ProjectName = () => {
 
   return (
     <Box>
-      <Title className="ko-headline-6">
+      <Title className="headline-6">
         프로젝트명<span>*</span>
       </Title>
       <Row>
@@ -39,10 +39,10 @@ const ProjectName = () => {
           marginLeft="26px"
           marginRight="1rem"
         >
-          <span className="ko-button">프로젝트형</span>
+          <span className="button">프로젝트형</span>
         </RadioCheckBox>
         <RadioCheckBox name="project-type" value="free" onChange={handleRadioBox} isChecked={projectRadio === "free"}>
-          <span className="ko-button">자유형</span>
+          <span className="button">자유형</span>
         </RadioCheckBox>
       </Row>
     </Box>

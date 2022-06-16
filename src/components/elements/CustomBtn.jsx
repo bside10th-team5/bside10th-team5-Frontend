@@ -24,7 +24,7 @@ const Button = styled.button.attrs((props) => ({
 const CustomBtn = ({ text, onClick, width, height, borderRadius, color, bgColor, border }) => {
   return (
     <Button
-      className="ko-button"
+      className="button"
       width={width}
       height={height}
       borderRadius={borderRadius}

@@ -17,7 +17,7 @@ export const Title = styled.div.attrs((props) => ({
     color: ${({ theme }) => theme.color.orange};
   }
 
-  & .ko-caption {
+  & .caption {
     color: ${({ theme }) => theme.color.gray700};
     position: relative;
     left: 20px;

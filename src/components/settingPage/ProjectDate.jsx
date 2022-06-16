@@ -23,7 +23,7 @@ const ProjectDate = () => {
 
   return (
     <Box>
-      <Title className="ko-headline-6">
+      <Title className="headline-6">
         프로젝트 기간<span>*</span>
       </Title>
       <Row>
@@ -46,7 +46,7 @@ const ProjectDate = () => {
           />
         </DatePickerWrapper>
         <ToggleCheckbox id="ongoing" isChecked={isOngingChecked} width="124px" onChange={handleCheckBox}>
-          <span className="ko-button">진행중</span>
+          <span className="button">진행중</span>
         </ToggleCheckbox>
       </Row>
     </Box>

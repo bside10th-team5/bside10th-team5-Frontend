@@ -53,7 +53,7 @@ const RadioWithImg = ({ name, value, onChange, isChecked, src, alt }) => {
           </svg>
         )}
 
-        <img src={src} alt={alt} width={216} height={122} className="ko-button" />
+        <img src={src} alt={alt} width={216} height={122} className="button" />
       </label>
     </Wrapper>
   );
