@@ -3,12 +3,13 @@ import { useSetRecoilState } from "recoil";
 import styled from "styled-components";
 import { tagState } from "../../../state/addProjectState";
 import { modalListState } from "../../../state/modalState";
-import { BLACK, GRAY500, GRAY700, ORANGE } from "../../../styles/theme";
 import CustomBtn from "../../elements/CustomBtn";
 import CustomTextInput from "../../elements/CustomTextInput";
+import { BLACK, GRAY500, GRAY700, ORANGE } from "../../../styles/theme";
+import CloseIcon from "../../elements/CloseIcon";
 
-// TODO: 모달에 자주 쓰이는 요소 스타일드 컴포넌트 파일화, x 버튼 추가, 모달 배경 변경
 export const Modal = styled.div`
+  position: relative;
   width: 640px;
   height: 288px;
   background: #ffffff;
@@ -27,6 +28,12 @@ const Title = styled.div`
 const SubTitle = styled.div`
   color: ${GRAY500};
   margin-bottom: 28px;
+`;
+
+const CloseIconWrapper = styled.button`
+  position: absolute;
+  top: 29.83px;
+  right: 29.83px;
 `;
 
 const BtnWrapper = styled.div`
@@ -60,6 +67,9 @@ const AddTagModal = () => {
 
   return (
     <Modal>
+      <CloseIconWrapper onClick={onClickCloseModal}>
+        <CloseIcon color="black" width={16.33} height={16.33} />
+      </CloseIconWrapper>
       <Title className="headline-6">프로젝트 Tool 추가등록</Title>
       <SubTitle>프로젝트 Tool</SubTitle>
       <CustomTextInput
