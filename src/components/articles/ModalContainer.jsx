@@ -15,7 +15,7 @@ const ModalWrapper = styled("article")`
   height: 100%;
   width: 100%;
   transition: background-color 0.2s;
-  background-color: rgba(7, 19, 46, 0.1);
+  background-color: rgba(0, 0, 0, 0.4);
   z-index: 100;
   overflow: auto;
 
