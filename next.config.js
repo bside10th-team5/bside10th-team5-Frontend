@@ -15,6 +15,9 @@ if (process.env.NODE_ENV === "development") {
 
 const nextConfig = {
   reactStrictMode: true,
+  compiler: {
+    styledComponents: true,
+  },
 };
 
 module.exports = nextConfig;
