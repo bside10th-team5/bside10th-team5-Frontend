@@ -1,10 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSetRecoilState } from "recoil";
 import styled from "styled-components";
-import { tagState } from "../../../state/addProjectState";
 import { modalListState } from "../../../state/modalState";
 import CustomBtn from "../../elements/CustomBtn";
-import CustomTextInput from "../../elements/CustomTextInput";
 import { BLACK, GRAY500, GRAY700, ORANGE } from "../../../styles/theme";
 import CloseIcon from "../../elements/CloseIcon";
 
@@ -26,7 +24,6 @@ const Title = styled.div`
 
 const SubTitle = styled.div`
   color: ${GRAY500};
-  margin-bottom: 24px;
 `;
 
 const CloseIconWrapper = styled.button`
@@ -41,22 +38,12 @@ const BtnWrapper = styled.div`
   margin-top: 1.5rem;
 `;
 
-const AddTagModal = () => {
-  const setTags = useSetRecoilState(tagState);
+// TODO: custom 하게 쓸수있게 수정해야댐
+const BasicTwoBtnModal = () => {
   const setModalList = useSetRecoilState(modalListState);
-  const [tagName, setTagName] = useState("");
 
-  const onChange = (e) => {
-    setTagName(e.target.value);
-  };
-
-  const onClickAddTag = () => {
-    setTags((prev) => {
-      if (!prev.includes(tagName)) {
-        return prev.concat(tagName);
-      }
-      return prev;
-    });
+  const onClickDelteProject = () => {
+    // TODO: 삭제프로세스
     setModalList([]);
   };
 
@@ -69,16 +56,8 @@ const AddTagModal = () => {
       <CloseIconWrapper onClick={onClickCloseModal}>
         <CloseIcon color="black" width={16.33} height={16.33} />
       </CloseIconWrapper>
-      <Title className="headline-6">프로젝트 Tool 추가등록</Title>
-      <SubTitle>프로젝트 Tool</SubTitle>
-      <CustomTextInput
-        id="tag-name"
-        placeholder="텍스트"
-        value={tagName}
-        onChange={onChange}
-        width="420px"
-        height="48px"
-      />
+      <Title className="headline-6">해당 회고록을 정말 삭제하시겠습니까?</Title>
+      <SubTitle>데이터는 복구가 불가능합니다</SubTitle>
       <BtnWrapper>
         <CustomBtn
           text="취소"
@@ -89,10 +68,17 @@ const AddTagModal = () => {
           border="1px solid black"
           color={GRAY700}
         />
-        <CustomBtn text="확인" onClick={onClickAddTag} width="99px" height="48px" borderRadius="5px" bgColor={ORANGE} />
+        <CustomBtn
+          text="확인"
+          onClick={onClickDelteProject}
+          width="99px"
+          height="48px"
+          borderRadius="5px"
+          bgColor={ORANGE}
+        />
       </BtnWrapper>
     </Modal>
   );
 };
 
-export default AddTagModal;
+export default BasicTwoBtnModal;
