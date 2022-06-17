@@ -4,6 +4,7 @@ import { useRecoilValue } from "recoil";
 import styled from "styled-components";
 import { modalListState } from "../../state/modalState";
 import AddTagModal, { Modal } from "./modal/AddTagModal";
+import BasicTwoBtnModal from "./modal/BasicTwoBtnModal";
 
 const ModalWrapper = styled("article")`
   position: fixed;
@@ -35,7 +36,8 @@ const ModalContainer = () => {
   return createPortal(
     <ModalWrapper>
       {modalList.map((modalRegister) => {
-        if (modalRegister.id === "addTagModal") return <AddTagModal />;
+        if (modalRegister.id === "add-tag-modal") return <AddTagModal />;
+        if (modalRegister.id === "delete-project-modal") return <BasicTwoBtnModal />;
       })}
     </ModalWrapper>,
     document.body,
