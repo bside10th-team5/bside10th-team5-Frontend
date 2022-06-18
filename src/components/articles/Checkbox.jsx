@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
+import { INPUT_H } from "../../styles/theme";
 
 const CheckboxLabel = styled.label.attrs((props) => ({
   width: props.width || "auto",
@@ -11,7 +12,7 @@ const CheckboxLabel = styled.label.attrs((props) => ({
   align-items: center;
   border-radius: 5px;
   width: ${(props) => props.width};
-  height: 50px;
+  height: ${INPUT_H}px;
   padding: 13px 16px;
   border: ${({ theme }) => `1px solid ${theme.color.gray300}`};
   margin-right: ${(props) => props.marginRight};

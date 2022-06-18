@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const CalendarIcon = ({ color = "#949494", width = 21, height = 23 }) => {
+const CalendarIcon = ({ color = "#949494", width = 20.25, height = 21.6 }) => {
   return (
     <svg
       className="icon"

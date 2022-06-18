@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { BLACK, GNB_H, GRAY100, GRAY700 } from "../../styles/theme";
+import { GNB_H, GRAY100, GRAY700, GRAY900 } from "../../styles/theme";
 
 export const Section = styled.section`
   margin-top: ${GNB_H}px;
@@ -54,7 +54,7 @@ export const ItemType = styled.span`
 export const ItemDate = styled.span`
   flex: 1;
   margin-left: 1rem;
-  color: ${BLACK};
+  color: ${GRAY900};
 `;
 
 export const CloseIconWrapper = styled.button`

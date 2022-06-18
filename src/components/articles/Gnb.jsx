@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import LogoIcon from "../elements/LogoIcon";
 import styled from "styled-components";
 import { useRouter } from "next/router";
-import { GNB_H } from "../../styles/theme";
+import { GNB_H, WHITE, GRAY100 } from "../../styles/theme";
 
 const GnbWrapper = styled.header.attrs((props) => ({
   isVisible: props.isVisible,
@@ -18,8 +18,8 @@ const GnbWrapper = styled.header.attrs((props) => ({
   width: 100%;
   height: ${GNB_H}px;
   padding: 20px 40px;
-  background-color: white;
-  border-bottom: 1px solid #ececec;
+  background-color: ${WHITE};
+  border-bottom: 1px solid ${GRAY100};
   transform: ${(props) => (props.isVisible ? "translateY(0%)" : "translateY(-100%)")};
   transition: all 400ms ease-in-out 0s;
   & button {

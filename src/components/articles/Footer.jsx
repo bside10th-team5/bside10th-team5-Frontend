@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { GRAY100, GRAY200, GRAY300 } from "../../styles/theme";
 
 const FooterWrapper = styled.footer`
   width: 100%;
@@ -7,9 +8,9 @@ const FooterWrapper = styled.footer`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #fbfbfb;
-  color: #c8c8c8;
-  border-top: 1px solid #dde0ea;
+  background-color: ${GRAY200};
+  color: ${GRAY300};
+  border-top: 1px solid ${GRAY100};
   font-size: 14px;
   line-height: 100%;
   letter-spacing: -1.5%;

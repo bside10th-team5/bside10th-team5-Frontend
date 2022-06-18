@@ -24,7 +24,7 @@ const ProjectDate = () => {
   return (
     <Box>
       <Title className="headline-6">
-        프로젝트 기간<span>*</span>
+        프로젝트 기간 <span>*</span>
       </Title>
       <Row>
         <DatePickerWrapper>

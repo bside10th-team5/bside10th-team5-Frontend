@@ -1,7 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { GRAY900 } from "../../styles/theme";
 
-const CloseIcon = ({ color, width = 10, height = 10 }) => {
+const CloseIcon = ({ color = `${GRAY900}`, width = 10, height = 10 }) => {
   return (
     <svg width={width} height={height} viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path

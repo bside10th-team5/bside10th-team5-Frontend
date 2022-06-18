@@ -7,6 +7,10 @@ const Wrapper = styled.span`
   width: 216px;
   height: 158px;
 
+  & img {
+    border-radius: 4px;
+  }
+
   & input[type="radio"] {
     position: absolute;
     opacity: 0;
@@ -26,7 +30,6 @@ const RadioWithImg = ({ name, value, onChange, isChecked, src, alt }) => {
   return (
     <Wrapper>
       <label>
-        {/* <input type="radio" name={name} value={value} /> */}
         <input type="radio" id={value} name={name} value={value} onChange={onChange} checked={isChecked} />
         {isChecked ? (
           <svg
