@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import React from "react";
 import { useSetRecoilState } from "recoil";
 import { modalListState } from "../../state/modalState";
+import { WHITE } from "../../styles/theme";
 import CloseIcon from "../elements/CloseIcon";
 import { ItemWrapper, ItemBox, ItemTitle, ItemType, ItemDate, CloseIconWrapper } from "./MemoriesPage.style";
 
@@ -124,7 +125,7 @@ const Items = () => {
       {mockItemList.map((el) => (
         <ItemBox key={el.id} onClick={onClickProject}>
           <CloseIconWrapper type="button" onClick={openDeleteProjectModal}>
-            <CloseIcon color="white" width={16.33} height={16.33} />
+            <CloseIcon color={WHITE} width={16.33} height={16.33} />
           </CloseIconWrapper>
           <img src={el.src} />
           <ItemTitle className="headline-6">{el.title}</ItemTitle>

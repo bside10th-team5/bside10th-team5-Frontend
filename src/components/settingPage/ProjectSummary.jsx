@@ -8,15 +8,16 @@ const TextAreaWrapper = styled.div.attrs((props) => ({
   isError: props.isError,
 }))`
   position: relative;
-  height: 64px;
+  height: 72px;
   border: 1px solid ${GRAY300};
   border-radius: 4px;
   display: flex;
+  padding: 12px 16px;
 
   & > textarea {
     flex: 1;
     box-sizing: border-box;
-    margin: 8px 16px 8px 16px;
+    padding: 0;
     resize: none;
     border: none;
     outline: none;
@@ -68,7 +69,7 @@ const ProjectSummary = () => {
 
   return (
     <Box>
-      <Title className="headline-6">프로젝트 한줄소개</Title>
+      <Title className="headline-6">프로젝트 한 줄 소개</Title>
       <TextAreaWrapper hasValue={summaryText.length > 0} isError={isError}>
         <textarea
           className="body-2"

@@ -1,16 +1,18 @@
-import React, { useContext } from "react";
+import React from "react";
 import PropTypes from "prop-types";
-import styled, { ThemeContext } from "styled-components";
+import styled from "styled-components";
 import CloseIcon from "../elements/CloseIcon";
 import { tagState } from "../../state/addProjectState";
 import { useSetRecoilState } from "recoil";
+import { INPUT_H, ORANGE } from "../../styles/theme";
 
 export const Wrapper = styled.span`
   background: rgba(255, 122, 65, 0.16);
-  height: 50px;
+  box-sizing: border-box;
+  height: ${INPUT_H}px;
   display: flex;
   align-items: center;
-  padding: 12px 16px;
+  padding: 12px 19.33px 12px 16px;
   border-radius: 0.4rem;
   margin-right: 0.25rem;
 
@@ -35,7 +37,6 @@ export const Wrapper = styled.span`
 `;
 
 const Tag = ({ text }) => {
-  const themeContext = useContext(ThemeContext);
   const setTagsState = useSetRecoilState(tagState);
   const onClickDeleteTag = (target) => {
     setTagsState((tags) => {
@@ -47,7 +48,7 @@ const Tag = ({ text }) => {
     <Wrapper>
       <span className="button">{text}</span>
       <button onClick={() => onClickDeleteTag(text)}>
-        <CloseIcon color={themeContext.color.orange} />
+        <CloseIcon color={`${ORANGE}`} />
       </button>
     </Wrapper>
   );

@@ -1,14 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
-import { GRAY300, GRAY500, GRAY900 } from "../../styles/theme";
+import { GRAY300, GRAY500, GRAY900, INPUT_H } from "../../styles/theme";
 
 const Wrapper = styled.div.attrs((props) => ({
   width: props.width || "100%",
-  height: props.height,
+  height: props.height || `${INPUT_H}px`,
   isError: props.isError,
   hasValue: props.hasValue,
 }))`
+  box-sizing: padding-box;
   position: relative;
   display: flex;
   align-items: center;
@@ -17,7 +18,7 @@ const Wrapper = styled.div.attrs((props) => ({
   height: ${(props) => props.height};
   border: 1px solid ${GRAY300};
   border-radius: 4px;
-  padding-right: 16px;
+  padding: 12px 16px;
 
   &:hover {
     border: 1px solid ${GRAY500};
@@ -47,12 +48,11 @@ const Input = styled.input.attrs((props) => ({
 }))`
   border: none;
   outline: none;
-  height: 98%;
-  width: 92%;
+  height: 100%;
+  width: calc(100% - 36px);
   border-radius: 4px;
   color: ${GRAY900};
-  padding: 0 0 0 14px;
-
+  padding: 0;
   &::placeholder {
     color: ${GRAY500};
   }
@@ -69,7 +69,7 @@ const Input = styled.input.attrs((props) => ({
 const Description = styled.p`
   margin: 0;
   position: absolute;
-  bottom: -24px;
+  bottom: -20px;
   left: 0;
   color: rgba(255, 90, 0, 0.7);
 `;
@@ -106,7 +106,7 @@ const CustomTextInput = ({ id, width, height, placeholder, value, onChange, isEr
           />
         </svg>
       )}
-      {desc && <Description className="body-2">{desc}</Description>}
+      {desc && <Description className="caption">{desc}</Description>}
     </Wrapper>
   );
 };

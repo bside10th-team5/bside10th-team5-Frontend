@@ -13,7 +13,7 @@ const ProjectDeviceAndTool = () => {
   const setModalList = useSetRecoilState(modalListState);
 
   const openTagModal = () => {
-    setModalList((prev) => prev.concat({ id: "addTagModal" }));
+    setModalList((prev) => prev.concat({ id: "add-tag-modal" }));
   };
 
   const handleCheckBox = (e) => {
@@ -23,26 +23,28 @@ const ProjectDeviceAndTool = () => {
 
   return (
     <Box marginBottom="3rem">
-      <Title className="headline-6" marginBottom="2.5rem">
+      <Title className="headline-6" marginBottom="1.75rem">
         프로젝트 기본 정보<span className="caption">한번 등록하면 회고록 작성을 쉽게할 수 있어요</span>
       </Title>
-      <Row marginBottom="1.5rem">
+      <Row marginBottom="1.25rem">
         <SubTitle className="subtitle-1">디바이스 유형</SubTitle>
-        <Checkbox id="web" isChecked={isWebChecked} width="133px" marginRight="0.75rem" onChange={handleCheckBox}>
-          <span className="button">웹 (web)</span>
+        <Checkbox id="web" isChecked={isWebChecked} marginRight="0.75rem" onChange={handleCheckBox}>
+          <span className="button">웹(Web)</span>
         </Checkbox>
-        <Checkbox id="mobile" isChecked={isMobileChecked} width="174px" onChange={handleCheckBox}>
-          <span className="button">모바일 (Mobile)</span>
+        <Checkbox id="mobile" isChecked={isMobileChecked} onChange={handleCheckBox}>
+          <span className="button">앱(App)</span>
         </Checkbox>
       </Row>
-      <Row marginBottom="0">
-        <SubTitle className="subtitle-1">프로젝트 TOOL</SubTitle>
-        {tags.map((tag) => (
-          <Tag key={tag} text={tag} />
-        ))}
-        <AddTagButton className="body-2" type="button" onClick={openTagModal}>
-          + 태그추가
-        </AddTagButton>
+      <Row marginBottom="0" alignItems="flex-start">
+        <SubTitle className="subtitle-1">프로젝트 Tool (언어)</SubTitle>
+        <div style={{ flexWrap: "wrap", display: "flex", flex: 1, gap: "4px" }}>
+          {tags.map((tag) => (
+            <Tag key={tag} text={tag} />
+          ))}
+          <AddTagButton className="body-2" type="button" onClick={openTagModal}>
+            + 태그추가
+          </AddTagButton>
+        </div>
       </Row>
     </Box>
   );

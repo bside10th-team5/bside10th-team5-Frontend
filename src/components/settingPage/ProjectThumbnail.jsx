@@ -11,8 +11,8 @@ const ProjectThumbnail = () => {
 
   return (
     <Box marginBottom="3.25rem">
-      <Title className="headline-6" marginBottom="2.5rem">
-        썸네일 이미지 선택<span>*</span>
+      <Title className="headline-6" marginBottom="1.75rem">
+        썸네일 이미지 선택 <span>*</span>
       </Title>
       <Row justifyContent="space-between">
         <RadioWithImg

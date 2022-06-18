@@ -1,12 +1,13 @@
 export const GNB_H = 80;
-
+export const INPUT_H = 50;
+export const WHITE = "#FFFFFF";
+export const GRAY100 = "#EFEFEF";
+export const GRAY200 = "#FBFBFB";
 export const GRAY300 = "#C8C8C8";
 export const GRAY500 = "#949494";
 export const GRAY700 = "#555555";
 export const GRAY900 = "#111111";
 export const ORANGE = "#FF5A00";
-export const BLACK = "#000000";
-export const WHITE = "#FFFFFF";
 
 const defaultTheme = {
   color: {

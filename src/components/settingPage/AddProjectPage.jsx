@@ -35,7 +35,6 @@ const AddProjectPage = () => {
             text="회고록 생성"
             onClick={onClickSave}
             width="399px"
-            height="50px"
             borderRadius="5px"
             bgColor={themeContext.color.orange}
           />

@@ -2,6 +2,7 @@ import React, { forwardRef } from "react";
 import styled, { css } from "styled-components";
 import PropTypes from "prop-types";
 import CalendarIcon from "../elements/Calendaricon";
+import { INPUT_H } from "../../styles/theme";
 
 // TODO: datepicker custom 해서 폴더 article 로 이동해놔야됌
 const CustomInputWrapper = styled.div.attrs((props) => ({
@@ -12,7 +13,7 @@ const CustomInputWrapper = styled.div.attrs((props) => ({
   align-items: center;
   border-radius: 5px;
   width: auto;
-  height: 50px;
+  height: ${INPUT_H}px;
   border: ${({ theme }) => `1px solid ${theme.color.gray300}`};
   padding: 12px 16px;
 
