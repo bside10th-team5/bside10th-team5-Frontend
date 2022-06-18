@@ -1,7 +1,7 @@
 import { RecoilRoot } from "recoil";
 import PropTypes from "prop-types";
 import AppThemeProvider from "../src/styles/AppThemeProvider";
-import "../src/styles/font-ko.css";
+import "../src/styles/font.css";
 import ModalContainer from "../src/components/articles/ModalContainer";
 
 function MyApp({ Component, pageProps }) {

@@ -18,7 +18,7 @@ const ProjectName = () => {
   return (
     <Box>
       <Title className="headline-6">
-        프로젝트명<span>*</span>
+        프로젝트명 <span>*</span>
       </Title>
       <Row>
         <CustomTextInput
@@ -27,7 +27,6 @@ const ProjectName = () => {
           value={projectName}
           onChange={onChangeTextInput}
           width="632px"
-          height="44px"
           desc={projectName.length > 24 ? "25자 이상은 입력할 수 없어요" : ""}
           isError={projectName.length > 24}
         />

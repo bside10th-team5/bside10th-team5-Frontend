@@ -2,12 +2,13 @@
 import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
+import { GRAY900 } from "../../styles/theme";
 
 const Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid black;
+  border: 1px solid ${GRAY900};
   padding: 0 2rem;
   width: fit-content;
   height: 3rem;

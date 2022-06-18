@@ -3,13 +3,13 @@ import { useSetRecoilState } from "recoil";
 import styled from "styled-components";
 import { modalListState } from "../../../state/modalState";
 import CustomBtn from "../../elements/CustomBtn";
-import { BLACK, GRAY500, GRAY700, ORANGE } from "../../../styles/theme";
+import { GRAY300, GRAY500, GRAY700, GRAY900, ORANGE, WHITE } from "../../../styles/theme";
 import CloseIcon from "../../elements/CloseIcon";
 
 export const Modal = styled.div`
   position: relative;
   width: 640px;
-  background: #ffffff;
+  background: ${WHITE};
   border-radius: 20px;
   display: flex;
   flex-direction: column;
@@ -18,7 +18,7 @@ export const Modal = styled.div`
 `;
 
 const Title = styled.div`
-  color: ${BLACK};
+  color: ${GRAY900};
   margin-bottom: 4px;
 `;
 
@@ -54,7 +54,7 @@ const BasicTwoBtnModal = () => {
   return (
     <Modal>
       <CloseIconWrapper onClick={onClickCloseModal}>
-        <CloseIcon color="black" width={16.33} height={16.33} />
+        <CloseIcon width={16.33} height={16.33} />
       </CloseIconWrapper>
       <Title className="headline-6">해당 회고록을 정말 삭제하시겠습니까?</Title>
       <SubTitle>데이터는 복구가 불가능합니다</SubTitle>
@@ -63,19 +63,11 @@ const BasicTwoBtnModal = () => {
           text="취소"
           onClick={onClickCloseModal}
           width="99px"
-          height="48px"
           borderRadius="5px"
-          border="1px solid black"
+          border={`1px solid ${GRAY300}`}
           color={GRAY700}
         />
-        <CustomBtn
-          text="확인"
-          onClick={onClickDelteProject}
-          width="99px"
-          height="48px"
-          borderRadius="5px"
-          bgColor={ORANGE}
-        />
+        <CustomBtn text="확인" onClick={onClickDelteProject} width="99px" borderRadius="5px" bgColor={ORANGE} />
       </BtnWrapper>
     </Modal>
   );

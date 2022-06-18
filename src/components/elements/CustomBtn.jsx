@@ -1,12 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
+import { INPUT_H, WHITE } from "../../styles/theme";
 
 const Button = styled.button.attrs((props) => ({
   width: props.width || "10rem",
-  height: props.height || "50px",
+  height: props.height || `${INPUT_H}px`,
   borderRadius: props.borderRadius || "5px",
-  color: props.color || "#FFFFFF",
+  color: props.color || `${WHITE}`,
   bgColor: props.bgColor,
   border: props.border || "none",
 }))`

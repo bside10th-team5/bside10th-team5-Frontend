@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
+import { INPUT_H } from "../../styles/theme";
 
 const RadioCheckBoxLabel = styled.label.attrs((props) => ({
   width: props.width || "auto",
@@ -11,7 +12,7 @@ const RadioCheckBoxLabel = styled.label.attrs((props) => ({
   display: flex;
   align-items: center;
   width: ${(props) => props.width};
-  height: 50px;
+  height: ${INPUT_H}px;
   margin-right: ${(props) => props.marginRight};
   margin-left: ${(props) => props.marginLeft};
   color: ${({ theme }) => theme.color.gray500};

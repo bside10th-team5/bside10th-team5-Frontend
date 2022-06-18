@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { GNB_H } from "../../styles/theme";
+import { GNB_H, GRAY900 } from "../../styles/theme";
 
 export const Section = styled.section`
   width: 1200px;
@@ -8,9 +8,9 @@ export const Section = styled.section`
 `;
 
 export const Title = styled.div.attrs((props) => ({
-  marginBottom: props.marginBottom || "1.5rem",
+  marginBottom: props.marginBottom || "0.25rem",
 }))`
-  color: #000000;
+  color: ${GRAY900};
   margin-bottom: ${(props) => props.marginBottom};
 
   & span {
@@ -46,6 +46,7 @@ export const Box = styled.div.attrs((props) => ({
 
 export const SubTitle = styled.div`
   width: 246px;
+  height: 50px;
   display: flex;
   align-items: center;
   color: ${({ theme }) => theme.color.gray500};
@@ -53,5 +54,6 @@ export const SubTitle = styled.div`
 
 export const AddTagButton = styled.button`
   margin-left: 1rem;
+  height: 50px;
   color: ${({ theme }) => theme.color.gray500};
 `;
