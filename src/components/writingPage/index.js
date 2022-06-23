@@ -1,1 +1,1 @@
-export { default } from "./wrtingPage.jsx";
+export { default } from "./WritingPage.jsx";
