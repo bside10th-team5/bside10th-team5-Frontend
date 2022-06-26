@@ -1,7 +1,7 @@
 import React from "react";
 import { useSetRecoilState } from "recoil";
 import { templateListState, toggleAddTemplateState } from "../../state/writeDiaryState";
-import { TemplateBox } from "./WritingPage.style";
+import TemplateBox from "./TemplateBox";
 
 const Templates = () => {
   const setTemplateList = useSetRecoilState(templateListState);
@@ -30,32 +30,64 @@ const Templates = () => {
       </div>
       <div style={{ display: "flex", flexDirection: "column", gap: "36px" }}>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <TemplateBox onClick={handleTemplateList} value="workflow">
-            <img />
+          <TemplateBox
+            value="workflow"
+            name="워크플로우"
+            src="/img/templates/template_workflow.png"
+            hoverText="사용자 목표에 맞춰 화면들의 구조와 흐름을 설계하는 단계"
+            onClick={handleTemplateList}
+          />
+          <TemplateBox
+            value="ia"
+            name="ia"
+            src="/img/templates/template_ia.png"
+            hoverText="각 화면들의 정보 구조도를 상세 정의하여,
+            개발/디자인 작업 목록을 구체화하는 단계"
+            onClick={handleTemplateList}
+          />
+          <TemplateBox
+            value="sb"
+            name="설계"
+            src="/img/templates/template_sb.png"
+            hoverText="화면 별 구성요소와 배치,
+            동작 방식 들을 정의하는 단계"
+            onClick={handleTemplateList}
+          />
+          {/* <TemplateBox onClick={handleTemplateList} value="workflow">
+            <img src="/img/templates/template_workflow.png" />
             <div>워크플로우</div>
           </TemplateBox>
           <TemplateBox onClick={handleTemplateList} value="ia">
-            <img />
+            <img src="/img/templates/template_ia.png" />
             <div>ia</div>
           </TemplateBox>
-          <TemplateBox onClick={handleTemplateList} value="interior">
-            <img />
+          <TemplateBox onClick={handleTemplateList} value="sb">
+            <img src="/img/templates/template_sb.png" />
             <div>설계</div>
-          </TemplateBox>
+          </TemplateBox> */}
         </div>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <TemplateBox onClick={handleTemplateList} value="design">
-            <img />
-            <div>디자인 관련</div>
-          </TemplateBox>
-          <TemplateBox onClick={handleTemplateList} value="develop">
-            <img />
-            <div>개발 관련</div>
-          </TemplateBox>
-          <TemplateBox onClick={handleTemplateList} value="qa">
-            <img />
-            <div>qa</div>
-          </TemplateBox>
+          <TemplateBox
+            value="design"
+            name="디자인 관련"
+            src="/img/templates/template_design.png"
+            hoverText="디자인 관련 주요 내용 기록"
+            onClick={handleTemplateList}
+          />
+          <TemplateBox
+            value="develop"
+            name="개발 관련"
+            src="/img/templates/template_develop.png"
+            hoverText="개발 관련 주요 내용 기록"
+            onClick={handleTemplateList}
+          />
+          <TemplateBox
+            value="qa"
+            name="qa"
+            src="/img/templates/template_qa.png"
+            hoverText="QA 관련 주요 내용 기록"
+            onClick={handleTemplateList}
+          />
         </div>
       </div>
     </article>
