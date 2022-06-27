@@ -18,7 +18,8 @@ const AddProjectPage = () => {
 
   const onClickSave = () => {
     //TODO: 저장하고 id 받아서 이동
-    router.push("/writing/[id]", "/writing/exampleid");
+    // router.push("/writing/[id]", "/writing/exampleid");
+    router.push("/test");
   };
 
   return (
