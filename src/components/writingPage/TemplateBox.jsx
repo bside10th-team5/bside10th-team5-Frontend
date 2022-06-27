@@ -11,7 +11,7 @@ const TemplateBox = ({ onClick, src, hoverText, value, name }) => {
       {/* // TODO : ref 왜뜨징? */}
       <img src={src} />
       {isHover ? <div className="hover-text">{hoverText}</div> : ""}
-      <div>{name}</div>
+      <div className="headline-5 template-name">{name}</div>
     </TemplateBoxWrapper>
   );
 };

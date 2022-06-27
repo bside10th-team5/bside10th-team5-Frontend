@@ -18,6 +18,7 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     cursor: pointer;
     border: none;
+    line-height: 0;
   }
 `;
 export default GlobalStyle;

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import { INPUT_H, WHITE } from "../../styles/theme";
+import { INPUT_H, WHITE, ORANGE } from "../../styles/theme";
 
 const Button = styled.button.attrs((props) => ({
   width: props.width || "10rem",
@@ -9,7 +9,8 @@ const Button = styled.button.attrs((props) => ({
   borderRadius: props.borderRadius || "5px",
   color: props.color || `${WHITE}`,
   bgColor: props.bgColor,
-  border: props.border || "none",
+  border: props.border || `1px solid ${ORANGE}`,
+  margin: props.margin || "0",
 }))`
   display: flex;
   justify-content: center;
@@ -20,9 +21,10 @@ const Button = styled.button.attrs((props) => ({
   border-radius: ${(props) => props.borderRadius};
   color: ${(props) => props.color};
   background-color: ${(props) => props.bgColor};
+  margin: ${(props) => props.margin};
 `;
 
-const CustomBtn = ({ text, onClick, width, height, borderRadius, color, bgColor, border }) => {
+const CustomBtn = ({ text, onClick, width, height, borderRadius, color, bgColor, border, margin }) => {
   return (
     <Button
       className="button"
@@ -33,6 +35,7 @@ const CustomBtn = ({ text, onClick, width, height, borderRadius, color, bgColor,
       bgColor={bgColor}
       onClick={onClick}
       border={border}
+      margin={margin}
     >
       {text}
     </Button>
@@ -50,4 +53,5 @@ CustomBtn.propTypes = {
   color: PropTypes.string,
   bgColor: PropTypes.string,
   border: PropTypes.string,
+  margin: PropTypes.string,
 };

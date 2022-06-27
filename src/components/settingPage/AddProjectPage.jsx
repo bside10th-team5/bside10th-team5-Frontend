@@ -34,7 +34,7 @@ const AddProjectPage = () => {
           <CustomBtn
             text="회고록 생성"
             onClick={onClickSave}
-            width="399px"
+            width="374px"
             borderRadius="5px"
             bgColor={themeContext.color.orange}
           />

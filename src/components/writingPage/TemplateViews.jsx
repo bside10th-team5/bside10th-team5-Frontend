@@ -14,34 +14,51 @@ const TemplateViews = () => {
   return (
     <div style={{ height: "auto" }}>
       {templateList.map((el) => (
-        <div key={el} style={{ width: "100%", height: "72px", border: "1px solid black" }}>
+        <div
+          key={el}
+          className="headline-6"
+          style={{
+            width: "100%",
+            height: "72px",
+            padding: "20px 24px",
+            borderRadius: "4px",
+            border: "1px solid #C8C8C8",
+            marginBottom: "20px",
+          }}
+        >
           {el}
         </div>
       ))}
       {!toggleAddTemplate && (
-        <button style={{ width: "100%", height: "128px", border: "1px solid black" }} onClick={onClickAddTemplate}>
-          템플릿 추가하기
+        <button
+          className="headline-6"
+          style={{ width: "100%", height: "128px", borderRadius: "4px", border: "1px solid #C8C8C8", color: "#555555" }}
+          onClick={onClickAddTemplate}
+        >
+          + 템플릿 추가하기
         </button>
       )}
       {toggleAddTemplate && (
-        <button style={{ width: "100%" }}>
+        <div style={{ width: "100%", borderRadius: "4px", border: "1px solid #C8C8C8" }}>
           <div
+            className="headline-6"
             style={{
               width: "100%",
               height: "128px",
-              border: "1px solid black",
+              borderBottom: "1px solid #C8C8C8",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
             }}
             onClick={onClickAddTemplate}
           >
-            템플릿 추가 취소하기
+            - 템플릿 추가 취소하기
           </div>
-          <Templates />
-        </button>
+          <div style={{ padding: "48px 28px" }}>
+            <Templates />
+          </div>
+        </div>
       )}
-      <button>저장하기</button>
     </div>
   );
 };
