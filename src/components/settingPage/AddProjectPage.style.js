@@ -29,11 +29,13 @@ export const Row = styled.div.attrs((props) => ({
   marginBottom: props.marginBottom || "0",
   justifyContent: props.justifyContent || "flex-start",
   alignItems: props.alignItems || "center",
+  gap: props.gap || "0",
 }))`
   display: flex;
   justify-content: ${(props) => props.justifyContent};
   align-items: ${(props) => props.alignItems};
   margin-bottom: ${(props) => props.marginBottom};
+  gap: ${(props) => props.gap};
 `;
 
 export const Box = styled.div.attrs((props) => ({

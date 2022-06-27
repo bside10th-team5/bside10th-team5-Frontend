@@ -31,15 +31,19 @@ const Gnb = ({ isVisible }) => {
   const router = useRouter();
 
   const onClick = (e) => {
-    const { value } = e.target;
+    const { value } = e.currentTarget;
+    console.log(value);
     if (value === "list-page") router.push("/memories");
     if (value === "logout") router.push("/");
+    if (value === "logo") router.push("/");
   };
 
   return (
     <GnbWrapper isVisible={isVisible}>
       <div style={{ display: "flex", alignItems: "center" }}>
-        <LogoIcon />
+        <button onClick={onClick} value="logo">
+          <LogoIcon />
+        </button>
         <button className="subtitle-2" value="list-page" onClick={onClick} style={{ marginLeft: "3.75rem" }}>
           회고록 리스트
         </button>
