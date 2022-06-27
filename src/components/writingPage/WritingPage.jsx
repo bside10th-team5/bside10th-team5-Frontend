@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 // import { useRouter } from "next/router";
 import { WideWrapper } from "../elements/Wrapper.style";
 import Gnb from "../articles/Gnb";
@@ -8,11 +8,17 @@ import Templates from "./Templates";
 import { useRecoilValue } from "recoil";
 import { templateListState } from "../../state/writeDiaryState";
 import TemplateViews from "./TemplateViews";
+import CustomFullCalendar from "./FullCalendar";
 
 const wrtingPage = () => {
   // const router = useRouter();
   // const { id } = router.query;
+  const [toggleCalendar, setToggleCalendar] = useState(false);
   const templateList = useRecoilValue(templateListState);
+
+  const handleCalendar = () => {
+    setToggleCalendar((prev) => !prev);
+  };
 
   return (
     <WideWrapper>
@@ -38,19 +44,22 @@ const wrtingPage = () => {
             <button>정보 수정하기</button>
           </div>
         </div>
-        <div
-          style={{
-            width: "100%",
-            display: "flex",
-            justifyContent: "space-between",
-            background: "black",
-            color: "white",
-            height: "4rem",
-            alignItems: "center",
-          }}
-        >
-          <div>22년 06월 15일</div>
-          <div>캘린더 열기</div>
+        <div style={{ display: "flex", flexDirection: "column", padding: "10px", border: "2px solid black" }}>
+          <div
+            style={{
+              width: "100%",
+              display: "flex",
+              justifyContent: "space-between",
+              background: "black",
+              color: "white",
+              height: "4rem",
+              alignItems: "center",
+            }}
+          >
+            <div>22년 06월 15일</div>
+            <div onClick={handleCalendar}>{toggleCalendar ? "달력 닫기" : "달력 열기"}</div>
+          </div>
+          {toggleCalendar && <CustomFullCalendar />}
         </div>
         {templateList.length === 0 && <Templates />}
         {templateList.length > 0 && <TemplateViews />}
