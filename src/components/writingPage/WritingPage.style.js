@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { GNB_H, GRAY100, GRAY500, GRAY700, GRAY900, ORANGE, WHITE } from "../../styles/theme";
+import { GNB_H, GRAY300, GRAY700, GRAY900, ORANGE, WHITE } from "../../styles/theme";
 
 export const Section = styled.section`
   box-sizing: border-box;
@@ -9,43 +9,15 @@ export const Section = styled.section`
   color: ${GRAY900};
 `;
 
-export const HeaderWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding-bottom: 20px;
-  border-bottom: 1px solid ${GRAY500};
-  margin-bottom: 44px;
-`;
-
-export const Header = styled.div`
+//TODO: 이런거 커스텀해놔야됨
+export const LeftBox = styled.div`
   display: flex;
   flex-direction: column;
-
-  & .date {
-    color: ${GRAY900};
-    margin-top: 4px;
-  }
 `;
 
 export const Title = styled.div`
   display: flex;
   align-items: center;
-
-  & > .title {
-    color: ${GRAY900};
-  }
-
-  & > .tag {
-    color: ${GRAY700};
-    background: ${GRAY100};
-    border-radius: 5px;
-    padding: 4px 16px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 32px;
-    margin-left: 20px;
-  }
 `;
 
 export const CalendarBox = styled.div`
@@ -115,4 +87,27 @@ export const TemplateBoxWrapper = styled.button`
     width: 100%;
     margin-top: 12px;
   }
+`;
+
+export const DayTemplate = styled.div`
+  width: 100%;
+  height: 72px;
+  padding: 20px 24px;
+  border-radius: 4px;
+  border: 1px solid ${GRAY300};
+  margin-bottom: 20px;
+`;
+
+export const AddTemplateBtn = styled.button`
+  width: 100%;
+  height: 128px;
+  border-radius: 4px;
+  border: 1px solid ${GRAY300};
+  color: ${GRAY700};
+`;
+
+export const CancelAddTemplateBtn = styled(AddTemplateBtn)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
