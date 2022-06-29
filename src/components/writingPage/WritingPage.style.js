@@ -59,45 +59,6 @@ export const TemplateWrapper = styled.div`
   gap: 36px;
 `;
 
-export const TemplateBoxWrapper = styled.button`
-  position: relative;
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-
-  & > img {
-    width: 100%;
-  }
-
-  & > .hover-text {
-    position: absolute;
-    width: 100%;
-    height: calc(100% - 56px);
-    background: rgba(17, 17, 17, 0.5);
-    color: ${WHITE};
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  & .template-name {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    margin-top: 12px;
-  }
-`;
-
-export const DayTemplate = styled.div`
-  width: 100%;
-  height: 72px;
-  padding: 20px 24px;
-  border-radius: 4px;
-  border: 1px solid ${GRAY300};
-  margin-bottom: 20px;
-`;
-
 export const AddTemplateBtn = styled.button`
   width: 100%;
   height: 128px;

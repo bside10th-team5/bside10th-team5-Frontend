@@ -43,8 +43,7 @@ const Templates = () => {
             value="ia"
             name="IA"
             src="/img/templates/template_ia.png"
-            hoverText="각 화면들의 정보 구조도를 상세 정의하여,
-            개발/디자인 작업 목록을 구체화하는 단계"
+            hoverText="각 화면들의 정보 구조도를 상세 정의하여, 개발/디자인 작업 목록을 구체화하는 단계"
             onClick={handleTemplateList}
           />
           <TemplateBox
