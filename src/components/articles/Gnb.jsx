@@ -32,7 +32,6 @@ const Gnb = ({ isVisible }) => {
 
   const onClick = (e) => {
     const { value } = e.currentTarget;
-    console.log(value);
     if (value === "list-page") router.push("/memories");
     if (value === "logout") router.push("/");
     if (value === "logo") router.push("/");

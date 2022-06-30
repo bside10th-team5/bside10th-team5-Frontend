@@ -21,6 +21,8 @@ const wrtingPage = () => {
   const [selectedDate, setSelectedDate] = useRecoilState(selectedDateState);
   const [toggleCalendar, setToggleCalendar] = useState(false);
   const templateList = useRecoilValue(templateListState);
+  const openTemplateMenu = templateList.length === 0 && !toggleCalendar;
+  const openMyTemplates = templateList.length > 0 && !toggleCalendar;
 
   const onClickSave = () => {
     console.log("저장");
@@ -49,18 +51,21 @@ const wrtingPage = () => {
           </CalendarTab>
           {toggleCalendar && <CustomFullCalendar handleDate={handleDate} />}
         </CalendarBox>
-        {templateList.length === 0 && <Templates />}
-        {templateList.length > 0 && <TemplateViews />}
-        <Row justifyContent="center">
-          <CustomBtn
-            text="저장하기"
-            onClick={onClickSave}
-            width="399px"
-            borderRadius="5px"
-            bgColor={ORANGE}
-            margin="52px 0 0 0"
-          />
-        </Row>
+        {/* // TODO : naming 변경 고민 */}
+        {openTemplateMenu && <Templates />}
+        {openMyTemplates && <TemplateViews />}
+        {!toggleCalendar && (
+          <Row justifyContent="center">
+            <CustomBtn
+              text="저장하기"
+              onClick={onClickSave}
+              width="399px"
+              borderRadius="5px"
+              bgColor={ORANGE}
+              margin="52px 0 0 0"
+            />
+          </Row>
+        )}
       </Section>
       <Footer />
     </WideWrapper>
