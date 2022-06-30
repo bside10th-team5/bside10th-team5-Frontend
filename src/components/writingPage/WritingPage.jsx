@@ -5,18 +5,20 @@ import Gnb from "../articles/Gnb";
 import { CalendarBox, CalendarTab, Section } from "./WritingPage.style";
 import Footer from "../articles/Footer";
 import Templates from "./templates/Templates";
-import { useRecoilValue } from "recoil";
-import { templateListState } from "../../state/writeDiaryState";
+import { useRecoilValue, useRecoilState } from "recoil";
+import { templateListState, selectedDateState } from "../../state/writeDiaryState";
 import TemplateViews from "./templates/TemplateViews";
 import CustomFullCalendar from "./FullCalendar";
 import { Row } from "../settingPage/AddProjectPage.style";
 import CustomBtn from "../elements/CustomBtn";
 import { ORANGE } from "../../styles/theme";
 import WritePageHeader from "./WritePageHeader";
+import { format } from "date-fns";
 
 const wrtingPage = () => {
   // const router = useRouter();
   // const { id } = router.query;
+  const [selectedDate, setSelectedDate] = useRecoilState(selectedDateState);
   const [toggleCalendar, setToggleCalendar] = useState(false);
   const templateList = useRecoilValue(templateListState);
 
@@ -24,7 +26,12 @@ const wrtingPage = () => {
     console.log("저장");
   };
 
-  const handleCalendar = () => {
+  const handleDate = (e) => {
+    const overDate = e.date > new Date();
+    if (!overDate) setSelectedDate(e.date);
+  };
+
+  const handleToggleCalendar = () => {
     setToggleCalendar((prev) => !prev);
   };
 
@@ -35,12 +42,12 @@ const wrtingPage = () => {
         <WritePageHeader />
         <CalendarBox>
           <CalendarTab>
-            <span className="headline-6">22년 06월 15일</span>
-            <span className="subtitle-1 btn" onClick={handleCalendar}>
+            <span className="headline-6">{format(selectedDate, "yyyy-MM-dd")}</span>
+            <span className="subtitle-1 btn" onClick={handleToggleCalendar}>
               {toggleCalendar ? "캘린더 닫기" : "캘린더 열기"}
             </span>
           </CalendarTab>
-          {toggleCalendar && <CustomFullCalendar />}
+          {toggleCalendar && <CustomFullCalendar handleDate={handleDate} />}
         </CalendarBox>
         {templateList.length === 0 && <Templates />}
         {templateList.length > 0 && <TemplateViews />}
