@@ -1,4 +1,4 @@
-const { default: styled } = require("styled-components");
+import styled from "styled-components";
 
 export const Wrapper = styled.div`
   width: 100vw;
@@ -13,9 +13,13 @@ export const Observer = styled.div`
   left: 0;
 `;
 
-export const Section = styled.section`
-  background-color: ${(props) => props.theme.backgroundColor || "white"};
-  height: ${(props) => props.theme.height || "45rem"};
+export const Section = styled.section.attrs((props) => ({
+  backgroundColor: props.backgroundColor,
+  height: props.height || "45rem",
+}))`
+  width: 100%;
+  background-color: ${(props) => props.backgroundColor};
+  height: ${(props) => props.height};
   display: flex;
   flex-direction: column;
 
@@ -35,7 +39,6 @@ export const Section = styled.section`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 1px solid yellow;
     gap: 2rem;
   }
 

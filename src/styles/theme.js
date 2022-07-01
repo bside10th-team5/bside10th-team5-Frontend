@@ -1,72 +1,43 @@
-//TODO: style 가이드 나오면 수정 해야댐
+export const GNB_H = 80;
+export const INPUT_H = 50;
+export const WHITE = "#FFFFFF";
+export const GRAY100 = "#EFEFEF";
+export const GRAY200 = "#FBFBFB";
+export const GRAY300 = "#C8C8C8";
+export const GRAY500 = "#949494";
+export const GRAY700 = "#555555";
+export const GRAY900 = "#111111";
+export const ORANGE = "#FF5A00";
+
+const defaultTheme = {
+  color: {
+    orange: "#FF5A00",
+    yellow: "#FF9F00",
+    green: "#03C348",
+    blue: "#0B70FE",
+    gray100: "#EFEFEF",
+    gray300: "#C8C8C8",
+    gray500: "#949494",
+    gray700: "#555555",
+    gray900: "#111111",
+    disabled: "#E4E4E4",
+  },
+  opacity: {
+    normal: "100%",
+    hover: "70%",
+    pressed: "50%",
+  },
+};
+
 const light = {
-  bg: {
-    primary: "yellow",
-    secondary: "#ffffff",
-    inset: "#e2e4e8",
-    input: "rgba(65,67,78,0.12)",
-  },
-  text: {
-    primary: "#050505",
-    secondary: "#2f3037",
-    tertiary: "#525560",
-    quarternary: "#9194a1",
-    placeholder: "rgba(82,85,96,0.5)",
-    onPrimary: "#ffffff",
-  },
+  // darkmode 지원시
+  bg: {},
+  text: {},
 };
 
 const dark = {
-  bg: {
-    primary: "#050505",
-    secondary: "#111111",
-    inset: "#111111",
-    input: "rgba(191,193,201,0.12)",
-  },
-  text: {
-    primary: "#fbfbfc",
-    secondary: "#e3e4e8",
-    tertiary: "#a9abb6",
-    quarternary: "#6c6f7e",
-    placeholder: "rgba(145,148,161,0.5)",
-    onPrimary: "#050505",
-  },
-  // ...
-};
-
-const deviceSizes = {
-  mobile: "500px",
-  laptop: "900px",
-};
-
-const device = {
-  mobile: `screen and (max-width: ${deviceSizes.mobile})`,
-  laptop: `screen and (max-width: ${deviceSizes.laptop})`,
-};
-
-const defaultTheme = {
-  device,
-  fontSizes: [
-    "14px", // 0
-    "16px", // 1
-    "18px", // 2
-    "22px", // 3
-    "26px", // 4
-    "32px", // 5
-    "40px", // 6
-  ],
-  fontWeights: {
-    body: 400,
-    subheading: 500,
-    link: 600,
-    bold: 700,
-    heading: 800,
-  },
-  lineHeights: {
-    body: 1.5,
-    heading: 1.3,
-    code: 1.6,
-  },
+  bg: {},
+  text: {},
 };
 
 export const lightTheme = { ...defaultTheme, ...light };

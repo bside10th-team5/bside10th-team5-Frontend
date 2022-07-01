@@ -1,12 +1,15 @@
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
-import React, { useEffect, useRef, useState } from "react";
-import MediumBtn from "../elements/MediumBtn";
-import { Gnb, WideWrapper } from "../elements/Wrapper.style";
+import { ThemeContext } from "styled-components";
+import Gnb from "../articles/Gnb";
+import FlexibleBtn from "../elements/FlexibleBtn";
+import { WideWrapper } from "../elements/Wrapper.style";
 import { Observer, Section } from "./LandingPage.style";
 
 const LandingPage = () => {
   const toptarget = useRef();
   const router = useRouter();
+  const themeContext = useContext(ThemeContext);
   const bottomTarget = useRef();
   const [topObserve, setTopObserve] = useState(true);
   const [bottomObserve, setBottomObserve] = useState(false);
@@ -81,24 +84,21 @@ const LandingPage = () => {
   return (
     <WideWrapper>
       <Observer ref={toptarget} />
-      <Gnb theme={{ isVisible: !topObserve && !bottomObserve }}>
-        <div>로고</div>
-        <div>로그인</div>
-      </Gnb>
-      <Section theme={{ backgroundColor: "#FDF5F5" }}>
+      <Gnb isVisible={!topObserve && !bottomObserve} />
+      <Section backgroundColor={themeContext.color.orange}>
         <div className="row-box">
-          <span>로고</span>
-          <span>로그인</span>
+          <span className="button">로고</span>
+          <span className="button">로그인</span>
         </div>
         <div className="center-box">
           <div className="column-box">
-            <div>서비스 기획자를 위한 회고록 서비스</div>
+            <div className="headline-4">서비스 기획자를 위한 회고록 서비스</div>
             <img src="https://via.placeholder.com/300x300.jpg" />
-            <MediumBtn text="시작하기" onClick={onClickLtBtn} />
+            <FlexibleBtn text="시작하기" onClick={onClickLtBtn} />
           </div>
         </div>
       </Section>
-      <Section theme={{ backgroundColor: "#F5F7FD" }}>
+      <Section backgroundColor={themeContext.color.yellow}>
         <div className="center-box">
           <div className="column-box">
             <div style={{}}>
@@ -114,7 +114,7 @@ const LandingPage = () => {
           </div>
         </div>
       </Section>
-      <Section ref={bottomTarget} theme={{ backgroundColor: "#F6FDF5", height: "15rem" }}>
+      <Section ref={bottomTarget} height="15rem" backgroundColor={themeContext.color.green}>
         <div className="center-box">footer</div>
       </Section>
     </WideWrapper>

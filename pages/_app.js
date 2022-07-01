@@ -1,11 +1,16 @@
 import { RecoilRoot } from "recoil";
 import PropTypes from "prop-types";
 import AppThemeProvider from "../src/styles/AppThemeProvider";
+import "../src/styles/font.css";
+import ModalContainer from "../src/components/articles/ModalContainer";
+import "@fullcalendar/common/main.css";
+import "@fullcalendar/daygrid/main.css";
 
 function MyApp({ Component, pageProps }) {
   return (
     <RecoilRoot>
       <AppThemeProvider>
+        <ModalContainer />
         <Component {...pageProps} />
       </AppThemeProvider>
     </RecoilRoot>
