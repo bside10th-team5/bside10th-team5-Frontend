@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { GRAY300 } from "../../../styles/theme";
 import { parseTemplateName } from "../../../utills/parser";
-import SrTemplate from "./SrTemplate";
+import SrTemplate from "./sbTemplate/SbTemplate";
 
 const BlockWrapper = styled.div.attrs((props) => ({
   isOpen: props.isOpen,
@@ -31,13 +31,18 @@ const BlockWrapper = styled.div.attrs((props) => ({
 const TemplateBlock = ({ type }) => {
   const [isOpen, setIsOpen] = useState(false);
 
+  const getTemplate = (name) => {
+    if (name === "sb") return <SrTemplate />;
+    return <div>tbd</div>;
+  };
+
   return (
     <BlockWrapper isOpen={isOpen}>
       <div className="tab">
         <span className="headline-6">{parseTemplateName(type)}</span>
         <button onClick={() => setIsOpen((el) => !el)}>{isOpen ? "닫기" : "열기"}</button>
       </div>
-      {isOpen && <SrTemplate />}
+      {isOpen && getTemplate(type)}
     </BlockWrapper>
   );
 };

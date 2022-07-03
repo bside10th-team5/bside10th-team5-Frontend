@@ -85,7 +85,7 @@ const FaceSmileIcon = ({ isActive = false }) => {
   }
   return (
     <svg width="32" height="28" viewBox="0 0 32 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="16" cy="14" r="14" fill="#FFD234" />
+      <circle cx="16" cy="14" r="14" fill="black" />
       <path
         d="M19.2185 8.73713C19.2185 10.2422 20.0885 11.4623 21.1618 11.4623C22.235 11.4623 23.1051 10.2422 23.1051 8.73713C23.1051 7.23206 22.235 6.01196 21.1618 6.01196C20.0885 6.01196 19.2185 7.23206 19.2185 8.73713Z"
         fill="#111111"

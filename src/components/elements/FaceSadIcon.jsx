@@ -89,7 +89,7 @@ const FaceNormalIcon = ({ isActive = false }) => {
   }
   return (
     <svg width="32" height="28" viewBox="0 0 32 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="16" cy="14" r="14" fill="#FFD234" />
+      <circle cx="16" cy="14" r="14" fill="black" />
       <g filter="url(#filter0_f_86_83)">
         <path
           d="M27.8969 16.2313C27.8969 14.9225 26.8359 13.8616 25.5271 13.8616V13.8616C24.2183 13.8616 23.1574 14.9225 23.1574 16.2313V16.3045C23.1574 17.6133 24.2183 18.6742 25.5271 18.6742V18.6742C26.8359 18.6742 27.8969 17.6133 27.8969 16.3045V16.2313Z"
