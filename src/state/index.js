@@ -19,3 +19,8 @@ export const oauth2RegistrationIdState = atom({
   key: "state/oauth2RegistrationId",
   default: "",
 });
+
+export const isLoggedInState = atom({
+  key: "state/isLoggedIn",
+  default: false,
+});

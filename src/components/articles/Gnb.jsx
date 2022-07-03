@@ -1,17 +1,11 @@
 import React from "react";
-import { useEffect } from "react";
+import { useRecoilState } from "recoil";
 import PropTypes from "prop-types";
 import LogoIcon from "../elements/LogoIcon";
 import styled from "styled-components";
 import { useRouter } from "next/router";
 import { GNB_H, WHITE, GRAY100 } from "../../styles/theme";
-import { getCookie } from "cookies-next";
-
-const token = getCookie("token")
-
-const deleteCookie = (name) => {
-  document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT; path=/';
-}
+import { isLoggedInState } from "../../state";
 
 const GnbWrapper = styled.header.attrs((props) => ({
   isVisible: props.isVisible,
@@ -37,19 +31,21 @@ const GnbWrapper = styled.header.attrs((props) => ({
 
 const Gnb = ({ isVisible }) => {
   const router = useRouter();
+  const [isLoggedIn, setIsLoggedIn] = useRecoilState(isLoggedInState);
+
+  const deleteCookie = (name) => {
+    document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT; path=/';
+  }
 
   const onClick = (e) => {
     const { value } = e.currentTarget;
     if (value === "list-page") router.push("/memories");
-    if (value === "logout") router.push("/");
     if (value === "logo") router.push("/");
-    let { value } = e.target;
-
-    if (value === "list-page") router.push("/memories");
     if (value === "logout") {
       deleteCookie("token")
+      setIsLoggedIn(false)
       router.push("/");
-      router.reload();
+      // router.reload();
     }
     if (value === "login") {
       router.push("/login")
@@ -67,7 +63,7 @@ const Gnb = ({ isVisible }) => {
         </button>
       </div>
       <div>
-        {token ? 
+        {isLoggedIn ? 
           <button className="subtitle-2" value="logout" onClick={onClick}>로그아웃</button> 
           : 
           <button className="subtitle-2" value="login" onClick={onClick}>로그인</button>
