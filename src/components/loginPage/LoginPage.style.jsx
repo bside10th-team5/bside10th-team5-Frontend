@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import floatingButton from '../../../public/images/Union.png';
 
 export const ItemWrapper = styled.div`
     width: 100vw;
@@ -73,11 +72,6 @@ export const IconWrapper = styled.div`
     padding-top: 60px;
 `
 
-export const socialLoginButton = styled.button`
-    background-color: white;
-    cursor: pointer;
-`
-
 export const kakaoFloatingButton = styled.div`
     width: 50%;
     height: 50%;
@@ -93,15 +87,6 @@ export const naverFloatingButton = styled.div`
 
 `
 
-export const googleFloatingButton = styled.div`
-    width: 50%;
-    height: 50%;
-    background-image: url(${floatingButton});
-    position: fixed;
-    right: 682px;
-    bottom: 446px;
-`
-
 export const Footer = styled.div`
     width: 100%;
     height: 56px;
@@ -111,12 +96,30 @@ export const Footer = styled.div`
     background-color: #fbfbfb;
     position: fixed;
     bottom: 0px;
-    border-bottom: #EFEFEF
+    border-bottom: #EFEFEF;
 `
 
 export const FooterText = styled.span`
     font-family: "S-Core Dream";
     font-weight: 300;
     font-size: 12px;
-    color: #C8C8C8
+    color: #C8C8C8;
+`
+
+export const KakaoFloatingButton = styled.div`
+    box-sizing: border-box;
+    position: absolute;
+    width: 185px;
+    height: 48px;
+    left: 1238px;
+    top: 634px;
+
+    /* Basic/white */
+
+    background: #FFFFFF;
+    /* gray/300 */
+
+    border: 1px solid #C8C8C8;
+    box-shadow: 0px 4px 4px rgba(17, 17, 17, 0.05);
+    transform: rotate(-180deg);
 `

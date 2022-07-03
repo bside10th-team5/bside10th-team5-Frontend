@@ -1,9 +1,17 @@
 import React from "react";
+import { useEffect } from "react";
 import PropTypes from "prop-types";
 import LogoIcon from "../elements/LogoIcon";
 import styled from "styled-components";
 import { useRouter } from "next/router";
 import { GNB_H, WHITE, GRAY100 } from "../../styles/theme";
+import { getCookie } from "cookies-next";
+
+const token = getCookie("token")
+
+const deleteCookie = (name) => {
+  document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT; path=/';
+}
 
 const GnbWrapper = styled.header.attrs((props) => ({
   isVisible: props.isVisible,
@@ -35,6 +43,17 @@ const Gnb = ({ isVisible }) => {
     if (value === "list-page") router.push("/memories");
     if (value === "logout") router.push("/");
     if (value === "logo") router.push("/");
+    let { value } = e.target;
+
+    if (value === "list-page") router.push("/memories");
+    if (value === "logout") {
+      deleteCookie("token")
+      router.push("/");
+      router.reload();
+    }
+    if (value === "login") {
+      router.push("/login")
+    } 
   };
 
   return (
@@ -47,9 +66,13 @@ const Gnb = ({ isVisible }) => {
           회고록 리스트
         </button>
       </div>
-      <button value="logout" className="subtitle-2" onClick={onClick}>
-        로그아웃
-      </button>
+      <div>
+        {token ? 
+          <button className="subtitle-2" value="logout" onClick={onClick}>로그아웃</button> 
+          : 
+          <button className="subtitle-2" value="login" onClick={onClick}>로그인</button>
+        }
+      </div>
     </GnbWrapper>
   );
 };
