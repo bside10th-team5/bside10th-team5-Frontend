@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { useEffect } from "react";
 import { setCookies, getCookie } from "cookies-next";
 import {
@@ -14,13 +14,14 @@ import {
   Footer,
   FooterText,
 } from "../../src/components/loginPage/LoginPage.style.jsx";
-import { userIdState, oauth2RegistrationIdState } from "../../src/state";
+import { userIdState, oauth2RegistrationIdState, isLoggedInState } from "../../src/state";
 
 const axios = require("axios").default;
 
 const Login = () => {
   const [userId, setUserId] = useRecoilState(userIdState);
   const [oauth2RegistrationId, setOauth2RegistrationId] = useRecoilState(oauth2RegistrationIdState);
+  const setIsLoggedIn = useSetRecoilState(isLoggedInState);
 
   const router = useRouter();
   const kakaoLoginURL =
@@ -52,12 +53,14 @@ const Login = () => {
     const accessToken = getCookie("token");
     if (accessToken) {
       router.push("/memories");
+      setIsLoggedIn(true);
     } else {
       const token = router.query.accessToken;
       if (token) {
         setCookies("token", token);
         getUserInfo();
         router.push("/memories");
+        setIsLoggedIn(true);
       }
     }
   }, [token]);
