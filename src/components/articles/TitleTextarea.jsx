@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { GRAY300, GRAY500 } from "../../styles/theme";
 
-const ReviewWrapper = styled.div`
+const Wrapper = styled.div.attrs((props) => ({ textareaHeight: props.textareaHeight }))`
   display: flex;
-  width: 100%;
+  flex: 1;
   height: auto;
   min-height: 92px;
   border: 1px solid black;
@@ -24,23 +24,23 @@ const ReviewWrapper = styled.div`
     overflow: visible;
     width: 100%;
     padding: 0;
-    min-height: 24px;
+    min-height: ${(props) => props.textareaHeight};
     outline: none;
     border: none;
     color: ${GRAY500};
   }
 `;
-const Review = ({ title, text, placeholder }) => {
+const TitleTextarea = ({ title, text, placeholder, textareaHeight = "24px" }) => {
   const textRef = useRef(null);
   const [value, setValue] = useState(text);
   const handleKeyDown = (e) => {
     const target = e.target;
-    textRef.current.style.height = "24px";
+    textRef.current.style.height = textareaHeight;
     textRef.current.style.height = `${target.scrollHeight}px`;
   };
 
   return (
-    <ReviewWrapper>
+    <Wrapper textareaHeight={textareaHeight}>
       <div className="subtitle-2">{title}</div>
       <textarea
         ref={textRef}
@@ -51,14 +51,15 @@ const Review = ({ title, text, placeholder }) => {
         value={value}
         onChange={(e) => setValue(e.target.value)}
       />
-    </ReviewWrapper>
+    </Wrapper>
   );
 };
 
-export default Review;
+export default TitleTextarea;
 
-Review.propTypes = {
+TitleTextarea.propTypes = {
   title: PropTypes.string,
   text: PropTypes.string,
   placeholder: PropTypes.string,
+  textareaHeight: PropTypes.number,
 };

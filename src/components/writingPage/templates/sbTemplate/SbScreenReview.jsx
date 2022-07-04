@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ORANGE } from "../../../../styles/theme";
-import Review from "../../../articles/Review";
+import TitleTextarea from "../../../articles/TitleTextarea";
 import CircleArrowIcon from "../../../elements/CircleArrowIcon";
 import CustomBtn from "../../../elements/CustomBtn";
 import { Row } from "../../../settingPage/AddProjectPage.style";
@@ -33,13 +33,17 @@ const SbScreenReview = () => {
         />
       </UploadBox>
       <ReviewBox>
-        <Review title="화면의 정의가 무엇인가요?" placeholder="업로드한 설계의 정의에 대해 작성해 주세요" text="" />
-        <Review
+        <TitleTextarea
+          title="화면의 정의가 무엇인가요?"
+          placeholder="업로드한 설계의 정의에 대해 작성해 주세요"
+          text=""
+        />
+        <TitleTextarea
           title="사용자에게 어떤 행동을 유도하는 것이 목표인가요?"
           placeholder="업로드한 설계의 목표에 대해 작성해 주세요"
           text=""
         />
-        <Review
+        <TitleTextarea
           title="목표를 달성하기 위해, 화면 설계에서 중점적으로 고민했던 부분은 무엇인가요?"
           placeholder="업로드한 설계에 대해 고민한 부분을 작성해 주세요"
           text=""
