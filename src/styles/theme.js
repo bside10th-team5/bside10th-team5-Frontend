@@ -8,6 +8,9 @@ export const GRAY500 = "#949494";
 export const GRAY700 = "#555555";
 export const GRAY900 = "#111111";
 export const ORANGE = "#FF5A00";
+export const GREEN = "#03C348";
+export const BLUE = "#0B70FE";
+export const YELLOW = "#FF9F00";
 
 const defaultTheme = {
   color: {

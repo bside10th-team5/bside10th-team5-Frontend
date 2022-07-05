@@ -38,6 +38,20 @@ export const Row = styled.div.attrs((props) => ({
   gap: ${(props) => props.gap};
 `;
 
+export const Column = styled.div.attrs((props) => ({
+  marginBottom: props.marginBottom || "0",
+  justifyContent: props.justifyContent || "center",
+  alignItems: props.alignItems || "flex-start",
+  gap: props.gap || "0",
+}))`
+  display: flex;
+  flex-direction: column;
+  justify-content: ${(props) => props.justifyContent};
+  align-items: ${(props) => props.alignItems};
+  margin-bottom: ${(props) => props.marginBottom};
+  gap: ${(props) => props.gap};
+`;
+
 export const Box = styled.div.attrs((props) => ({
   marginBottom: props.marginBottom || "2.25rem",
 }))`
