@@ -37,8 +37,8 @@ const SbTemplate = () => {
       </Row>
       {checkedGoal && <SbGoal />}
       {checkedWork && <SbWorks />}
-      {checkedWork && <SbScreenReview />}
-      {checkedWork && <TodayEval />}
+      {checkedReview && <SbScreenReview />}
+      {checkedEval && <TodayEval />}
     </div>
   );
 };

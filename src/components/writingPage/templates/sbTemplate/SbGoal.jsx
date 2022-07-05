@@ -1,14 +1,23 @@
 import React from "react";
+import styled from "styled-components";
+import { GRAY700 } from "../../../../styles/theme";
 import TitleTextarea from "../../../articles/TitleTextarea";
 import { Row } from "../../../settingPage/AddProjectPage.style";
 import { Box, Title } from "../Templates.style";
 
+const Wrapper = styled(Box)`
+  & .subtitle {
+    margin: 0 0 34px 12px;
+    color: ${GRAY700};
+  }
+`;
+
 const SbGoal = () => {
   return (
-    <Box>
-      <Row>
+    <Wrapper>
+      <Row alignItems="flex-end">
         <Title className="headline-6">설계목표</Title>
-        <span>과거에 입력한 정보를 불러와요 (업데이트 시 전체 설계 목표에 반영)</span>
+        <span className="caption subtitle">과거에 입력한 정보를 불러와요 (업데이트 시 전체 설계 목표에 반영)</span>
       </Row>
       <Row gap="1rem">
         <TitleTextarea
@@ -24,7 +33,7 @@ const SbGoal = () => {
           textareaHeight="100px"
         />
       </Row>
-    </Box>
+    </Wrapper>
   );
 };
 

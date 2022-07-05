@@ -2,10 +2,13 @@ import React, { useRef, useState } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { GRAY300, GRAY500 } from "../../styles/theme";
+import CloseIcon from "../elements/CloseIcon";
 
 const Wrapper = styled.div.attrs((props) => ({ textareaHeight: props.textareaHeight }))`
-  display: flex;
+  // display: flex;
+  position: relative;
   flex: 1;
+  width: 100%;
   height: auto;
   min-height: 92px;
   border: 1px solid black;
@@ -14,7 +17,8 @@ const Wrapper = styled.div.attrs((props) => ({ textareaHeight: props.textareaHei
   border-radius: 4px;
   border: 1px solid ${GRAY300};
 
-  & > div {
+  & > div,
+  button {
     margin-bottom: 12px;
   }
 
@@ -29,8 +33,14 @@ const Wrapper = styled.div.attrs((props) => ({ textareaHeight: props.textareaHei
     border: none;
     color: ${GRAY500};
   }
+
+  & .close-wrapper {
+    position: absolute;
+    top: 27.33px;
+    right: 19.33px;
+  }
 `;
-const TitleTextarea = ({ title, text, placeholder, textareaHeight = "24px" }) => {
+const TitleTextarea = ({ title, text, placeholder, textareaHeight = "24px", children, handleClose }) => {
   const textRef = useRef(null);
   const [value, setValue] = useState(text);
   const handleKeyDown = (e) => {
@@ -41,7 +51,13 @@ const TitleTextarea = ({ title, text, placeholder, textareaHeight = "24px" }) =>
 
   return (
     <Wrapper textareaHeight={textareaHeight}>
-      <div className="subtitle-2">{title}</div>
+      {console.log("aklsdjfa", handleClose)}
+      {children ? children : <div className="subtitle-2">{title}</div>}
+      {handleClose && (
+        <button className="close-wrapper" onClick={() => handleClose(title)}>
+          <CloseIcon width={9.33} height={9.33} />
+        </button>
+      )}
       <textarea
         ref={textRef}
         rows={1}
@@ -62,4 +78,6 @@ TitleTextarea.propTypes = {
   text: PropTypes.string,
   placeholder: PropTypes.string,
   textareaHeight: PropTypes.number,
+  children: PropTypes.node,
+  handleClose: PropTypes.func,
 };
