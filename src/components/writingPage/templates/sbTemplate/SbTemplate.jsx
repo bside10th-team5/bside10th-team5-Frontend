@@ -35,6 +35,7 @@ const SbTemplate = () => {
           <span className="button">오늘의 업무평가</span>
         </Checkbox>
       </Row>
+      {/* //TODO: 컴포넌트 있다없이 말고 css 로 처리하는게 편하려나? */}
       {checkedGoal && <SbGoal />}
       {checkedWork && <SbWorks />}
       {checkedReview && <SbScreenReview />}

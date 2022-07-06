@@ -1,13 +1,26 @@
 import React, { useState } from "react";
-import { ORANGE } from "../../../../styles/theme";
 import TitleTextarea from "../../../articles/TitleTextarea";
 import CircleArrowIcon from "../../../elements/CircleArrowIcon";
-import CustomBtn from "../../../elements/CustomBtn";
 import { Row } from "../../../settingPage/AddProjectPage.style";
-import { Box, ImgTitle, ReviewBox, Title, UploadBox } from "../Templates.style";
+import { Box, ImgTitle, ReviewBox, Title, UploadBox, UploadButton } from "../Templates.style";
 
 const SbScreenReview = () => {
   const [imgTitle, setImgTitle] = useState("");
+  const [imgSrc, setImgSrc] = useState("");
+
+  const encodeFileToBase64 = (fileBlob) => {
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(fileBlob);
+
+    return new Promise((resolve) => {
+      fileReader.onload = () => {
+        // @ts-ignore
+        setImgSrc(fileReader.result);
+        resolve();
+      };
+    });
+  };
+
   return (
     <Box>
       <Title className="headline-6">주요 설계 화면에 대한 고민을 남겨보세요</Title>
@@ -23,15 +36,30 @@ const SbScreenReview = () => {
         <CircleArrowIcon />
       </Row>
       <UploadBox>
-        <img src="/img/icon/upload.png" alt="업로드 이미지" />
-        <CustomBtn
-          text="설계 이미지 업로드하기"
-          onClick={() => console.log("업로드")}
-          width="215px"
-          borderRadius="5px"
-          color={ORANGE}
+        <input
+          type="file"
+          id="img-upload"
+          onChange={(e) => encodeFileToBase64(e.target.files[0])}
+          accept="image/x-png,image/gif,image/jpeg"
         />
+        {imgSrc ? (
+          <img className="preview" src={imgSrc} alt="이미지" />
+        ) : (
+          <>
+            <img src="/img/icon/upload.png" alt="업로드 이미지" />
+            <UploadButton className="button" htmlFor="img-upload">
+              설계 이미지 업로드하기
+            </UploadButton>
+          </>
+        )}
       </UploadBox>
+      {imgSrc && (
+        <Row justifyContent="center" marginTop="20px">
+          <UploadButton className="button" htmlFor="img-upload">
+            이미지 변경
+          </UploadButton>
+        </Row>
+      )}
       <ReviewBox>
         <TitleTextarea
           title="화면의 정의가 무엇인가요?"
