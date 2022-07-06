@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { BLUE, GRAY300, GRAY500, GRAY900, GREEN, ORANGE, YELLOW } from "../../../styles/theme";
+import { BLUE, GRAY300, GRAY500, GRAY900, GREEN, INPUT_H, ORANGE, YELLOW } from "../../../styles/theme";
 
 export const Box = styled.div.attrs((props) => ({
   marginBottom: props.marginBottom || "36px",
@@ -31,8 +31,19 @@ export const UploadBox = styled.div`
   justify-content: center;
   flex-direction: column;
 
+  & > .preview {
+    width: 100%;
+    height: 556px;
+    margin: 0;
+    object-fit: contain;
+  }
+
   & > img {
     margin-bottom: 31px;
+  }
+
+  & > input[type="file"] {
+    display: none;
   }
 `;
 
@@ -41,6 +52,18 @@ export const ReviewBox = styled.div`
   flex-direction: column;
   gap: 16px;
   margin-top: 28px;
+`;
+
+export const UploadButton = styled.label`
+  width: 215px;
+  height: ${INPUT_H}px;
+  border-radius: 5px;
+  border: 1px solid ${ORANGE};
+  color: ${ORANGE};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 `;
 
 export const PageTag = styled.button.attrs((props) => ({
