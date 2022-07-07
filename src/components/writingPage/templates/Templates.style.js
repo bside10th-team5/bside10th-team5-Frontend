@@ -14,7 +14,7 @@ export const Title = styled.span`
   margin-bottom: 28px;
 `;
 
-export const ImgTitle = styled.input.attrs({ type: "text" })`
+export const ScreenTitle = styled.input.attrs({ type: "text" })`
   border: none;
   outline: none;
   color: ${GRAY500};
