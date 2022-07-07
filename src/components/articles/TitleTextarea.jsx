@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { GRAY300, GRAY500 } from "../../styles/theme";
@@ -40,9 +40,16 @@ const Wrapper = styled.div.attrs((props) => ({ textareaHeight: props.textareaHei
     right: 19.33px;
   }
 `;
-const TitleTextarea = ({ title, text, placeholder, textareaHeight = "24px", children, handleClose }) => {
+const TitleTextarea = ({
+  title,
+  text,
+  placeholder,
+  textareaHeight = "24px",
+  children,
+  handleClose,
+  handleTextarea,
+}) => {
   const textRef = useRef(null);
-  const [value, setValue] = useState(text);
   const handleKeyDown = (e) => {
     const target = e.target;
     textRef.current.style.height = textareaHeight;
@@ -64,8 +71,8 @@ const TitleTextarea = ({ title, text, placeholder, textareaHeight = "24px", chil
         onKeyDown={handleKeyDown}
         className="body-2"
         placeholder={placeholder}
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
+        value={text}
+        onChange={handleTextarea}
       />
     </Wrapper>
   );
@@ -80,4 +87,5 @@ TitleTextarea.propTypes = {
   textareaHeight: PropTypes.number,
   children: PropTypes.node,
   handleClose: PropTypes.func,
+  handleTextarea: PropTypes.func,
 };

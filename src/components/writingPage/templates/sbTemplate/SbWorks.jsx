@@ -13,6 +13,19 @@ const SbWroksWrapper = styled(Box)`
     border: 1px solid ${GRAY300};
     border-radius: 4px;
   }
+
+  & .tag-box {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  & .add-tag {
+    color: ${GRAY500};
+    margin-left: 20px;
+    cursor: pointer;
+    min-width: 68px;
+  }
 `;
 
 const SbWorks = () => {
@@ -45,7 +58,7 @@ const SbWorks = () => {
           오늘 진행한 설계 업무
         </Title>
         <Row marginBottom="28px">
-          <div style={{ display: "flex", flexWrap: "wrap", gap: "4px" }}>
+          <div className="tag-box">
             {tagList.map((key, i) => (
               <PageTag
                 key={key}
@@ -59,8 +72,8 @@ const SbWorks = () => {
             ))}
           </div>
           <span
-            className="body-2"
-            style={{ color: `${GRAY500}`, marginLeft: "20px", cursor: "pointer", minWidth: "68px" }}
+            className="body-2 add-tag"
+            style={{}}
             onClick={() => {
               const tagName = prompt("추가등록");
               setTagList((prev) => prev.concat(tagName));
