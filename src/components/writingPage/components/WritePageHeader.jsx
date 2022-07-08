@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { GRAY100, GRAY500, GRAY700, GRAY900, ORANGE } from "../../styles/theme";
-import CustomBtn from "../elements/CustomBtn";
-import { Row } from "../settingPage/AddProjectPage.style";
-import { LeftBox, Title } from "./WritingPage.style";
+import { GRAY500, GRAY900, GRAY700, GRAY100, ORANGE } from "../../../styles/theme";
+import CustomBtn from "../../elements/CustomBtn";
+import { Row } from "../../settingPage/AddProjectPage.style";
+import { LeftBox, Title } from "../WritingPage.style";
 
 export const HeaderWrapper = styled.div`
   display: flex;

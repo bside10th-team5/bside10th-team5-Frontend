@@ -58,7 +58,6 @@ const TitleTextarea = ({
 
   return (
     <Wrapper textareaHeight={textareaHeight}>
-      {console.log("aklsdjfa", handleClose)}
       {children ? children : <div className="subtitle-2">{title}</div>}
       {handleClose && (
         <button className="close-wrapper" onClick={() => handleClose(title)}>
