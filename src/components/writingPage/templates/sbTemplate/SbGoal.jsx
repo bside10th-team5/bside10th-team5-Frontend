@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { GRAY700 } from "../../../../styles/theme";
 import TitleTextarea from "../../../articles/TitleTextarea";
@@ -13,6 +13,16 @@ const Wrapper = styled(Box)`
 `;
 
 const SbGoal = () => {
+  const [goal1, setGoal1] = useState("");
+  const [goal2, setGoal2] = useState("");
+
+  const onChangeGoal1 = (e) => {
+    setGoal1(e.target.value);
+  };
+  const onChangeGoal2 = (e) => {
+    setGoal2(e.target.value);
+  };
+
   return (
     <Wrapper>
       <Row alignItems="flex-end">
@@ -23,14 +33,16 @@ const SbGoal = () => {
         <TitleTextarea
           title="사용자 편의성 측면"
           placeholder="서비스 기획자를 대상으로한 회고록 서비스 입니다.&#13;&#10;ex) 쉬운 회고록 템플릿 제시하여 회고 습관 형성"
-          text=""
+          text={goal1}
           textareaHeight="100px"
+          handleTextarea={onChangeGoal1}
         />
         <TitleTextarea
           title="사용자 편의성 측면"
           placeholder="서비스 기획자를 대상으로한 회고록 서비스 입니다.&#13;&#10;ex) 쉬운 회고록 템플릿 제시하여 회고 습관 형성"
-          text=""
+          text={goal2}
           textareaHeight="100px"
+          handleTextarea={onChangeGoal2}
         />
       </Row>
     </Wrapper>

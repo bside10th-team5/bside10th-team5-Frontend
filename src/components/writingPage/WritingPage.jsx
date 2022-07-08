@@ -8,12 +8,12 @@ import Templates from "./templates/Templates";
 import { useRecoilValue, useRecoilState } from "recoil";
 import { templateListState, selectedDateState } from "../../state/writeDiaryState";
 import TemplateViews from "./templates/TemplateViews";
-import CustomFullCalendar from "./FullCalendar";
+import CustomFullCalendar from "./components/FullCalendar";
 import { Row } from "../settingPage/AddProjectPage.style";
 import CustomBtn from "../elements/CustomBtn";
 import { ORANGE } from "../../styles/theme";
-import WritePageHeader from "./WritePageHeader";
 import { format } from "date-fns";
+import WritePageHeader from "./components/WritePageHeader";
 
 const wrtingPage = () => {
   // const router = useRouter();

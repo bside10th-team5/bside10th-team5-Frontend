@@ -36,19 +36,8 @@ const CustomFullCalendar = ({ handleDate }) => {
       { title: "event 2", date: format(new Date(), "yyyy-MM-dd") },
       { title: "와우", date: "2022-06-30" },
       { title: "와우", date: "2022-06-30" },
-      { title: "와우", date: "2022-06-30" },
-      { title: "와우", date: "2022-06-30" },
-      { title: "와우", date: "2022-06-30" },
-      { title: "와우", date: "2022-06-30" },
     ]);
   }, []);
-
-  // setEvents([
-  //   { title: "개발관련", date: "2022-06-04" },
-  //   { title: "qa", date: "2022-06-04" },
-  //   { title: "설계", date: "2022-06-04" },
-  //   { title: "event 2", date: "2022-05-31" },
-  // ]);
 
   const injectDayCell = (arg) => {
     const overDate = arg.date > new Date();
@@ -63,7 +52,6 @@ const CustomFullCalendar = ({ handleDate }) => {
     return (
       <div style={{ border: "", width: "", height: "" }}>
         <div>{arg.dayNumberText}</div>
-        {/* <div>asdfas</div> */}
       </div>
     );
   };
@@ -80,7 +68,6 @@ const CustomFullCalendar = ({ handleDate }) => {
     return (
       <div className="event-text" style={{ border: "5px solid green" }}>
         <i>{eventInfo.event.title}</i>
-        {/* <span style={{ height: "100%", border: "2px solid red", width: "20px" }}>{eventInfo.timeText}</span> */}
       </div>
     );
   }
