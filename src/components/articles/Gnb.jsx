@@ -6,6 +6,8 @@ import styled from "styled-components";
 import { useRouter } from "next/router";
 import { GNB_H, WHITE, GRAY100 } from "../../styles/theme";
 import { isLoggedInState } from "../../state";
+import useAutoLogin from "../../hooks/useAutoLogin";
+import { removeCookie } from "../../utills/cookie";
 
 const GnbWrapper = styled.header.attrs((props) => ({
   isVisible: props.isVisible,
@@ -30,26 +32,22 @@ const GnbWrapper = styled.header.attrs((props) => ({
 `;
 
 const Gnb = ({ isVisible }) => {
+  useAutoLogin();
+
   const router = useRouter();
   const [isLoggedIn, setIsLoggedIn] = useRecoilState(isLoggedInState);
-
-  const deleteCookie = (name) => {
-    document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT; path=/';
-  }
 
   const onClick = (e) => {
     const { value } = e.currentTarget;
     if (value === "list-page") router.push("/memories");
     if (value === "logo") router.push("/");
     if (value === "logout") {
-      deleteCookie("token")
-      setIsLoggedIn(false)
-      router.push("/");
-      // router.reload();
+      removeCookie("token");
+      setIsLoggedIn(false);
     }
     if (value === "login") {
-      router.push("/login")
-    } 
+      router.push("/login");
+    }
   };
 
   return (
@@ -63,11 +61,9 @@ const Gnb = ({ isVisible }) => {
         </button>
       </div>
       <div>
-        {isLoggedIn ? 
-          <button className="subtitle-2" value="logout" onClick={onClick}>로그아웃</button> 
-          : 
-          <button className="subtitle-2" value="login" onClick={onClick}>로그인</button>
-        }
+        <button className="subtitle-2" value={isLoggedIn ? "logout" : "login"} onClick={onClick}>
+          {isLoggedIn ? "로그아웃" : "로그인"}
+        </button>
       </div>
     </GnbWrapper>
   );

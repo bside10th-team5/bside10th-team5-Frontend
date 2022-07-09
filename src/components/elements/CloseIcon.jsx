@@ -16,7 +16,7 @@ const CloseIcon = ({ color = `${GRAY900}`, width = 10, height = 10 }) => {
 export default CloseIcon;
 
 CloseIcon.propTypes = {
-  width: PropTypes.string,
-  height: PropTypes.string,
+  width: PropTypes.number,
+  height: PropTypes.number,
   color: PropTypes.string,
 };
