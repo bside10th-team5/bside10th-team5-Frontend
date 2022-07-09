@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
-import { useRecoilState, useSetRecoilState } from "recoil";
-import { useEffect } from "react";
-import { setCookies, getCookie } from "cookies-next";
+import { useSetRecoilState } from "recoil";
+import { useEffect, useState } from "react";
+import axios from "axios";
 import {
   BigText,
   Bold,
@@ -14,26 +14,33 @@ import {
   Footer,
   FooterText,
 } from "../../src/components/loginPage/LoginPage.style.jsx";
-import { userIdState, oauth2RegistrationIdState, isLoggedInState } from "../../src/state";
-
-const axios = require("axios").default;
+import { isLoggedInState } from "../../src/state";
+import { getCookie, setCookie } from "../../src/utills/cookie.js";
 
 const Login = () => {
-  const [userId, setUserId] = useRecoilState(userIdState);
-  const [oauth2RegistrationId, setOauth2RegistrationId] = useRecoilState(oauth2RegistrationIdState);
-  const setIsLoggedIn = useSetRecoilState(isLoggedInState);
-
   const router = useRouter();
-  const kakaoLoginURL =
-    "https://what-happen.com/api/oauth2/authorization/kakao?redirectUrl=http://localhost:3000/login";
-  const naverLoginURL =
-    "https://what-happen.com/api/oauth2/authorization/naver?redirectUrl=http://localhost:3000/login";
-  const googleLoginURL =
-    "https://what-happen.com/api/oauth2/authorization/google?redirectUrl=http://localhost:3000/login";
-  const serverURL = "https://what-happen.com/api/member/me";
   const token = router.query.accessToken;
+  const setIsLoggedIn = useSetRecoilState(isLoggedInState);
+  const [redirectOrigin, setRedirectOrigin] = useState("https://what-happen.com");
+  const [lastAuthInfo, setLastAuthInfo] = useState("");
 
-  const getUserInfo = async () => {
+  const kakaoLoginURL = `https://what-happen.com/api/oauth2/authorization/kakao?redirectUrl=${redirectOrigin}/login`;
+  const naverLoginURL = `https://what-happen.com/api/oauth2/authorization/naver?redirectUrl==${redirectOrigin}/login`;
+  const googleLoginURL = `https://what-happen.com/api/oauth2/authorization/google?redirectUrl==${redirectOrigin}/login`;
+
+  const serverURL = "https://what-happen.com/api/member/me";
+
+  const onClickLogin = (url) => {
+    const screenW = screen.availWidth;
+    const screenH = screen.availHeight;
+    const popW = 600;
+    const popH = 600;
+    const posL = (screenW - popW) / 2;
+    const posT = (screenH - popH) / 2;
+    window.open(url, "test", `width=${popW},height=${popH},top=${posT},left=${posL},resizable=yes,scrollbars=no`);
+  };
+
+  const getUserInfo = async (token) => {
     await axios
       .get(`${serverURL}`, {
         headers: {
@@ -41,8 +48,7 @@ const Login = () => {
         },
       })
       .then((res) => {
-        setUserId(res.data.id);
-        setOauth2RegistrationId(res.data.oauth2RegistrationId);
+        localStorage.setItem("oauth2RegistrationId", res.data.oauth2RegistrationId);
       })
       .catch((error) => {
         console.error(error);
@@ -52,29 +58,26 @@ const Login = () => {
   useEffect(() => {
     const accessToken = getCookie("token");
     if (accessToken) {
+      getUserInfo(accessToken); //TODO: 이거 테스트용임 아래블락에서만 있으면 되는데 .. 카카오만 로그인 되서 테스트용으로 추가해둠
       router.push("/memories");
       setIsLoggedIn(true);
-    } else {
-      const token = router.query.accessToken;
-      if (token) {
-        setCookies("token", token);
-        getUserInfo();
-        router.push("/memories");
-        setIsLoggedIn(true);
-      }
+    } else if (token) {
+      getUserInfo(token);
+      setCookie("token", token);
+      opener.window.location = "/memories";
+      window.close();
+      setIsLoggedIn(true);
     }
   }, [token]);
 
   useEffect(() => {
-    if (localStorage.getItem("id") !== userId) {
-      localStorage.removeItem("id");
-      localStorage.setItem("id", userId);
-    }
-    if (localStorage.getItem("oauth2RegistrationId") !== oauth2RegistrationId) {
-      localStorage.removeItem("oauth2RegistrationId");
-      localStorage.setItem("oauth2RegistrationId", oauth2RegistrationId);
-    }
-  }, [userId]);
+    const oauth = localStorage.getItem("oauth2RegistrationId");
+    setLastAuthInfo(oauth);
+  }, []);
+
+  useEffect(() => {
+    setRedirectOrigin(window.location.origin);
+  }, []);
 
   return (
     <div>
@@ -89,15 +92,45 @@ const Login = () => {
           </LoginTitle>
         </TextWrapper>
         <IconWrapper>
-          <a href={kakaoLoginURL}>
-            <img src="/images/kakao.png" alt="카카오톡 아이콘" />
-          </a>
-          <a href={googleLoginURL}>
-            <img src="/images/google.png" alt="구글 아이콘" />
-          </a>
-          <a href={naverLoginURL}>
-            <img src="/images/naver.png" alt="네이버 아이콘" />
-          </a>
+          <button onClick={() => onClickLogin(kakaoLoginURL)} style={{ position: "relative" }}>
+            <img src="/img/login/kakao.png" alt="카카오톡 아이콘" />
+            <img
+              src="/img/login/desc.png"
+              alt=""
+              style={{
+                display: `${lastAuthInfo === "KAKAO" ? "block" : "none"}`,
+                position: "absolute",
+                top: "-24px",
+                left: "-52px",
+              }}
+            />
+          </button>
+          <button onClick={() => onClickLogin(googleLoginURL)} style={{ position: "relative" }}>
+            <img src="/img/login/google.png" alt="구글 아이콘" />
+            <img
+              src="/img/login/desc.png"
+              alt=""
+              style={{
+                display: `${lastAuthInfo === "GOOGLE" ? "block" : "none"}`,
+                position: "absolute",
+                top: "-24px",
+                left: "-52px",
+              }}
+            />
+          </button>
+          <button onClick={() => onClickLogin(naverLoginURL)} style={{ position: "relative" }}>
+            <img src="/img/login/naver.png" alt="네이버 아이콘" />
+            <img
+              src="/img/login/desc.png"
+              alt=""
+              style={{
+                display: `${lastAuthInfo === "NAVER" ? "block" : "none"}`,
+                position: "absolute",
+                top: "-24px",
+                left: "-52px",
+              }}
+            />
+          </button>
         </IconWrapper>
         <Footer>
           <FooterText>Copyright 2022. 자비없는형제들 All pictures cannot be copied without permission</FooterText>
