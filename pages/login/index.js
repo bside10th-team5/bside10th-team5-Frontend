@@ -25,8 +25,8 @@ const Login = () => {
   const [lastAuthInfo, setLastAuthInfo] = useState("");
 
   const kakaoLoginURL = `https://what-happen.com/api/oauth2/authorization/kakao?redirectUrl=${redirectOrigin}/login`;
-  const naverLoginURL = `https://what-happen.com/api/oauth2/authorization/naver?redirectUrl==${redirectOrigin}/login`;
-  const googleLoginURL = `https://what-happen.com/api/oauth2/authorization/google?redirectUrl==${redirectOrigin}/login`;
+  const naverLoginURL = `https://what-happen.com/api/oauth2/authorization/naver?redirectUrl=${redirectOrigin}/login`;
+  const googleLoginURL = `https://what-happen.com/api/oauth2/authorization/google?redirectUrl=${redirectOrigin}/login`;
 
   const serverURL = "https://what-happen.com/api/member/me";
 
@@ -49,6 +49,8 @@ const Login = () => {
       })
       .then((res) => {
         localStorage.setItem("oauth2RegistrationId", res.data.oauth2RegistrationId);
+        opener.window.location = "/memories";
+        window.close();
       })
       .catch((error) => {
         console.error(error);
@@ -58,15 +60,11 @@ const Login = () => {
   useEffect(() => {
     const accessToken = getCookie("token");
     if (accessToken) {
-      getUserInfo(accessToken); //TODO: 이거 테스트용임 아래블락에서만 있으면 되는데 .. 카카오만 로그인 되서 테스트용으로 추가해둠
       router.push("/memories");
       setIsLoggedIn(true);
     } else if (token) {
       getUserInfo(token);
       setCookie("token", token);
-      opener.window.location = "/memories";
-      window.close();
-      setIsLoggedIn(true);
     }
   }, [token]);
 
