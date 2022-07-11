@@ -11,14 +11,48 @@ import ProjectName from "./ProjectName";
 import ProjectSummary from "./ProjectSummary";
 import ProjectThumbnail from "./ProjectThumbnail";
 import Footer from "../articles/Footer";
+import axios from "axios";
+import { createBoardUrl } from "../../utills/url";
+import { getCookie } from "../../utills/cookie";
 
 const AddProjectPage = () => {
   const router = useRouter();
   const themeContext = useContext(ThemeContext);
 
-  const onClickSave = () => {
+  const onClickSave = async () => {
     //TODO: 저장하고 id 받아서 이동
-    router.push("/writing/[id]", "/writing/exampleid");
+    const token = getCookie("token");
+    axios.defaults.headers.common["Authorization"] = "Bearer " + token;
+    await axios
+      .post(
+        `${createBoardUrl}`,
+        {
+          boardType: "WEB",
+          title: "test123",
+          detail: "asdfasf",
+          fromDate: "2022-01-01",
+          toDate: "2022-01-01",
+          projectType: "PROJECT",
+          usedTools: ["figma", "photo샵ㅍ"],
+          thumbnailId: 2,
+        },
+        // {
+        //   headers: {
+        //     "Content-Type": "application/json",
+        //     Authorization: "Bearer " + token,
+        //   },
+        // },
+      )
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
+    // console.log("ok");
+    // console.log(data);
+    // router.push("/writing/[id]", "/writing/exampleid");
   };
 
   return (

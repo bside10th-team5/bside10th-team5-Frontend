@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
+import { useRecoilState } from "recoil";
+import { boardNameState, boardTypeState } from "../../state/addProjectState";
 import RadioCheckBox from "../articles/RadioCheckBox";
 import CustomTextInput from "../elements/CustomTextInput";
 import { Box, Row, Title } from "./AddProjectPage.style";
 
 const ProjectName = () => {
-  const [projectRadio, setProjectRadio] = useState("project");
-  const [projectName, setProjectName] = useState("");
+  const [projectRadio, setProjectRadio] = useRecoilState(boardTypeState);
+  const [projectName, setProjectName] = useRecoilState(boardNameState);
 
   const onChangeTextInput = (e) => {
     setProjectName(e.target.value);
