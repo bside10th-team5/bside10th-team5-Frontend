@@ -40,13 +40,9 @@ const Login = () => {
     window.open(url, "test", `width=${popW},height=${popH},top=${posT},left=${posL},resizable=yes,scrollbars=no`);
   };
 
-  const getUserInfo = async (token) => {
+  const getUserInfo = async () => {
     await axios
-      .get(`${serverURL}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+      .get(`${serverURL}`)
       .then((res) => {
         localStorage.setItem("oauth2RegistrationId", res.data.oauth2RegistrationId);
         opener.window.location = "/memories";
@@ -63,7 +59,8 @@ const Login = () => {
       router.push("/memories");
       setIsLoggedIn(true);
     } else if (token) {
-      getUserInfo(token);
+      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+      getUserInfo();
       setCookie("token", token);
     }
   }, [token]);
