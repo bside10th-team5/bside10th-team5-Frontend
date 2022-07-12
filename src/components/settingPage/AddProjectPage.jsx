@@ -11,49 +11,24 @@ import ProjectName from "./ProjectName";
 import ProjectSummary from "./ProjectSummary";
 import ProjectThumbnail from "./ProjectThumbnail";
 import Footer from "../articles/Footer";
-import axios from "axios";
-import { createBoardUrl } from "../../utills/url";
-import { getCookie } from "../../utills/cookie";
+import { useMutation } from "react-query";
+import { useCreateBoard } from "../../state/addProjectState";
 
 const AddProjectPage = () => {
   const router = useRouter();
   const themeContext = useContext(ThemeContext);
+  const { addProject } = useCreateBoard();
 
-  const onClickSave = async () => {
-    //TODO: 저장하고 id 받아서 이동
-    const token = getCookie("token");
-    axios.defaults.headers.common["Authorization"] = "Bearer " + token;
-    await axios
-      .post(
-        `${createBoardUrl}`,
-        {
-          boardType: "WEB",
-          title: "test123",
-          detail: "asdfasf",
-          fromDate: "2022-01-01",
-          toDate: "2022-01-01",
-          projectType: "PROJECT",
-          usedTools: ["figma", "photo샵ㅍ"],
-          thumbnailId: 2,
-        },
-        // {
-        //   headers: {
-        //     "Content-Type": "application/json",
-        //     Authorization: "Bearer " + token,
-        //   },
-        // },
-      )
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-
-    // console.log("ok");
-    // console.log(data);
-    // router.push("/writing/[id]", "/writing/exampleid");
-  };
+  const { mutate } = useMutation(addProject, {
+    onSuccess: (res) => {
+      console.log("success");
+      console.log(res.data);
+      router.push("/writing/[id]", `/writing/${res.data.id}`);
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+  });
 
   return (
     <WideWrapper>
@@ -67,7 +42,7 @@ const AddProjectPage = () => {
         <Row justifyContent="center">
           <CustomBtn
             text="회고록 생성"
-            onClick={onClickSave}
+            onClick={mutate}
             width="374px"
             borderRadius="5px"
             bgColor={themeContext.color.orange}

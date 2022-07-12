@@ -1,5 +1,7 @@
 import { RecoilRoot } from "recoil";
 import PropTypes from "prop-types";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
 import AppThemeProvider from "../src/styles/AppThemeProvider";
 import "../src/styles/font.css";
 import ModalContainer from "../src/components/articles/ModalContainer";
@@ -7,12 +9,17 @@ import "@fullcalendar/common/main.css";
 import "@fullcalendar/daygrid/main.css";
 
 function MyApp({ Component, pageProps }) {
+  const queryClient = new QueryClient();
+
   return (
     <RecoilRoot>
-      <AppThemeProvider>
-        <ModalContainer />
-        <Component {...pageProps} />
-      </AppThemeProvider>
+      <QueryClientProvider contextSharing client={queryClient}>
+        <AppThemeProvider>
+          <ModalContainer />
+          <Component {...pageProps} />
+        </AppThemeProvider>
+        <ReactQueryDevtools initialIsOpen={false} />
+      </QueryClientProvider>
     </RecoilRoot>
   );
 }
