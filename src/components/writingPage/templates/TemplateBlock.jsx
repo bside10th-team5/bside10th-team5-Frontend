@@ -3,7 +3,8 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { GRAY300 } from "../../../styles/theme";
 import { parseTemplateName } from "../../../utills/parser";
-import SrTemplate from "./sbTemplate/SbTemplate";
+import SbTemplate from "./sbTemplate/SbTemplate";
+import WorkflowTemplate from "./workflowTemplate/WorkflowTemplate";
 
 const BlockWrapper = styled.div.attrs((props) => ({
   isOpen: props.isOpen,
@@ -31,8 +32,9 @@ const BlockWrapper = styled.div.attrs((props) => ({
 const TemplateBlock = ({ type }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const getTemplate = (name) => {
-    if (name === "sb") return <SrTemplate />;
+  const getTemplate = (typeName) => {
+    if (typeName === "sb") return <SbTemplate />;
+    if (typeName === "workflow") return <WorkflowTemplate />;
     return <div>tbd</div>;
   };
 
