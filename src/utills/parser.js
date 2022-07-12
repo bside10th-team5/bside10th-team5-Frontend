@@ -7,3 +7,21 @@ export function parseTemplateName(value) {
   if (value === "qa") return "QA";
   if (value === "free") return "자유형";
 }
+
+const thumbnailIdObj = {
+  0: "side-project",
+  1: "work-log",
+  2: "project",
+  3: "i-learned",
+  4: "grow-up",
+  "side-project": 0,
+  "work-log": 1,
+  project: 2,
+  "i-learned": 3,
+  "grow-up": 4,
+};
+
+Object.freeze(thumbnailIdObj);
+export function parseThumnailId(value) {
+  return thumbnailIdObj[value];
+}

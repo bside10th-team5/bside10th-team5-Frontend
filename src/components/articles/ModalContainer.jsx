@@ -36,8 +36,8 @@ const ModalContainer = () => {
   return createPortal(
     <ModalWrapper>
       {modalList.map((modalRegister) => {
-        if (modalRegister.id === "add-tag-modal") return <AddTagModal />;
-        if (modalRegister.id === "delete-project-modal") return <BasicTwoBtnModal />;
+        if (modalRegister.id === "add-tag-modal") return <AddTagModal key={modalRegister.id} />;
+        if (modalRegister.id === "delete-project-modal") return <BasicTwoBtnModal key={modalRegister.id} />;
       })}
     </ModalWrapper>,
     document.body,
