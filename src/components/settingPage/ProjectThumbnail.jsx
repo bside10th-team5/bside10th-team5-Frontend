@@ -22,7 +22,7 @@ const ProjectThumbnail = () => {
           value="side-project"
           onChange={handleRadioBox}
           isChecked={thumbnailRadio === "side-project"}
-          src="img/thumbnail/side_project.png"
+          src="img/thumbnail/0.png"
           alt="thumbnail-img"
         />
         <RadioWithImg
@@ -30,7 +30,7 @@ const ProjectThumbnail = () => {
           value="work-log"
           onChange={handleRadioBox}
           isChecked={thumbnailRadio === "work-log"}
-          src="img/thumbnail/worklog.png"
+          src="img/thumbnail/1.png"
           alt="thumbnail-img"
         />
         <RadioWithImg
@@ -38,7 +38,7 @@ const ProjectThumbnail = () => {
           value="project"
           onChange={handleRadioBox}
           isChecked={thumbnailRadio === "project"}
-          src="img/thumbnail/project.png"
+          src="img/thumbnail/2.png"
           alt="thumbnail-img"
         />
         <RadioWithImg
@@ -46,7 +46,7 @@ const ProjectThumbnail = () => {
           value="i-learned"
           onChange={handleRadioBox}
           isChecked={thumbnailRadio === "i-learned"}
-          src="img/thumbnail/learned.png"
+          src="img/thumbnail/3.png"
           alt="thumbnail-img"
         />
         <RadioWithImg
@@ -54,7 +54,7 @@ const ProjectThumbnail = () => {
           value="grow-up"
           onChange={handleRadioBox}
           isChecked={thumbnailRadio === "grow-up"}
-          src="img/thumbnail/growing_up.png"
+          src="img/thumbnail/4.png"
           alt="thumbnail-img"
         />
       </Row>
