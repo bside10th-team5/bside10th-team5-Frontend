@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import dynamic from "next/dynamic";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { GRAY300 } from "../../../styles/theme";
 import { parseTemplateName } from "../../../utills/parser";
 import SbTemplate from "./sbTemplate/SbTemplate";
 import WorkflowTemplate from "./workflowTemplate/WorkflowTemplate";
+const FreeTemplate = dynamic(() => import("./freeTemplate/FreeTemplate"), { ssr: false });
 
 const BlockWrapper = styled.div.attrs((props) => ({
   isOpen: props.isOpen,
@@ -35,6 +37,7 @@ const TemplateBlock = ({ type }) => {
   const getTemplate = (typeName) => {
     if (typeName === "sb") return <SbTemplate />;
     if (typeName === "workflow") return <WorkflowTemplate />;
+    if (typeName === "free") return <FreeTemplate />;
     return <div>tbd</div>;
   };
 
