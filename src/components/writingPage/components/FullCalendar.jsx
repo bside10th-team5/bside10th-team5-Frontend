@@ -3,25 +3,9 @@ import PropTypes from "prop-types";
 import FullCalendar, { addDays } from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import styled from "styled-components";
 import { format } from "date-fns";
-
-const Wrapper = styled.div`
-  border: 1px solid black;
-  width: 100%;
-  padding-top: 20px;
-
-  // 타이틀 부분 css 자리
-  & .fc-toolbar-chunk > div {
-    display: flex;
-    gap: 20px;
-  }
-
-  // 미래일 css 자리
-  & .fc-day-future {
-    border: 2px solid red;
-  }
-`;
+import { BLUE, GREEN, ORANGE, YELLOW } from "../../../styles/theme";
+import { CalendarWrapper } from "./FullCalendar.style";
 
 const CustomFullCalendar = ({ handleDate }) => {
   const ref = useRef();
@@ -29,29 +13,32 @@ const CustomFullCalendar = ({ handleDate }) => {
 
   React.useEffect(() => {
     setEvents([
-      { title: "개발관련", date: "2022-06-04" },
-      { title: "qa", date: "2022-06-04" },
+      { title: "워크플로우", date: "2022-06-04" },
+      { title: "QA", date: "2022-06-04" },
       { title: "설계", date: "2022-06-04" },
-      { title: "event 2", date: "2022-05-31" },
-      { title: "event 2", date: format(new Date(), "yyyy-MM-dd") },
-      { title: "와우", date: "2022-06-30" },
-      { title: "와우", date: "2022-06-30" },
+      { title: "IA", date: "2022-05-31" },
+      { title: "워크플로우", date: format(new Date(), "yyyy-MM-dd") },
+      { title: "설계", date: "2022-06-30" },
+      { title: "자유형", date: "2022-07-04" },
+      { title: "개발관련", start: "2022-07-05", end: "2022-07-07" },
+      { title: "디자인관련", start: "2022-07-05", end: "2022-07-11" },
+      { title: "설계", date: "2022-07-11" },
     ]);
   }, []);
 
   const injectDayCell = (arg) => {
-    const overDate = arg.date > new Date();
-    if (overDate) {
-      return (
-        <div style={{ border: "2px solid yellow", width: "100%", height: "100px" }}>
-          <div>{arg.dayNumberText}</div>
-        </div>
-      );
-    }
+    // const overDate = arg.date > new Date();
+    // if (overDate) {
+    //   return (
+    //     <div style={{ border: "2px solid yellow", width: "100%", height: "100px" }}>
+    //       <div>{arg.dayNumberText}</div>
+    //     </div>
+    //   );
+    // }
 
     return (
       <div style={{ border: "", width: "", height: "" }}>
-        <div>{arg.dayNumberText}</div>
+        <div>{arg.dayNumberText.slice(0, -1)}</div>
       </div>
     );
   };
@@ -65,15 +52,32 @@ const CustomFullCalendar = ({ handleDate }) => {
   };
 
   function renderEventContent(eventInfo) {
+    const getColor = (title) => {
+      if (title === "워크플로우") return GREEN;
+      if (title === "QA") return BLUE;
+      if (title === "IA") return GREEN;
+      if (title === "설계") return ORANGE;
+      if (title === "자유형") return BLUE;
+      if (title === "개발관련") return YELLOW;
+      if (title === "디자인관련") return GREEN;
+    };
     return (
-      <div className="event-text" style={{ border: "5px solid green" }}>
-        <i>{eventInfo.event.title}</i>
+      <div
+        className="button"
+        style={{
+          margin: "0 10px",
+          borderRadius: "50px",
+          padding: "0 12px",
+          backgroundColor: getColor(eventInfo.event.title),
+        }}
+      >
+        <span>{eventInfo.event.title}</span>
       </div>
     );
   }
 
   return (
-    <Wrapper>
+    <CalendarWrapper>
       <FullCalendar
         ref={ref}
         locale="ko"
@@ -96,7 +100,7 @@ const CustomFullCalendar = ({ handleDate }) => {
         //   }
         // }}
         dateClick={handleDate}
-        contentHeight={450}
+        contentHeight={688}
         aspectRatio={2}
         // select={(e) => {
         //   return false;
@@ -107,7 +111,9 @@ const CustomFullCalendar = ({ handleDate }) => {
           return true;
         }}
         weekends={true}
-        // dayHeaderContent={<div style={{ border: '2px solid green' }}>tkqkasdkfjal</div>}
+        dayHeaderContent={(e) => {
+          return <div className="inject-day-header caption">{e.text}</div>;
+        }}
         dayHeaderClassNames="calendar-header"
         dayCellContent={injectDayCell}
         // dayHeaderContent={injectDayCell}
@@ -117,7 +123,7 @@ const CustomFullCalendar = ({ handleDate }) => {
         events={events}
         eventContent={renderEventContent}
       />
-    </Wrapper>
+    </CalendarWrapper>
   );
 };
 

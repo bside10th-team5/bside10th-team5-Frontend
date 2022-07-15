@@ -43,7 +43,7 @@ const wrtingPage = () => {
       <Section>
         <WritePageHeader />
         <CalendarBox>
-          <CalendarTab>
+          <CalendarTab isOpen={toggleCalendar}>
             <span className="headline-6">{format(selectedDate, "yyyy-MM-dd")}</span>
             <span className="subtitle-1 btn" onClick={handleToggleCalendar}>
               {toggleCalendar ? "캘린더 닫기" : "캘린더 열기"}
