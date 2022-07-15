@@ -13,17 +13,30 @@ export const Section = styled.section`
   background-color: #fbfbfb;
 `;
 
-export const ContentWrapper = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
 export const ItemWrapper = styled.div`
   display: flex;
   width: 100vw;
   height: 1000px;
   justify-content: center;
   align-items: center;
+`;
+
+export const ContentWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  align-items: center;
+  position: relative;
+`;
+
+export const BackgroundImageContainer = styled.div`
+  position: absolute;
+  width: 2695px;
+  height: 364px;
+  background-image: url("/img/home/logo.svg");
+  opacity: 0.1;
+  top: 98px;
+  left: -646px;
+  background-repeat: repeat-x;
 `;
 
 export const Wrapper = styled.div`

@@ -1,10 +1,11 @@
 import Gnb from "../articles/Gnb";
 import { useRouter } from "next/router";
 import { WideWrapper } from "../elements/Wrapper.style";
-import { MainTitleWrapper, Section, ItemWrapper, ContentWrapper, Wrapper, StartButton, BigText, SmallText, BgItemWrapper, BgTitleWrapper, EmogiImage, PageImage, SliderArrowContainer, Dot, SelectedDot } from "./HomePage.styled";
+import { MainTitleWrapper, Section, ItemWrapper, ContentWrapper, Wrapper, StartButton, BigText, SmallText, BgItemWrapper, BgTitleWrapper, EmogiImage, PageImage, SliderArrowContainer, Dot, SelectedDot, BackgroundImageContainer } from "./HomePage.styled";
 import { useState } from "react";
 import { isLoggedInState } from "../../state";
 import { useRecoilValue } from "recoil";
+import Footer from "../articles/Footer";
 
 const HomePage = () => {
     const router = useRouter()
@@ -60,6 +61,7 @@ const HomePage = () => {
                                     </MainTitleWrapper>
                                 </div>
                             </Wrapper>
+                            <BackgroundImageContainer />
                     </ContentWrapper>
                     <SliderArrow />
                 </ItemWrapper>
@@ -95,6 +97,8 @@ const HomePage = () => {
                     <PageImage src="/img/home/img_WR.2.svg" />
                     <SliderArrow />
                 </BgItemWrapper>
+                <img src="/img/home/03_bottom.svg" style={{width: "100vw"}} />
+                <Footer />
             </Section>
         </WideWrapper>
     );
