@@ -11,7 +11,6 @@ const Wrapper = styled.div.attrs((props) => ({ textareaHeight: props.textareaHei
   width: 100%;
   height: auto;
   min-height: 92px;
-  border: 1px solid black;
   flex-direction: column;
   padding: 16px;
   border-radius: 4px;

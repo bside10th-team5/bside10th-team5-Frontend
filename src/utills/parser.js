@@ -8,6 +8,11 @@ export function parseTemplateName(value) {
   if (value === "free") return "자유형";
 }
 
+export function parseProjectType(value) {
+  if (value === "PROJECT") return "프로젝트형";
+  return "자유형";
+}
+
 const thumbnailIdObj = {
   0: "side-project",
   1: "work-log",

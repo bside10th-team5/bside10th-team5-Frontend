@@ -6,7 +6,17 @@ export const useProjectList = () => {
   const token = getCookie("token");
   axios.defaults.headers.common["Authorization"] = "Bearer " + token;
 
-  const fetch = async () => await axios.get(createBoardUrl, { params: { page: 0, size: 20 } });
+  const fetchFunc = async (config) => {
+    const page = config.queryKey[1];
+    return await axios.get(createBoardUrl, { params: { page, size: 20 } });
+  };
+  const deleteFunc = async (id) => {
+    try {
+      await axios.delete(createBoardUrl, { params: { id: id } });
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
-  return { fetch };
+  return { fetchFunc, deleteFunc };
 };

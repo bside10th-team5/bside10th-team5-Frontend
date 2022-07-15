@@ -37,7 +37,8 @@ const ModalContainer = () => {
     <ModalWrapper>
       {modalList.map((modalRegister) => {
         if (modalRegister.id === "add-tag-modal") return <AddTagModal key={modalRegister.id} />;
-        if (modalRegister.id === "delete-project-modal") return <BasicTwoBtnModal key={modalRegister.id} />;
+        if (modalRegister.id === "delete-project-modal")
+          return <BasicTwoBtnModal key={modalRegister.id} callback={modalRegister.callback} />; // TODO : 이거를 커스텀 해서 쓸지 아님 각각 만들어서 쓸지 고민 해봐야 됨
       })}
     </ModalWrapper>,
     document.body,

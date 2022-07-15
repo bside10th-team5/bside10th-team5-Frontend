@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { useSetRecoilState } from "recoil";
 import styled from "styled-components";
 import { modalListState } from "../../../state/modalState";
@@ -39,11 +40,12 @@ const BtnWrapper = styled.div`
 `;
 
 // TODO: custom 하게 쓸수있게 수정해야댐
-const BasicTwoBtnModal = () => {
+const BasicTwoBtnModal = ({ callback }) => {
   const setModalList = useSetRecoilState(modalListState);
 
   const onClickDelteProject = () => {
     // TODO: 삭제프로세스
+    callback();
     setModalList([]);
   };
 
@@ -74,3 +76,7 @@ const BasicTwoBtnModal = () => {
 };
 
 export default BasicTwoBtnModal;
+
+BasicTwoBtnModal.propTypes = {
+  callback: PropTypes.func,
+};
