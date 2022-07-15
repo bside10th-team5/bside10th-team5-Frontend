@@ -5,8 +5,10 @@ export const Section = styled.section`
   margin-top: ${GNB_H}px;
   margin-bottom: 297px;
   width: 100%;
+  flex: 1;
 `;
 export const ItemWrapper = styled.ul`
+  position: relative;
   margin-top: 3.25rem;
   padding: 0 25px;
   display: grid;

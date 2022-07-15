@@ -1,6 +1,5 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useRouter } from "next/router";
-import { ThemeContext } from "styled-components";
 import CustomBtn from "../elements/CustomBtn";
 import { WideWrapper } from "../elements/Wrapper.style";
 import { Row, Section } from "./AddProjectPage.style";
@@ -12,11 +11,13 @@ import ProjectSummary from "./ProjectSummary";
 import ProjectThumbnail from "./ProjectThumbnail";
 import Footer from "../articles/Footer";
 import { useMutation } from "react-query";
-import { useCreateBoard } from "../../state/addProjectState";
+import { boardNameState, useCreateBoard } from "../../state/addProjectState";
+import { useRecoilValue } from "recoil";
+import { ORANGE } from "../../styles/theme";
 
 const AddProjectPage = () => {
   const router = useRouter();
-  const themeContext = useContext(ThemeContext);
+  const title = useRecoilValue(boardNameState);
   const { addProject } = useCreateBoard();
 
   const { mutate } = useMutation(addProject, {
@@ -45,7 +46,8 @@ const AddProjectPage = () => {
             onClick={mutate}
             width="374px"
             borderRadius="5px"
-            bgColor={themeContext.color.orange}
+            bgColor={ORANGE}
+            disabled={!title}
           />
         </Row>
       </Section>
