@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import Checkbox from "../../../articles/Checkbox";
-import { Row } from "../../../settingPage/AddProjectPage.style";
-import TodayEval from "../../../articles/TodayEval";
+import TodayEval from "../../components/TodayEval";
 import SbScreenReview from "./SbScreenReview";
-import SbWorks from "./SbWorks";
+import TodayWorks from "../../components/TodayWorks";
 import SbGoal from "./SbGoal";
+import { Row } from "../../../elements/Wrapper.style";
 
 const SbTemplate = () => {
   const [checkedGoal, setCheckedGoal] = useState(true);
@@ -22,22 +22,29 @@ const SbTemplate = () => {
   return (
     <div className="open-tab">
       <Row marginBottom="36px">
-        <Checkbox id="goal" isChecked={checkedGoal} marginRight="1rem" onChange={handleCheckBox}>
-          <span className="button">설계 목표</span>
-        </Checkbox>
-        <Checkbox id="work" isChecked={checkedWork} marginRight="1rem" onChange={handleCheckBox}>
-          <span className="button">오늘 진행한 업무</span>
-        </Checkbox>
-        <Checkbox id="review" isChecked={checkedReview} marginRight="1rem" onChange={handleCheckBox}>
-          <span className="button">주요 설계 화면 회고</span>
-        </Checkbox>
-        <Checkbox id="eval" isChecked={checkedEval} onChange={handleCheckBox}>
-          <span className="button">오늘의 업무평가</span>
-        </Checkbox>
+        <Checkbox id="goal" isChecked={checkedGoal} marginRight="1rem" onChange={handleCheckBox} name="설계 목표" />
+
+        <Checkbox
+          id="work"
+          isChecked={checkedWork}
+          marginRight="1rem"
+          onChange={handleCheckBox}
+          name="오늘 진행한 업무"
+        />
+
+        <Checkbox
+          id="review"
+          isChecked={checkedReview}
+          marginRight="1rem"
+          onChange={handleCheckBox}
+          name="주요 설계 화면 회고"
+        />
+
+        <Checkbox id="eval" isChecked={checkedEval} onChange={handleCheckBox} name="오늘의 업무평가" />
       </Row>
       {/* //TODO: 컴포넌트 있다없이 말고 css 로 처리하는게 편하려나? */}
       {checkedGoal && <SbGoal />}
-      {checkedWork && <SbWorks />}
+      {checkedWork && <TodayWorks title="오늘 진행한 설계 업무" />}
       {checkedReview && <SbScreenReview />}
       {checkedEval && <TodayEval />}
     </div>

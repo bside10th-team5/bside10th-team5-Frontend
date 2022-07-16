@@ -6,6 +6,7 @@ import { GRAY300 } from "../../../styles/theme";
 import { parseTemplateName } from "../../../utills/parser";
 import SbTemplate from "./sbTemplate/SbTemplate";
 import WorkflowTemplate from "./workflowTemplate/WorkflowTemplate";
+import QaTemplate from "./qaTemplate/Qatemplate";
 const FreeTemplate = dynamic(() => import("./freeTemplate/FreeTemplate"), { ssr: false });
 
 const BlockWrapper = styled.div.attrs((props) => ({
@@ -38,6 +39,7 @@ const TemplateBlock = ({ type }) => {
     if (typeName === "sb") return <SbTemplate />;
     if (typeName === "workflow") return <WorkflowTemplate />;
     if (typeName === "free") return <FreeTemplate />;
+    if (typeName === "qa") return <QaTemplate />;
     return <div>tbd</div>;
   };
 

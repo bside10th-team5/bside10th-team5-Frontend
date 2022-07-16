@@ -2,7 +2,7 @@ import React from "react";
 import { useRouter } from "next/router";
 import CustomBtn from "../elements/CustomBtn";
 import { WideWrapper } from "../elements/Wrapper.style";
-import { Row, Section } from "./AddProjectPage.style";
+import { Section } from "./AddProjectPage.style";
 import ProjectDate from "./ProjectDate";
 import ProjectDeviceAndTool from "./ProjectDeviceAndTool";
 import Gnb from "../articles/Gnb";
@@ -14,6 +14,7 @@ import { useMutation } from "react-query";
 import { boardNameState, useCreateBoard } from "../../state/addProjectState";
 import { useRecoilValue } from "recoil";
 import { ORANGE } from "../../styles/theme";
+import { Row } from "../elements/Wrapper.style";
 
 const AddProjectPage = () => {
   const router = useRouter();

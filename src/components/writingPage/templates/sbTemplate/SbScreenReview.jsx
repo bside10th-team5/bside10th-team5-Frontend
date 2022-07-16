@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import TitleTextarea from "../../../articles/TitleTextarea";
+import TextareaTitle from "../../../articles/TextareaTitle";
 import CircleArrowIcon from "../../../elements/CircleArrowIcon";
-import { Row } from "../../../settingPage/AddProjectPage.style";
 import { Box, ScreenTitle, ReviewBox, Title, UploadBox, UploadButton } from "../Templates.style";
+import { Row } from "../../../elements/Wrapper.style";
 
 const SbScreenReview = () => {
   const [srData, setSrData] = useState({
@@ -139,19 +139,19 @@ const SbScreenReview = () => {
         </Row>
       )}
       <ReviewBox>
-        <TitleTextarea
+        <TextareaTitle
           title="화면의 정의가 무엇인가요?"
           placeholder="업로드한 설계의 정의에 대해 작성해 주세요"
           text={srData[nowPage].review1}
           handleTextarea={onChangeReview1}
         />
-        <TitleTextarea
+        <TextareaTitle
           title="사용자에게 어떤 행동을 유도하는 것이 목표인가요?"
           placeholder="업로드한 설계의 목표에 대해 작성해 주세요"
           text={srData[nowPage].review2}
           handleTextarea={onChangeReview2}
         />
-        <TitleTextarea
+        <TextareaTitle
           title="목표를 달성하기 위해, 화면 설계에서 중점적으로 고민했던 부분은 무엇인가요?"
           placeholder="업로드한 설계에 대해 고민한 부분을 작성해 주세요"
           text={srData[nowPage].review3}
