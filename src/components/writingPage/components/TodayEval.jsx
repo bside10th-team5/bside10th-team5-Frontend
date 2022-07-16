@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import FaceNormalIcon from "../elements/FaceNormalIcon";
-import FaceSadIcon from "../elements/FaceSadIcon";
-import FaceSmileIcon from "../elements/FaceSmileIcon";
-import StarIcon from "../elements/StarIcon";
-import { Row } from "../settingPage/AddProjectPage.style";
-import { Box, Title } from "../writingPage/templates/Templates.style";
+import FaceNormalIcon from "../../elements/FaceNormalIcon";
+import FaceSadIcon from "../../elements/FaceSadIcon";
+import FaceSmileIcon from "../../elements/FaceSmileIcon";
+import StarIcon from "../../elements/StarIcon";
+import { Row } from "../../elements/Wrapper.style";
+import { Box, Title } from "../templates/Templates.style";
 
 const TodayEval = () => {
   const [total, setTotal] = useState(1);

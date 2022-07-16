@@ -1,9 +1,9 @@
 import React from "react";
 import { useSetRecoilState } from "recoil";
 import { templateListState, toggleAddTemplateState } from "../../../state/writeDiaryState";
-import { Row } from "../../settingPage/AddProjectPage.style";
 import TemplateBox from "./TemplateBox";
 import { TemplateTitle, TemplateWrapper } from "../WritingPage.style";
+import { Row } from "../../elements/Wrapper.style";
 
 const Templates = () => {
   const setTemplateList = useSetRecoilState(templateListState);

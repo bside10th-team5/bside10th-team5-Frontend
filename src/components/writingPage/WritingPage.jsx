@@ -1,23 +1,19 @@
 import React, { useState } from "react";
-// import { useRouter } from "next/router";
-import { WideWrapper } from "../elements/Wrapper.style";
+import { useRecoilValue, useRecoilState } from "recoil";
+import { WideWrapper, Row } from "../elements/Wrapper.style";
 import Gnb from "../articles/Gnb";
 import { CalendarBox, CalendarTab, Section } from "./WritingPage.style";
 import Footer from "../articles/Footer";
 import Templates from "./templates/Templates";
-import { useRecoilValue, useRecoilState } from "recoil";
 import { templateListState, selectedDateState } from "../../state/writeDiaryState";
 import TemplateViews from "./templates/TemplateViews";
 import CustomFullCalendar from "./components/FullCalendar";
-import { Row } from "../settingPage/AddProjectPage.style";
 import CustomBtn from "../elements/CustomBtn";
 import { ORANGE } from "../../styles/theme";
 import { format } from "date-fns";
 import WritePageHeader from "./components/WritePageHeader";
 
 const wrtingPage = () => {
-  // const router = useRouter();
-  // const { id } = router.query;
   const [selectedDate, setSelectedDate] = useRecoilState(selectedDateState);
   const [toggleCalendar, setToggleCalendar] = useState(false);
   const templateList = useRecoilValue(templateListState);

@@ -2,7 +2,8 @@ import React from "react";
 import { useRecoilState } from "recoil";
 import { thumbnailIdState } from "../../state/addProjectState";
 import RadioWithImg from "../elements/RadioWithImg";
-import { Box, Row, Title } from "./AddProjectPage.style";
+import { Box, Title } from "./AddProjectPage.style";
+import { Row } from "../elements/Wrapper.style";
 
 const ProjectThumbnail = () => {
   const [thumbnailRadio, setThumbnailRadio] = useRecoilState(thumbnailIdState);

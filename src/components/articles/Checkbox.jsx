@@ -39,7 +39,7 @@ const CheckboxLabel = styled.label.attrs((props) => ({
     `}
 `;
 
-const Checkbox = ({ isChecked, onChange, children, id, width, marginRight }) => {
+const Checkbox = ({ isChecked, onChange, id, width, marginRight, name }) => {
   return (
     <CheckboxLabel htmlFor={id} width={width} marginRight={marginRight} isChecked={isChecked}>
       <input id={id} onChange={onChange} type="checkbox" checked={isChecked} />
@@ -70,7 +70,7 @@ const Checkbox = ({ isChecked, onChange, children, id, width, marginRight }) => 
           <path d="M1 1H23V23H1V1Z" stroke="#949494" strokeWidth="2" />
         </svg>
       )}
-      {children}
+      <span className="button">{name}</span>
     </CheckboxLabel>
   );
 };
@@ -84,4 +84,5 @@ Checkbox.propTypes = {
   children: PropTypes.node,
   width: PropTypes.string,
   marginRight: PropTypes.string,
+  name: PropTypes.string,
 };

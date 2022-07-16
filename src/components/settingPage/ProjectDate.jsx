@@ -7,7 +7,8 @@ import { useRecoilState } from "recoil";
 import { projectStartDateState, projectEndDateState } from "../../state/addProjectState";
 import ToggleCheckbox from "../articles/ToggleCheckbox";
 import CustomInput from "./CustomInput";
-import { Row, Box, Title } from "./AddProjectPage.style";
+import { Box, Title } from "./AddProjectPage.style";
+import { Row } from "../elements/Wrapper.style";
 
 const DatePickerWrapper = styled.div``;
 

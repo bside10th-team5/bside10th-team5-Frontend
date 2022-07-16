@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { GRAY500, GRAY900, GRAY700, GRAY100, ORANGE } from "../../../styles/theme";
 import CustomBtn from "../../elements/CustomBtn";
-import { Row } from "../../settingPage/AddProjectPage.style";
+import { Row } from "../../elements/Wrapper.style";
 import { LeftBox, Title } from "../WritingPage.style";
 
 export const HeaderWrapper = styled.div`

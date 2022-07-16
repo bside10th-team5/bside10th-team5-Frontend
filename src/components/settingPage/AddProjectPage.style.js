@@ -25,35 +25,6 @@ export const Title = styled.div.attrs((props) => ({
   }
 `;
 
-export const Row = styled.div.attrs((props) => ({
-  marginBottom: props.marginBottom || "0",
-  marginTop: props.marginTop || "0",
-  justifyContent: props.justifyContent || "flex-start",
-  alignItems: props.alignItems || "center",
-  gap: props.gap || "0",
-}))`
-  display: flex;
-  justify-content: ${(props) => props.justifyContent};
-  align-items: ${(props) => props.alignItems};
-  margin-bottom: ${(props) => props.marginBottom};
-  margin-top: ${(props) => props.marginTop};
-  gap: ${(props) => props.gap};
-`;
-
-export const Column = styled.div.attrs((props) => ({
-  marginBottom: props.marginBottom || "0",
-  justifyContent: props.justifyContent || "center",
-  alignItems: props.alignItems || "flex-start",
-  gap: props.gap || "0",
-}))`
-  display: flex;
-  flex-direction: column;
-  justify-content: ${(props) => props.justifyContent};
-  align-items: ${(props) => props.alignItems};
-  margin-bottom: ${(props) => props.marginBottom};
-  gap: ${(props) => props.gap};
-`;
-
 export const Box = styled.div.attrs((props) => ({
   marginBottom: props.marginBottom || "2.25rem",
 }))`

@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { GRAY300, GRAY500 } from "../../../../styles/theme";
-import TitleTextarea from "../../../articles/TitleTextarea";
-import { Column, Row } from "../../../settingPage/AddProjectPage.style";
-import { Box, PageTag, Title } from "../Templates.style";
+import PropTypes from "prop-types";
+import { GRAY300, GRAY500 } from "../../../styles/theme";
+import TextareaTitle from "../../articles/TextareaTitle";
+import { Box, PageTag, Title } from "../templates/Templates.style";
+import { Row, Column } from "../../elements/Wrapper.style";
 
 const SbWroksWrapper = styled(Box)`
   & .empty-box {
@@ -28,7 +29,7 @@ const SbWroksWrapper = styled(Box)`
   }
 `;
 
-const SbWorks = () => {
+const TodayWorks = ({ title }) => {
   // const [works, setWorks] = useState({ myPage: "12313", admin: "123123123123" });
   const [tagList, setTagList] = useState(["홈", "마이페이지", "전체메뉴", "관리자"]);
   const [works, setWorks] = useState({});
@@ -55,7 +56,7 @@ const SbWorks = () => {
     <SbWroksWrapper>
       <Row alignItems="center">
         <Title className="headline-6" style={{ marginRight: "40px", minWidth: "193px" }}>
-          오늘 진행한 설계 업무
+          {title}
         </Title>
         <Row marginBottom="28px">
           <div className="tag-box">
@@ -88,7 +89,7 @@ const SbWorks = () => {
       ) : (
         <Column gap="16px">
           {Object.keys(works).map((key) => (
-            <TitleTextarea
+            <TextareaTitle
               key={key}
               title={key}
               placeholder="업로드한 설계에 대해 고민한 부분을 작성해 주세요"
@@ -98,7 +99,7 @@ const SbWorks = () => {
               <PageTag className="button" colorCase={(tagList.indexOf(key) % 4) + 1}>
                 {key}
               </PageTag>
-            </TitleTextarea>
+            </TextareaTitle>
           ))}
         </Column>
       )}
@@ -106,4 +107,8 @@ const SbWorks = () => {
   );
 };
 
-export default SbWorks;
+export default TodayWorks;
+
+TodayWorks.propTypes = {
+  title: PropTypes.string,
+};
