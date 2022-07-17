@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { useRecoilValue, useSetRecoilState } from "recoil";
-import { tagState } from "../../state/addProjectState";
+import React from "react";
+import { useRecoilValue, useSetRecoilState, useRecoilState } from "recoil";
+import { tagState, checkedWebState, checkedAppState } from "../../state/addProjectState";
 import { modalListState } from "../../state/modalState";
 import Checkbox from "../articles/Checkbox";
 import Tag from "../articles/Tag";
@@ -8,8 +8,8 @@ import { SubTitle, Box, Title, AddTagButton } from "./AddProjectPage.style";
 import { Row } from "../elements/Wrapper.style";
 
 const ProjectDeviceAndTool = () => {
-  const [isWebChecked, setWebChecked] = useState(true);
-  const [isMobileChecked, setMobileChecked] = useState(false);
+  const [isWebChecked, setWebChecked] = useRecoilState(checkedWebState);
+  const [isMobileChecked, setMobileChecked] = useRecoilState(checkedAppState);
   const tags = useRecoilValue(tagState);
   const setModalList = useSetRecoilState(modalListState);
 

@@ -10,7 +10,7 @@ export const BackgroundLogo = styled.img`
 export const Section = styled.section`
   margin-top: ${GNB_H}px;
   width: 100%;
-  background-color: #fbfbfb;
+  background-color: transparent;
 `;
 
 export const ItemWrapper = styled.div`
@@ -22,10 +22,11 @@ export const ItemWrapper = styled.div`
 `;
 
 export const ContentWrapper = styled.div`
+  position: relative;
   display: flex;
   width: 100%;
   align-items: center;
-  position: relative;
+  background: transparent;
 `;
 
 export const BackgroundImageContainer = styled.div`
@@ -37,6 +38,7 @@ export const BackgroundImageContainer = styled.div`
   top: 98px;
   left: -646px;
   background-repeat: repeat-x;
+  z-index: -999;
 `;
 
 export const Wrapper = styled.div`
@@ -74,6 +76,7 @@ export const StartButton = styled.button`
   border-radius: 4px;
   text-align: center;
   margin-top: 64px;
+  z-index: 3;
 `;
 
 export const BgItemWrapper = styled.div`
