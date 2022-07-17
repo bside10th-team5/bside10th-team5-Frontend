@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { GNB_H } from "../../styles/theme";
+import { GNB_H, GRAY200 } from "../../styles/theme";
 
 export const BackgroundLogo = styled.img`
   src: url(${"/logo.svg"});
@@ -8,17 +8,27 @@ export const BackgroundLogo = styled.img`
 `;
 
 export const Section = styled.section`
+  display: flex;
+  flex-direction: column;
   margin-top: ${GNB_H}px;
   width: 100%;
   background-color: transparent;
 `;
 
 export const ItemWrapper = styled.div`
+  box-sizing: border-box;
   display: flex;
-  width: 100vw;
-  height: 1000px;
-  justify-content: center;
+  justify-content: flex-end;
+  width: 100%;
+  height: calc(100vh - 80px);
+  border: 2px solid green;
   align-items: center;
+  padding-right: 5.2%;
+`;
+
+export const BgItemWrapper = styled(ItemWrapper)`
+  height: calc(100vh - 80px);
+  background-color: ${GRAY200};
 `;
 
 export const ContentWrapper = styled.div`
@@ -41,16 +51,7 @@ export const BackgroundImageContainer = styled.div`
   z-index: -999;
 `;
 
-export const Wrapper = styled.div`
-  display: flex;
-  width: 100vw;
-  justify-content: center;
-  align-items: center;
-`;
-
 export const MainTitleWrapper = styled.div`
-  padding-bottom: 100px;
-  padding-left: 100px;
   & .main-title-1 {
     font-size: 20px;
     font-weight: 300;
@@ -58,10 +59,8 @@ export const MainTitleWrapper = styled.div`
 `;
 
 export const BigText = styled.div`
-  width: 600px;
   font-size: 48px;
   line-height: 68px;
-  /* text-align: center; */
 `;
 
 export const SmallText = styled.div`
@@ -79,41 +78,26 @@ export const StartButton = styled.button`
   z-index: 3;
 `;
 
-export const BgItemWrapper = styled.div`
-  display: flex;
-  width: 90vw;
-  height: 1080px;
-  /* margin-left: 188px; */
-  justify-content: center;
-  align-items: center;
-`;
-
-export const BgTitleWrapper = styled.div`
+export const BgTitleWrapper = styled.div.attrs((props) => ({ maxWidth: props.maxWidth || "28%" }))`
   display: flex;
   flex-direction: column;
-  height: 316px;
+  max-width: ${(props) => props.maxWidth};
 `;
 
 export const EmogiImage = styled.img`
-  width: 84px;
-  height: 84px;
-  margin-bottom: 40px;
+  width: 4.4vw;
+  height: 4.4vw;
+  margin-bottom: 2%;
 `;
 
-export const PageImage = styled.img`
-  width: 44vw;
-`;
+export const PageImage = styled.img``;
 
 export const SliderArrowContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 64px;
-  height: 424px;
+  height: 22vw;
   justify-content: space-between;
   align-items: center;
-  position: absolute;
-  right: 5.2vw;
-  margin-bottom: 60px;
 `;
 
 export const Dot = styled.div`
