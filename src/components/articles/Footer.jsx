@@ -14,6 +14,8 @@ const FooterWrapper = styled.footer`
   font-size: 14px;
   line-height: 100%;
   letter-spacing: -1.5%;
+
+  text-align: center;
 `;
 
 const Footer = () => {
