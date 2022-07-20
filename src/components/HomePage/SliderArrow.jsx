@@ -2,18 +2,17 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Dot, SelectedDot, SliderArrowContainer } from "./HomePage.styled";
 
-const SliderArrow = ({ step }) => {
+const SliderArrow = ({ step, handleStep }) => {
   const onClickUpArrow = (value) => {
     if (value === 0) return;
-    window.scrollTo(0, (Number(value) - 1) * (window.innerHeight - 80));
+    window.scrollTo({ left: 0, top: (Number(value) - 1) * (window.innerHeight - 80), behavior: "smooth" });
+    handleStep(value - 1);
   };
 
   const onClickDownArrow = (value) => {
     if (value === 3) return;
-    window.scrollTo(0, (Number(value) + 1) * (window.innerHeight - 80));
-
-    // window.scrollTo(0, document.body.scrollHeight);
-    // console.log(window);
+    window.scrollTo({ left: 0, top: (Number(value) + 1) * (window.innerHeight - 80), behavior: "smooth" });
+    handleStep(value + 1);
   };
 
   return (
@@ -36,4 +35,5 @@ export default SliderArrow;
 
 SliderArrow.propTypes = {
   step: PropTypes.number,
+  handleStep: PropTypes.func,
 };

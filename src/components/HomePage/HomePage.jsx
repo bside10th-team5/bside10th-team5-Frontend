@@ -1,4 +1,4 @@
-import Gnb from "../articles/Gnb";
+import React, { useRef, useState, useCallback } from "react";
 import { useRouter } from "next/router";
 import { WideWrapper } from "../elements/Wrapper.style";
 import {
@@ -18,32 +18,94 @@ import {
 } from "./HomePage.styled";
 import { isLoggedInState } from "../../state";
 import { useRecoilValue } from "recoil";
+import Gnb from "../articles/Gnb";
 import Footer from "../articles/Footer";
-import React, { useRef } from "react";
 import { GRAY900 } from "../../styles/theme";
 import SliderArrow from "./SliderArrow";
 import TopButton from "../articles/TopButton";
+import { debounce } from "lodash";
 
 const HomePage = () => {
   const router = useRouter();
   const ref = useRef(null);
   const isLoggedIn = useRecoilValue(isLoggedInState);
+  const [step, setStep] = useState(0);
+  const [scrollDetect, setScrollDetect] = useState("");
+
+  const handleStep = (value) => {
+    setStep(value);
+  };
 
   const onClickLoginButton = () => {
     router.push("/login");
   };
 
-  // React.useEffect(() => {
-  //   let lastScrollY = 0;
-  //   window.addEventListener("scroll", (e) => {
-  //     //TODO : 리턴
-  //     const scrollY = window.scrollY;
-  //     const direction = scrollY > lastScrollY + 10 ? "down" : "up";
-  //     lastScrollY = scrollY;
-  //     console.log(direction);
-  //     setScrollDetect(direction);
-  //   });
-  // }, []);
+  let lastScrollY = 0;
+  const scrollEvent = useCallback(
+    debounce((e) => {
+      const scrollY = window.scrollY;
+      if (scrollY % (window.innerHeight - 80) !== 0) {
+        console.log("scroll 했어");
+        const direction = scrollY > lastScrollY ? "down" : "up";
+        console.log(direction);
+        setScrollDetect(direction);
+      }
+      lastScrollY = scrollY;
+    }, 400),
+    [],
+  );
+
+  React.useEffect(() => {
+    console.log(step, scrollDetect);
+    if (step === 0 && scrollDetect === "down") {
+      window.scrollTo({ left: 0, top: (Number(step) + 1) * (window.innerHeight - 80), behavior: "smooth" });
+      // lastScrollY = (Number(step) + 1) * (window.innerHeight - 80);
+      setStep(1);
+    }
+    if (step === 1 && scrollDetect === "down") {
+      window.scrollTo({ left: 0, top: (Number(step) + 1) * (window.innerHeight - 80), behavior: "smooth" });
+      // lastScrollY = (Number(step) + 1) * (window.innerHeight - 80);
+      setStep(2);
+    }
+    if (step === 2 && scrollDetect === "down") {
+      window.scrollTo({ left: 0, top: (Number(step) + 1) * (window.innerHeight - 80), behavior: "smooth" });
+      // lastScrollY = (Number(step) + 1) * (window.innerHeight - 80);
+      setStep(3);
+    }
+    if (step === 3 && scrollDetect === "down") {
+      // setStep(1);
+      // window.scrollTo({ left: 0, top: (Number(step) + 1) * (window.innerHeight - 80), behavior: "smooth" });
+    }
+    if (step === 3 && scrollDetect === "up") {
+      window.scrollTo({ left: 0, top: (Number(step) - 1) * (window.innerHeight - 80), behavior: "smooth" });
+      // lastScrollY = (Number(step) - 1) * (window.innerHeight - 80);
+      setStep(2);
+    }
+    if (step === 2 && scrollDetect === "up") {
+      window.scrollTo({ left: 0, top: (Number(step) - 1) * (window.innerHeight - 80), behavior: "smooth" });
+      // lastScrollY = (Number(step) - 1) * (window.innerHeight - 80);
+      setStep(1);
+    }
+    if (step === 1 && scrollDetect === "up") {
+      window.scrollTo({ left: 0, top: (Number(step) - 1) * (window.innerHeight - 80), behavior: "smooth" });
+      // lastScrollY = (Number(step) - 1) * (window.innerHeight - 80);
+      setStep(0);
+    }
+    if (step === 0 && scrollDetect === "up") {
+      // setStep(2);
+      // window.scrollTo({ left: 0, top: (Number(step) - 1) * (window.innerHeight - 80), behavior: "smooth" });
+    }
+  }, [scrollDetect]);
+
+  React.useEffect(() => {
+    setScrollDetect("");
+  }, [step]);
+
+  React.useEffect(() => {
+    // const scrollEvent =;
+    window.addEventListener("scroll", scrollEvent);
+    return () => window.removeEventListener("scroll", scrollEvent);
+  }, []);
 
   return (
     <WideWrapper ref={ref}>
@@ -69,7 +131,7 @@ const HomePage = () => {
             </div>
             <MainImage src="/img/home/main_img.svg" />
           </ResponsiveWrapper>
-          <SliderArrow step={0} />
+          <SliderArrow step={step} handleStep={handleStep} />
         </ItemWrapper>
         <BgItemWrapper>
           <ResponsiveWrapper gap="5.4vw">
@@ -85,7 +147,6 @@ const HomePage = () => {
             </BgTitleWrapper>
             <PageImage src="/img/home/img_LT.svg" />
           </ResponsiveWrapper>
-          <SliderArrow step={1} />
         </BgItemWrapper>
         <BgItemWrapper>
           <ResponsiveWrapper gap="7vw">
@@ -101,7 +162,6 @@ const HomePage = () => {
             </BgTitleWrapper>
             <PageImage src="/img/home/img_WR.svg" />
           </ResponsiveWrapper>
-          <SliderArrow step={2} />
         </BgItemWrapper>
         <BgItemWrapper>
           <ResponsiveWrapper gap="4.6vw">
@@ -120,7 +180,6 @@ const HomePage = () => {
             </BgTitleWrapper>
             <PageImage src="/img/home/img_WR.2.svg" />
           </ResponsiveWrapper>
-          <SliderArrow step={3} />
         </BgItemWrapper>
         <img src="/img/home/03_bottom.svg" style={{ width: "100%", flex: 1 }} />
         <Footer />
