@@ -22,7 +22,7 @@ export const ItemWrapper = styled.div`
   width: 100%;
   height: calc(100vh - 80px);
   align-items: center;
-  padding-right: 5.2%;
+  padding-right: 6.3vw;
 
   @media screen and (max-width: 1000px) {
     padding: 9vw 0;
@@ -167,10 +167,10 @@ export const SliderArrowContainer = styled.div`
   height: 22vw;
   justify-content: space-between;
   align-items: center;
+  position: fixed;
+  right: 4vw;
 
   @media screen and (max-width: 1000px) {
-    position: absolute;
-    right: 20px;
     display: none;
   }
 `;
