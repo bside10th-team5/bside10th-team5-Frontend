@@ -21,51 +21,95 @@ export const ItemWrapper = styled.div`
   justify-content: flex-end;
   width: 100%;
   height: calc(100vh - 80px);
-  border: 2px solid green;
   align-items: center;
   padding-right: 5.2%;
+
+  @media screen and (max-width: 1000px) {
+    padding: 9vw 0;
+    height: auto;
+  }
+  @media screen and (max-width: 600px) {
+    padding: 17vw 0;
+    height: auto;
+  }
 `;
 
 export const BgItemWrapper = styled(ItemWrapper)`
   height: calc(100vh - 80px);
   background-color: ${GRAY200};
+
+  @media screen and (max-width: 1000px) {
+    padding: 9vw 0;
+    height: auto;
+  }
+  @media screen and (max-width: 600px) {
+    padding: 17vw 0;
+    height: auto;
+  }
 `;
 
-export const ContentWrapper = styled.div`
-  position: relative;
+export const ResponsiveWrapper = styled.div.attrs((props) => ({
+  gap: props.gap || "28%",
+  flexDirection: props.flexDirection || "row",
+}))`
   display: flex;
-  width: 100%;
+  flex: 1;
+  justify-content: center;
   align-items: center;
-  background: transparent;
+  gap: ${({ gap }) => gap};
+  flex-direction: ${({ flexDirection }) => flexDirection};
+  height: 100%;
+
+  @media screen and (max-width: 1000px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 6vw;
+  }
+  @media screen and (max-width: 600px) {
+    gap: 12vw 0;
+  }
 `;
 
-export const BackgroundImageContainer = styled.div`
+export const BackgroundImageContainer = styled.img`
   position: absolute;
-  width: 2695px;
-  height: 364px;
-  background-image: url("/img/home/logo.svg");
-  opacity: 0.1;
-  top: 98px;
-  left: -646px;
-  background-repeat: repeat-x;
+  width: 100vw;
+  height: auto;
+  top: -39.5px;
+  left: -58vw;
   z-index: -999;
 `;
 
 export const MainTitleWrapper = styled.div`
+  position: relative;
+
   & .main-title-1 {
     font-size: 20px;
     font-weight: 300;
+    margin-bottom: 12px;
+  }
+
+  @media screen and (max-width: 1000px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 `;
 
 export const BigText = styled.div`
   font-size: 48px;
   line-height: 68px;
+  word-break: keep-all;
+
+  @media screen and (max-width: 1000px) {
+    text-align: center;
+  }
 `;
 
 export const SmallText = styled.div`
   font-size: 24px;
   line-height: 44px;
+  margin-top: 12px;
 `;
 
 export const StartButton = styled.button`
@@ -75,22 +119,47 @@ export const StartButton = styled.button`
   border-radius: 4px;
   text-align: center;
   margin-top: 64px;
-  z-index: 3;
+  color: white;
 `;
 
-export const BgTitleWrapper = styled.div.attrs((props) => ({ maxWidth: props.maxWidth || "28%" }))`
+export const BgTitleWrapper = styled.div.attrs((props) => ({ maxWidth: props.maxWidth || "none" }))`
   display: flex;
   flex-direction: column;
   max-width: ${(props) => props.maxWidth};
+
+  @media screen and (max-width: 1000px) {
+    max-width: none;
+    align-items: center;
+  }
 `;
 
 export const EmogiImage = styled.img`
-  width: 4.4vw;
-  height: 4.4vw;
-  margin-bottom: 2%;
+  width: 84px;
+  height: 84px;
+  margin-bottom: 40px;
 `;
 
-export const PageImage = styled.img``;
+export const MainImage = styled.img`
+  width: 37vw;
+
+  @media screen and (max-width: 1000px) {
+    width: 65.5vw;
+  }
+  @media screen and (max-width: 600px) {
+    width: 74vw;
+  }
+`;
+
+export const PageImage = styled.img`
+  width: 43.5vw;
+
+  @media screen and (max-width: 1000px) {
+    width: 64.5vw;
+  }
+  @media screen and (max-width: 600px) {
+    width: 86vw;
+  }
+`;
 
 export const SliderArrowContainer = styled.div`
   display: flex;
@@ -98,6 +167,12 @@ export const SliderArrowContainer = styled.div`
   height: 22vw;
   justify-content: space-between;
   align-items: center;
+
+  @media screen and (max-width: 1000px) {
+    position: absolute;
+    right: 20px;
+    display: none;
+  }
 `;
 
 export const Dot = styled.div`
