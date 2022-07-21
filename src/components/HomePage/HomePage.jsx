@@ -1,5 +1,7 @@
 import React, { useRef, useState, useCallback } from "react";
 import { useRouter } from "next/router";
+import { useRecoilValue } from "recoil";
+import { debounce } from "lodash";
 import { WideWrapper } from "../elements/Wrapper.style";
 import {
   MainTitleWrapper,
@@ -17,13 +19,12 @@ import {
   BackgroundImageContainer,
 } from "./HomePage.styled";
 import { isLoggedInState } from "../../state";
-import { useRecoilValue } from "recoil";
 import Gnb from "../articles/Gnb";
 import Footer from "../articles/Footer";
 import { GRAY900 } from "../../styles/theme";
 import SliderArrow from "./SliderArrow";
 import TopButton from "../articles/TopButton";
-import { debounce } from "lodash";
+import useIsMobile from "../../hooks/useIsMobile";
 
 const HomePage = () => {
   const router = useRouter();
@@ -31,6 +32,7 @@ const HomePage = () => {
   const isLoggedIn = useRecoilValue(isLoggedInState);
   const [step, setStep] = useState(0);
   const [scrollDetect, setScrollDetect] = useState("");
+  const isMobile = useIsMobile();
 
   const handleStep = (value) => {
     setStep(value);
@@ -45,9 +47,7 @@ const HomePage = () => {
     debounce((e) => {
       const scrollY = window.scrollY;
       if (scrollY % (window.innerHeight - 80) !== 0) {
-        console.log("scroll 했어");
         const direction = scrollY > lastScrollY ? "down" : "up";
-        console.log(direction);
         setScrollDetect(direction);
       }
       lastScrollY = scrollY;
@@ -55,57 +55,38 @@ const HomePage = () => {
     [],
   );
 
+  const downScrolling = (stepValue) => {
+    window.scrollTo({ left: 0, top: (Number(stepValue) + 1) * (window.innerHeight - 80), behavior: "smooth" });
+    setStep(stepValue + 1);
+  };
+
+  const upScrolling = (stepValue) => {
+    window.scrollTo({ left: 0, top: (Number(stepValue) - 1) * (window.innerHeight - 80), behavior: "smooth" });
+    setStep(stepValue - 1);
+  };
+
   React.useEffect(() => {
     console.log(step, scrollDetect);
-    if (step === 0 && scrollDetect === "down") {
-      window.scrollTo({ left: 0, top: (Number(step) + 1) * (window.innerHeight - 80), behavior: "smooth" });
-      // lastScrollY = (Number(step) + 1) * (window.innerHeight - 80);
-      setStep(1);
+    if (!isMobile) {
+      if (step < 3 && scrollDetect === "down") {
+        downScrolling(step);
+      }
+      if (step > 0 && scrollDetect === "up") {
+        upScrolling(step);
+      }
     }
-    if (step === 1 && scrollDetect === "down") {
-      window.scrollTo({ left: 0, top: (Number(step) + 1) * (window.innerHeight - 80), behavior: "smooth" });
-      // lastScrollY = (Number(step) + 1) * (window.innerHeight - 80);
-      setStep(2);
-    }
-    if (step === 2 && scrollDetect === "down") {
-      window.scrollTo({ left: 0, top: (Number(step) + 1) * (window.innerHeight - 80), behavior: "smooth" });
-      // lastScrollY = (Number(step) + 1) * (window.innerHeight - 80);
-      setStep(3);
-    }
-    if (step === 3 && scrollDetect === "down") {
-      // setStep(1);
-      // window.scrollTo({ left: 0, top: (Number(step) + 1) * (window.innerHeight - 80), behavior: "smooth" });
-    }
-    if (step === 3 && scrollDetect === "up") {
-      window.scrollTo({ left: 0, top: (Number(step) - 1) * (window.innerHeight - 80), behavior: "smooth" });
-      // lastScrollY = (Number(step) - 1) * (window.innerHeight - 80);
-      setStep(2);
-    }
-    if (step === 2 && scrollDetect === "up") {
-      window.scrollTo({ left: 0, top: (Number(step) - 1) * (window.innerHeight - 80), behavior: "smooth" });
-      // lastScrollY = (Number(step) - 1) * (window.innerHeight - 80);
-      setStep(1);
-    }
-    if (step === 1 && scrollDetect === "up") {
-      window.scrollTo({ left: 0, top: (Number(step) - 1) * (window.innerHeight - 80), behavior: "smooth" });
-      // lastScrollY = (Number(step) - 1) * (window.innerHeight - 80);
-      setStep(0);
-    }
-    if (step === 0 && scrollDetect === "up") {
-      // setStep(2);
-      // window.scrollTo({ left: 0, top: (Number(step) - 1) * (window.innerHeight - 80), behavior: "smooth" });
-    }
-  }, [scrollDetect]);
+  }, [scrollDetect, isMobile]);
 
   React.useEffect(() => {
     setScrollDetect("");
   }, [step]);
 
   React.useEffect(() => {
-    // const scrollEvent =;
-    window.addEventListener("scroll", scrollEvent);
-    return () => window.removeEventListener("scroll", scrollEvent);
-  }, []);
+    if (!isMobile) {
+      window.addEventListener("scroll", scrollEvent);
+      return () => window.removeEventListener("scroll", scrollEvent);
+    }
+  }, [isMobile]);
 
   return (
     <WideWrapper ref={ref}>
