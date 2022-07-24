@@ -45,7 +45,16 @@ const HomePage = () => {
   let lastScrollY = 0;
   const scrollEvent = useCallback(
     debounce((e) => {
+      e.preventDefault();
       const scrollY = window.scrollY;
+      if (window.scrollY === 0) {
+        //스크롤 최상단
+        setStep(0);
+      }
+      if (Number(window.innerHeight) + Number(scrollY) >= Number(ref.current.scrollHeight) - 10) {
+        // 스크롤 최하단 약간 오차가 있네?
+        setStep(3);
+      }
       if (scrollY % (window.innerHeight - 80) !== 0) {
         const direction = scrollY > lastScrollY ? "down" : "up";
         setScrollDetect(direction);
@@ -66,7 +75,6 @@ const HomePage = () => {
   };
 
   React.useEffect(() => {
-    console.log(step, scrollDetect);
     if (!isMobile) {
       if (step < 3 && scrollDetect === "down") {
         downScrolling(step);
@@ -152,9 +160,9 @@ const HomePage = () => {
                 디자이너, 개발자 등
                 <BigText className="subtitle-2" style={{ color: "#FF9F00" }}>
                   다양한 협업 히스토리{" "}
-                  <span className="subtitle-2" style={{ fontSize: "48px", color: GRAY900 }}>
+                  <BigText className="subtitle-2" style={{ color: GRAY900 }}>
                     기록
-                  </span>
+                  </BigText>
                 </BigText>
               </BigText>
               <SmallText className="subtitle-1">왓헤픈과 함께 커뮤니케이션 스킬도 UP!</SmallText>
