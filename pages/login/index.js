@@ -75,8 +75,8 @@ const Login = () => {
   }, []);
 
   return (
-    <div>
-      <ItemWrapper>
+    <ItemWrapper>
+      <div style={{ width: "530px" }}>
         <TextWrapper>
           <BigText>
             서비스 기획자를 위한 <Bold>회고록 서비스</Bold>
@@ -127,11 +127,11 @@ const Login = () => {
             />
           </button>
         </IconWrapper>
-        <Footer>
-          <FooterText>Copyright 2022. 자비없는형제들 All pictures cannot be copied without permission</FooterText>
-        </Footer>
-      </ItemWrapper>
-    </div>
+      </div>
+      <Footer>
+        <FooterText>Copyright 2022. 자비없는형제들 All pictures cannot be copied without permission</FooterText>
+      </Footer>
+    </ItemWrapper>
   );
 };
 

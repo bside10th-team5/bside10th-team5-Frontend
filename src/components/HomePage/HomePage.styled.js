@@ -104,6 +104,10 @@ export const BigText = styled.div`
   @media screen and (max-width: 1000px) {
     text-align: center;
   }
+  @media screen and (max-width: 600px) {
+    font-size: 40px;
+    line-height: 60px;
+  }
 `;
 
 export const SmallText = styled.div`
