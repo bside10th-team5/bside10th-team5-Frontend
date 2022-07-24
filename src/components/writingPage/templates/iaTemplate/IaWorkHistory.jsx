@@ -1,14 +1,23 @@
 import styled from "styled-components";
 import { GRAY700 } from "../../../../styles/theme";
+<<<<<<< HEAD
 import TitleTextarea from "../../../articles/TextareaTitle";
 import { Row } from "../../../elements/Wrapper.style";
+=======
+import TitleTextarea from "../../../articles/TitleTextarea";
+import { Row } from "../../../settingPage/AddProjectPage.style";
+>>>>>>> feat: 테스트 페이지 생성 및 ia템플릿 밑작업
 import { Box, Title } from "../Templates.style";
 import RadioCheckBox from "../../../articles/RadioCheckBox";
 import { useState } from "react";
 import { ReviewBox, UploadBox, UploadButton } from "../Templates.style";
+<<<<<<< HEAD
 import * as XLSX from 'xlsx'
 import { HotTable } from "./HotTable";
 import "handsontable/dist/handsontable.full.css";
+=======
+import { ExcelRenderer, OutTable } from "react-excel-renderer";
+>>>>>>> feat: 테스트 페이지 생성 및 ia템플릿 밑작업
 
 const Wrapper = styled(Box)`
   & .subtitle {
@@ -20,7 +29,11 @@ const Wrapper = styled(Box)`
 const ExcelWrapper = styled.div`
   display: flex;
   width: 100%;
+<<<<<<< HEAD
   height: 556px;
+=======
+  height: 50%;
+>>>>>>> feat: 테스트 페이지 생성 및 ia템플릿 밑작업
 `
 
 const IaWorkHistory = () => {
@@ -29,12 +42,16 @@ const IaWorkHistory = () => {
         1: {
           title: "",
           imgSrc: "",
+<<<<<<< HEAD
           excelSrc: "",
+=======
+>>>>>>> feat: 테스트 페이지 생성 및 ia템플릿 밑작업
           review1: "",
           review2: "",
           review3: "",
         },
       });
+<<<<<<< HEAD
     // const nowPage = 1;
     const [dataList, setDataList] = useState([]);
     const [maxLen, setMaxLen] = useState(0);
@@ -49,26 +66,56 @@ const IaWorkHistory = () => {
         setSrData((data) => {
           const newData = { ...data };
           newData[1].review1 = newReview;
+=======
+    const [nowPage, setNowPage] = useState(1);
+    const [columns, setColumns] = useState([]);
+    const [rows, setRows] = useState([]);
+
+    const handleRadioBox = (e) => {
+        setUploadTypeRadio(e.target.value)
+    }
+
+    const onChangeReview1 = (e) => {
+        const newReviw = e.target.value;
+        setSrData((data) => {
+          const newData = { ...data };
+          newData[nowPage].review1 = newReviw;
+>>>>>>> feat: 테스트 페이지 생성 및 ia템플릿 밑작업
           return newData;
         });
       };
     const onChangeReview2 = (e) => {
+<<<<<<< HEAD
       const newReview = e.target.value;
       setSrData((data) => {
         const newData = { ...data };
         newData[1].review2 = newReview;
+=======
+      const newReviw = e.target.value;
+      setSrData((data) => {
+        const newData = { ...data };
+        newData[nowPage].review2 = newReviw;
+>>>>>>> feat: 테스트 페이지 생성 및 ia템플릿 밑작업
         return newData;
       });
     };
     const onChangeReview3 = (e) => {
+<<<<<<< HEAD
       const newReview = e.target.value;
       setSrData((data) => {
         const newData = { ...data };
         newData[1].review3 = newReview;
+=======
+      const newReviw = e.target.value;
+      setSrData((data) => {
+        const newData = { ...data };
+        newData[nowPage].review3 = newReviw;
+>>>>>>> feat: 테스트 페이지 생성 및 ia템플릿 밑작업
         return newData;
       });
     };
 
+<<<<<<< HEAD
     const handleExcelFile = async (fileBlob) => {
       const fileReader = new FileReader();
       fileReader.readAsDataURL(fileBlob)
@@ -101,19 +148,37 @@ const IaWorkHistory = () => {
           });
           resolve();
         };
+=======
+    const handleExcelFile = (fileBlob) => {
+      ExcelRenderer(fileBlob, (err, res) => {
+        if (err) {
+          console.log(err);
+        } else {
+          setColumns(res.cols);
+          setRows(res.rows);
+        }
+>>>>>>> feat: 테스트 페이지 생성 및 ia템플릿 밑작업
       });
     }
      
     
     const encodeFileToBase64 = (fileBlob) => {
         const fileReader = new FileReader();
+<<<<<<< HEAD
         fileReader.readAsDataURL(fileBlob); 
+=======
+        fileReader.readAsDataURL(fileBlob);
+>>>>>>> feat: 테스트 페이지 생성 및 ia템플릿 밑작업
     
         return new Promise((resolve) => {
           fileReader.onload = () => {
             setSrData((data) => {
               const newData = { ...data };
+<<<<<<< HEAD
               newData[1].imgSrc = fileReader.result;
+=======
+              newData[nowPage].imgSrc = fileReader.result;
+>>>>>>> feat: 테스트 페이지 생성 및 ia템플릿 밑작업
               return newData;
             });
             resolve();
@@ -134,7 +199,11 @@ const IaWorkHistory = () => {
                     isChecked={uploadTypeRadio === "excel"} 
                     marginRight="1rem"
                 >
+<<<<<<< HEAD
                   <span className="button">액셀로 업로드</span>
+=======
+                    <span className="button">액셀로 업로드</span>
+>>>>>>> feat: 테스트 페이지 생성 및 ia템플릿 밑작업
                 </RadioCheckBox>
                 <RadioCheckBox 
                     name="upload-type" 
@@ -142,7 +211,11 @@ const IaWorkHistory = () => {
                     onChange={handleRadioBox} 
                     isChecked={uploadTypeRadio === "image"} 
                 >
+<<<<<<< HEAD
                   <span className="button">이미지로 업로드</span>
+=======
+                    <span className="button">이미지로 업로드</span>
+>>>>>>> feat: 테스트 페이지 생성 및 ia템플릿 밑작업
                 </RadioCheckBox>
             </Row>
             {uploadTypeRadio === "excel" ? (
@@ -154,6 +227,7 @@ const IaWorkHistory = () => {
                         onChange={(e) => handleExcelFile(e.target.files[0])}
                         accept=".csv, application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
                     />
+<<<<<<< HEAD
                     {dataList.length > 0 && maxLen > 0 ? (
                       <>
                         <ExcelWrapper>
@@ -169,6 +243,12 @@ const IaWorkHistory = () => {
                           />
                         </ExcelWrapper>
                       </>
+=======
+                    {rows.length > 0 ? (
+                      <ExcelWrapper>
+                        <OutTable data={rows} columns={columns} />
+                      </ExcelWrapper>
+>>>>>>> feat: 테스트 페이지 생성 및 ia템플릿 밑작업
                     ) : (
                       <>
                         <img src="/img/icon/upload.png" alt="업로드 이미지" />
@@ -177,7 +257,12 @@ const IaWorkHistory = () => {
                         </UploadButton>
                       </>
                     )}
+<<<<<<< HEAD
                 </UploadBox> 
+=======
+                    
+                </UploadBox>
+>>>>>>> feat: 테스트 페이지 생성 및 ia템플릿 밑작업
             ) : (
                 // 이미지 업로드하기 경우
                 <UploadBox>
@@ -187,8 +272,13 @@ const IaWorkHistory = () => {
                         onChange={(e) => encodeFileToBase64(e.target.files[0])}
                         accept="image/x-png,image/gif,image/jpeg"
                     />
+<<<<<<< HEAD
                     {srData[1].imgSrc ? (
                         <img className="preview" src={srData[1].imgSrc} alt="이미지" />
+=======
+                    {srData[nowPage].imgSrc ? (
+                        <img className="preview" src={srData[nowPage].imgSrc} alt="이미지" />
+>>>>>>> feat: 테스트 페이지 생성 및 ia템플릿 밑작업
                     ) : (
                     <>
                         <img src="/img/icon/upload.png" alt="업로드 이미지" />
@@ -199,6 +289,7 @@ const IaWorkHistory = () => {
                     )}
                 </UploadBox>
             )}
+<<<<<<< HEAD
                 {uploadTypeRadio == "image" && srData[1].imgSrc && (
                     <Row justifyContent="center" marginTop="20px">
                       <UploadButton className="button" htmlFor="img-upload">
@@ -210,6 +301,12 @@ const IaWorkHistory = () => {
                     <Row justifyContent="center" marginTop="20px">
                       <UploadButton className="button" htmlFor="img-upload">
                         엑셀 파일 변경하기
+=======
+                {srData[nowPage].imgSrc && (
+                    <Row justifyContent="center" marginTop="20px">
+                      <UploadButton className="button" htmlFor="img-upload">
+                        이미지 변경
+>>>>>>> feat: 테스트 페이지 생성 및 ia템플릿 밑작업
                       </UploadButton>
                     </Row>
                 )}
@@ -217,19 +314,31 @@ const IaWorkHistory = () => {
                 <TitleTextarea
                 title="화면의 정의가 무엇인가요?"
                 placeholder="홈 화면과 쇼핑 화면, 마이페이지 화면 설계"
+<<<<<<< HEAD
                 text={srData[1].review1}
+=======
+                text={srData[nowPage].review1}
+>>>>>>> feat: 테스트 페이지 생성 및 ia템플릿 밑작업
                 handleTextarea={onChangeReview1}
                 />
                 <TitleTextarea
                 title="사용자에게 어떤 행동을 유도하는 것이 목표인가요?"
                 placeholder="홈 화면 메인배너를 통해 쇼핑하기 진입 유도"
+<<<<<<< HEAD
                 text={srData[1].review2}
+=======
+                text={srData[nowPage].review2}
+>>>>>>> feat: 테스트 페이지 생성 및 ia템플릿 밑작업
                 handleTextarea={onChangeReview2}
                 />
                 <TitleTextarea
                 title="목표를 달성하기 위해, 화면 설계에서 중점적으로 고민했던 부분은 무엇인가요?"
                 placeholder="메인 배너 크기와 위치 조절"
+<<<<<<< HEAD
                 text={srData[1].review3}
+=======
+                text={srData[nowPage].review3}
+>>>>>>> feat: 테스트 페이지 생성 및 ia템플릿 밑작업
                 handleTextarea={onChangeReview3}
                 />          
             </ReviewBox>
