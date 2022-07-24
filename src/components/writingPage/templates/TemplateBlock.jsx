@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { GRAY300 } from "../../../styles/theme";
 import { parseTemplateName } from "../../../utills/parser";
 import SrTemplate from "./sbTemplate/SbTemplate";
+import IaTemplate from "./iaTemplate/IaTemplate";
 
 const BlockWrapper = styled.div.attrs((props) => ({
   isOpen: props.isOpen,
@@ -33,6 +34,7 @@ const TemplateBlock = ({ type }) => {
 
   const getTemplate = (name) => {
     if (name === "sb") return <SrTemplate />;
+    if (name === "ia") return <IaTemplate />;
     return <div>tbd</div>;
   };
 

@@ -20,14 +20,17 @@
     "next": "^12.1.6",
     "next-transpile-modules": "^9.0.0",
     "react": "18.1.0",
+    "react-data-grid": "^7.0.0-beta.13",
     "react-datepicker": "^4.8.0",
     "react-dom": "18.1.0",
+    "react-excel-renderer": "^1.1.0",
     "react-router": "^6.3.0",
     "recoil": "^0.7.3-alpha.2",
     "slick-carousel": "^1.8.1",
     "styled-components": "^5.3.5",
     "styled-normalize": "^8.0.7",
-    "universal-cookie": "^4.0.4"
+    "universal-cookie": "^4.0.4",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "eslint": "^8.14.0",
