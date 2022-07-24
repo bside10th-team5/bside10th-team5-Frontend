@@ -7,6 +7,7 @@ import { parseTemplateName } from "../../../utills/parser";
 import SbTemplate from "./sbTemplate/SbTemplate";
 import WorkflowTemplate from "./workflowTemplate/WorkflowTemplate";
 import QaTemplate from "./qaTemplate/Qatemplate";
+import IaTemplate from "./iaTemplate/IaTemplate";
 const FreeTemplate = dynamic(() => import("./freeTemplate/FreeTemplate"), { ssr: false });
 
 const BlockWrapper = styled.div.attrs((props) => ({
@@ -37,6 +38,7 @@ const TemplateBlock = ({ type }) => {
 
   const getTemplate = (typeName) => {
     if (typeName === "sb") return <SbTemplate />;
+    if (typeName === "ia") return <IaTemplate />;
     if (typeName === "workflow") return <WorkflowTemplate />;
     if (typeName === "free") return <FreeTemplate />;
     if (typeName === "qa") return <QaTemplate />;
