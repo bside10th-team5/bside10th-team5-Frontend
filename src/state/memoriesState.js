@@ -10,9 +10,10 @@ export const useProjectList = () => {
     const page = config.queryKey[1];
     return await axios.get(createBoardUrl, { params: { page, size: 20 } });
   };
+
   const deleteFunc = async (id) => {
     try {
-      await axios.delete(createBoardUrl, { params: { id: id } });
+      await axios.delete(`${createBoardUrl}/${id}`);
     } catch (err) {
       console.error(err);
     }

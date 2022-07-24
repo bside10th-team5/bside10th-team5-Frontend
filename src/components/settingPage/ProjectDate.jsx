@@ -1,10 +1,10 @@
 // @ts-nocheck
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useRecoilState } from "recoil";
-import { projectStartDateState, projectEndDateState } from "../../state/addProjectState";
+import { projectStartDateState, projectEndDateState, isOngoingState } from "../../state/addProjectState";
 import ToggleCheckbox from "../articles/ToggleCheckbox";
 import CustomInput from "./CustomInput";
 import { Box, Title } from "./AddProjectPage.style";
@@ -13,10 +13,9 @@ import { Row } from "../elements/Wrapper.style";
 const DatePickerWrapper = styled.div``;
 
 const ProjectDate = () => {
-  const [isOngingChecked, setIsOngingChecked] = useState(true);
-
   const [startDate, setStartDate] = useRecoilState(projectStartDateState);
   const [endDate, setEndDate] = useRecoilState(projectEndDateState);
+  const [isOngingChecked, setIsOngingChecked] = useRecoilState(isOngoingState);
 
   const handleCheckBox = (e) => {
     if (e.target.id === "ongoing") setIsOngingChecked((prev) => !prev);

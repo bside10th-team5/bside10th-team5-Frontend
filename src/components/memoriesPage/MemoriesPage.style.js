@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { GNB_H, GRAY100, GRAY700, GRAY900 } from "../../styles/theme";
 
 export const Section = styled.section`
+  position: relative;
   margin-top: ${GNB_H}px;
   margin-bottom: 297px;
   width: 100%;
@@ -9,7 +10,7 @@ export const Section = styled.section`
 `;
 export const ItemWrapper = styled.ul`
   position: relative;
-  margin-top: 3.25rem;
+  margin-top: 112px;
   padding: 0 25px;
   display: grid;
   grid-column-gap: 1.25rem;

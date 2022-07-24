@@ -15,9 +15,9 @@ const Items = () => {
   const setModalList = useSetRecoilState(modalListState);
   const [page, setPage] = useState(0);
   const [projectList, setProjectList] = useState([]);
-  const { fetchFunc, deleteFunc } = useProjectList();
+  const { fetchFunc } = useProjectList();
   // TODO: //useInfiniteQeury 로 리팩토린
-  const { data } = useQuery(["projectList", page], fetchFunc, {
+  const { data, refetch, isPreviousData } = useQuery(["projectList", page], fetchFunc, {
     select: (data) => {
       const { content } = data.data;
       const normalized = content.map((el) => {
@@ -27,20 +27,29 @@ const Items = () => {
           title: el.title,
           type: parseProjectType(el.projectType),
           startDate: el.fromDate.slice(2),
-          endDate: el.toDate.slice(2),
+          endDate: el.toDate ? el.toDate.slice(2) : "진행중",
         };
       });
       return { isLast: data.data.last, list: normalized };
     },
   });
 
+  console.log(isPreviousData);
+
+  const callback = () => {
+    setProjectList([]);
+    refetch();
+  };
+
   const openDeleteProjectModal = (e) => {
     e.stopPropagation();
-    setModalList((prev) => prev.concat({ id: "delete-project-modal", callback: () => deleteFunc(e.target.value) }));
+    const deleteId = e.currentTarget.value;
+    console.log(deleteId, "1");
+    setModalList((prev) => prev.concat({ id: "delete-project-modal", deleteId: Number(deleteId), callback: callback }));
   };
 
   useEffect(() => {
-    if (data) {
+    if (data && !isPreviousData) {
       if (!projectList) {
         setProjectList(data.list);
       } else {
