@@ -23,8 +23,6 @@ const AddProjectPage = () => {
 
   const { mutate } = useMutation(addProject, {
     onSuccess: (res) => {
-      console.log("success");
-      console.log(res.data);
       router.push("/writing/[id]", `/writing/${res.data.id}`);
     },
     onError: (error) => {

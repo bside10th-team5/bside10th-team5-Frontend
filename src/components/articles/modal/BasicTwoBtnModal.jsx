@@ -6,6 +6,8 @@ import { modalListState } from "../../../state/modalState";
 import CustomBtn from "../../elements/CustomBtn";
 import { GRAY300, GRAY500, GRAY700, GRAY900, ORANGE, WHITE } from "../../../styles/theme";
 import CloseIcon from "../../elements/CloseIcon";
+import { useProjectList } from "../../../state/memoriesState";
+import { useMutation } from "react-query";
 
 export const Modal = styled.div`
   position: relative;
@@ -40,12 +42,18 @@ const BtnWrapper = styled.div`
 `;
 
 // TODO: custom 하게 쓸수있게 수정해야댐
-const BasicTwoBtnModal = ({ callback }) => {
+const BasicTwoBtnModal = ({ deleteId, callback }) => {
   const setModalList = useSetRecoilState(modalListState);
+  const { deleteFunc } = useProjectList();
+  const deleteProject = useMutation(deleteFunc, {
+    onSuccess: () => {
+      console.log("onSuccess");
+      callback();
+    },
+  });
 
   const onClickDelteProject = () => {
-    // TODO: 삭제프로세스
-    callback();
+    deleteProject.mutate(deleteId);
     setModalList([]);
   };
 
@@ -78,5 +86,6 @@ const BasicTwoBtnModal = ({ callback }) => {
 export default BasicTwoBtnModal;
 
 BasicTwoBtnModal.propTypes = {
+  deleteId: PropTypes.number,
   callback: PropTypes.func,
 };

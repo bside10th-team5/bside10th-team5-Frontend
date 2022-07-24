@@ -60,7 +60,7 @@ const HomePage = () => {
         setScrollDetect(direction);
       }
       lastScrollY = scrollY;
-    }, 400),
+    }, 300),
     [],
   );
 

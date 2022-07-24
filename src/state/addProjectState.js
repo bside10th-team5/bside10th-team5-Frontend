@@ -35,6 +35,11 @@ export const projectEndDateState = atom({
   default: new Date(),
 });
 
+export const isOngoingState = atom({
+  key: "addProjectState/isOngoing",
+  default: true,
+});
+
 export const thumbnailIdState = atom({
   key: "addProjectState/thumbnailId",
   default: "side-project",
@@ -51,12 +56,13 @@ export const checkedAppState = atom({
 });
 
 export const useCreateBoard = () => {
-  const projectType = useRecoilValue(boardTypeState) === "project" ? "PROJECT" : "UN_PROJECT";
+  const projectType = useRecoilValue(boardTypeState) === "project" ? "PROJECT" : "NON_PROJECT";
   const title = useRecoilValue(boardNameState);
   const detail = useRecoilValue(boardSummaryState);
   const usedTools = useRecoilValue(tagState);
   const fromDate = useRecoilValue(projectStartDateState);
   const endDate = useRecoilValue(projectEndDateState);
+  const isOngoing = useRecoilValue(isOngoingState);
   const thumbnailId = useRecoilValue(thumbnailIdState);
   const checkedWeb = useRecoilValue(checkedWebState);
   const checkedApp = useRecoilValue(checkedAppState);
@@ -73,7 +79,7 @@ export const useCreateBoard = () => {
       title,
       detail,
       fromDate: format(fromDate, "yyyy-MM-dd"),
-      toDate: format(endDate, "yyyy-MM-dd"),
+      toDate: isOngoing ? null : format(endDate, "yyyy-MM-dd"),
       projectType,
       usedTools,
       thumbnailId: parseThumnailId(thumbnailId),
