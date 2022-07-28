@@ -6,7 +6,9 @@ import { Box, Title } from "../Templates.style";
 import RadioCheckBox from "../../../articles/RadioCheckBox";
 import { useState } from "react";
 import { ReviewBox, UploadBox, UploadButton } from "../Templates.style";
-import { ExcelRenderer, OutTable } from "react-excel-renderer";
+import * as XLSX from 'xlsx'
+import { HotTable } from "./inc";
+import "handsontable/dist/handsontable.full.css";
 
 const Wrapper = styled(Box)`
   & .subtitle {
@@ -18,7 +20,7 @@ const Wrapper = styled(Box)`
 const ExcelWrapper = styled.div`
   display: flex;
   width: 100%;
-  height: 50%;
+  height: 556px;
 `
 
 const IaWorkHistory = () => {
@@ -32,9 +34,10 @@ const IaWorkHistory = () => {
           review3: "",
         },
       });
-    const [nowPage, setNowPage] = useState(1);
-    const [columns, setColumns] = useState([]);
-    const [rows, setRows] = useState([]);
+    const nowPage = 1;
+    const [dataList, setDataList] = useState([]);
+    const [maxLen, setMaxLen] = useState(0);
+    const length_list = [];
 
     const handleRadioBox = (e) => {
         setUploadTypeRadio(e.target.value)
@@ -65,15 +68,25 @@ const IaWorkHistory = () => {
       });
     };
 
-    const handleExcelFile = (fileBlob) => {
-      ExcelRenderer(fileBlob, (err, res) => {
-        if (err) {
-          console.log(err);
-        } else {
-          setColumns(res.cols);
-          setRows(res.rows);
+    const handleExcelFile = async (fileBlob) => {
+      const data = await fileBlob.arrayBuffer();
+      const workbook = XLSX.readFile(data);
+      const worksheet = workbook.Sheets[workbook.SheetNames[0]];
+      const jsonData = XLSX.utils.sheet_to_json(worksheet, {header: 1});
+
+      console.log(jsonData);
+      for (let i = 0; i< jsonData.length; i++) {
+        length_list.push(jsonData[i].length);
+        setDataList((previousData) => [...previousData, jsonData[i]]);
+      }
+
+      for (let i = 0; i < Math.max(...length_list); i++) {
+        if (jsonData[0][i] == undefined) {
+          jsonData[0][i] = " ";
         }
-      });
+      }
+
+      setMaxLen(Math.max(...length_list))
     }
      
     
@@ -126,10 +139,21 @@ const IaWorkHistory = () => {
                         onChange={(e) => handleExcelFile(e.target.files[0])}
                         accept=".csv, application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
                     />
-                    {rows.length > 0 ? (
-                      <ExcelWrapper>
-                        <OutTable data={rows} columns={columns} />
-                      </ExcelWrapper>
+                    {dataList.length > 0 && maxLen > 0 ? (
+                      <>
+                        <ExcelWrapper>
+                          <HotTable
+                            data={dataList}
+                            colHeaders={true}
+                            rowHeaders={true}
+                            width="100%"
+                            height="100%"
+                            licenseKey="non-commercial-and-evaluation"
+                            minCols={maxLen}
+                            colWidths="100"
+                          />
+                        </ExcelWrapper>
+                      </>
                     ) : (
                       <>
                         <img src="/img/icon/upload.png" alt="업로드 이미지" />
@@ -138,8 +162,7 @@ const IaWorkHistory = () => {
                         </UploadButton>
                       </>
                     )}
-                    
-                </UploadBox>
+                </UploadBox> 
             ) : (
                 // 이미지 업로드하기 경우
                 <UploadBox>
@@ -165,6 +188,13 @@ const IaWorkHistory = () => {
                     <Row justifyContent="center" marginTop="20px">
                       <UploadButton className="button" htmlFor="img-upload">
                         이미지 변경
+                      </UploadButton>
+                    </Row>
+                )}
+                {dataList.length > 0 && (
+                    <Row justifyContent="center" marginTop="20px">
+                      <UploadButton className="button" htmlFor="img-upload">
+                        엑셀 파일 변경하기
                       </UploadButton>
                     </Row>
                 )}
