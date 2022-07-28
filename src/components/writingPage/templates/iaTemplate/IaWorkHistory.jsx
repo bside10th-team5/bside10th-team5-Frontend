@@ -7,7 +7,7 @@ import RadioCheckBox from "../../../articles/RadioCheckBox";
 import { useState } from "react";
 import { ReviewBox, UploadBox, UploadButton } from "../Templates.style";
 import * as XLSX from 'xlsx'
-import { HotTable } from "./inc";
+import { HotTable } from "./HotTable";
 import "handsontable/dist/handsontable.full.css";
 
 const Wrapper = styled(Box)`
