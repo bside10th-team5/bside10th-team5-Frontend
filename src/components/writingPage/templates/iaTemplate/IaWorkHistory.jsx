@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { GRAY700 } from "../../../../styles/theme";
-import TitleTextarea from "../../../articles/TitleTextarea";
-import { Row } from "../../../settingPage/AddProjectPage.style";
+import TitleTextarea from "../../../articles/TextareaTitle";
+import { Row } from "../../../elements/Wrapper.style";
 import { Box, Title } from "../Templates.style";
 import RadioCheckBox from "../../../articles/RadioCheckBox";
 import { useState } from "react";
@@ -44,26 +44,26 @@ const IaWorkHistory = () => {
     }
 
     const onChangeReview1 = (e) => {
-        const newReviw = e.target.value;
+        const newReview = e.target.value;
         setSrData((data) => {
           const newData = { ...data };
-          newData[nowPage].review1 = newReviw;
+          newData[nowPage].review1 = newReview;
           return newData;
         });
       };
     const onChangeReview2 = (e) => {
-      const newReviw = e.target.value;
+      const newReview = e.target.value;
       setSrData((data) => {
         const newData = { ...data };
-        newData[nowPage].review2 = newReviw;
+        newData[nowPage].review2 = newReview;
         return newData;
       });
     };
     const onChangeReview3 = (e) => {
-      const newReviw = e.target.value;
+      const newReview = e.target.value;
       setSrData((data) => {
         const newData = { ...data };
-        newData[nowPage].review3 = newReviw;
+        newData[nowPage].review3 = newReview;
         return newData;
       });
     };
@@ -74,7 +74,6 @@ const IaWorkHistory = () => {
       const worksheet = workbook.Sheets[workbook.SheetNames[0]];
       const jsonData = XLSX.utils.sheet_to_json(worksheet, {header: 1});
 
-      console.log(jsonData);
       for (let i = 0; i< jsonData.length; i++) {
         length_list.push(jsonData[i].length);
         setDataList((previousData) => [...previousData, jsonData[i]]);
@@ -119,7 +118,7 @@ const IaWorkHistory = () => {
                     isChecked={uploadTypeRadio === "excel"} 
                     marginRight="1rem"
                 >
-                    <span className="button">액셀로 업로드</span>
+                  <span className="button">액셀로 업로드</span>
                 </RadioCheckBox>
                 <RadioCheckBox 
                     name="upload-type" 
@@ -127,7 +126,7 @@ const IaWorkHistory = () => {
                     onChange={handleRadioBox} 
                     isChecked={uploadTypeRadio === "image"} 
                 >
-                    <span className="button">이미지로 업로드</span>
+                  <span className="button">이미지로 업로드</span>
                 </RadioCheckBox>
             </Row>
             {uploadTypeRadio === "excel" ? (
@@ -187,7 +186,7 @@ const IaWorkHistory = () => {
                 {srData[nowPage].imgSrc && (
                     <Row justifyContent="center" marginTop="20px">
                       <UploadButton className="button" htmlFor="img-upload">
-                        이미지 변경
+                        이미지 변경하기
                       </UploadButton>
                     </Row>
                 )}
