@@ -50,7 +50,7 @@ const Wrapper = styled.div`
 `;
 
 const Button = styled.button`
-  width: 126px;
+  padding: 0 36px;
   height: 48px;
   color: ${GRAY700};
   border: 1px solid ${GRAY300};
@@ -123,7 +123,7 @@ const QaTestResult = () => {
               width="255px"
               textAlign="right"
             />
-            <span clanssName="body-1" style={{ color: `${GRAY900}`, marginLeft: "12px" }}>
+            <span className="body-1" style={{ color: `${GRAY900}`, marginLeft: "12px" }}>
               건
             </span>
           </Row>
