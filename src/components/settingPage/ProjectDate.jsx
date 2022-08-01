@@ -33,6 +33,7 @@ const ProjectDate = () => {
             onChange={(date) => setStartDate(date)}
             customInput={<CustomInput />}
             dateFormat="yyyy-MM-dd"
+            maxDate={endDate}
           />
         </DatePickerWrapper>
         <span style={{ margin: "0 16px" }}>~</span>
@@ -43,6 +44,7 @@ const ProjectDate = () => {
             customInput={<CustomInput disabled />}
             dateFormat="yyyy-MM-dd"
             disabled={isOngingChecked}
+            minDate={startDate}
           />
         </DatePickerWrapper>
         <ToggleCheckbox id="ongoing" isChecked={isOngingChecked} width="124px" onChange={handleCheckBox}>

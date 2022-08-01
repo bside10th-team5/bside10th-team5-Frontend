@@ -14,6 +14,10 @@ const ProjectName = () => {
     setProjectName(e.target.value);
   };
 
+  const deleteTextInput = () => {
+    setProjectName("");
+  };
+
   const handleRadioBox = (e) => {
     setProjectRadio(e.target.value);
   };
@@ -32,6 +36,7 @@ const ProjectName = () => {
           width="632px"
           desc={projectName.length > 24 ? "25자 이상은 입력할 수 없어요" : ""}
           isError={projectName.length > 24}
+          onClickDelete={deleteTextInput}
         />
         <RadioCheckBox
           name="project-type"
