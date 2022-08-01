@@ -13,17 +13,44 @@ export const CalendarWrapper = styled.div`
   // 타이틀 부분 css 자리
   & .fc-toolbar-chunk > div {
     display: flex;
-    gap: 20px;
+    gap: 80px;
+  }
+
+  & .fc-toolbar-title {
+    font: normal normal 200 16px/28px SCoreMontserrat;
+    letter-spacing: 0.15px;
+    color: #ffffff;
   }
 
   //상단 툴바
-  & .fc-header-toolbar {
-    border: 1px solid yellow;
-    position: absolute;
-    background-color: white;
-    top: -50px;
-    left: 500px;
-    // display: none;
+  & .fc-toolbar.fc-header-toolbar {
+    margin-bottom: 20px;
+    display: flex;
+    color: white;
+  }
+
+  & .fc-prev-button {
+    background-color: transparent;
+    background-image: url("/img/icon/lefticon.svg");
+    border: none;
+    width: 30px;
+    height: 30px;
+
+    & .fc-icon-chevron-left {
+      display: none;
+    }
+  }
+
+  & .fc-next-button {
+    background-color: transparent;
+    background-image: url("/img/icon/righticon.svg");
+    border: none;
+    width: 30px;
+    height: 30px;
+
+    & .fc-icon-chevron-right {
+      display: none;
+    }
   }
 
   // 테두리 관련 css

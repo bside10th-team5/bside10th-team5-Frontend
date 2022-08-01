@@ -85,7 +85,7 @@ const CustomFullCalendar = ({ handleDate }) => {
         selectable={true}
         // selectMirror={true}
         // customButtons={{
-        //   customToday: { text: `${new Date()} 월` },
+        //   prevb: { text: "버튼" },
         // }}
         eventClick={function () {
           alert("이벤트 클릭함수");
