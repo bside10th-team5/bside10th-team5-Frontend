@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import { GRAY300, GRAY500 } from "../../../styles/theme";
-import TextareaTitle from "../../articles/TextareaTitle";
-import { Box, PageTag, Title } from "../templates/Templates.style";
-import { Row, Column } from "../../elements/Wrapper.style";
+import { GRAY300, GRAY500 } from "../../../../styles/theme";
+import TitleTextarea from "../../../articles/TextareaTitle";
+import { Box, PageTag, Title } from "../Templates.style";
+import { Row, Column } from "../../../elements/Wrapper.style";
+// import { UploadBox } from "../Templates.style";
 
 const SbWroksWrapper = styled(Box)`
   & .empty-box {
@@ -29,9 +30,8 @@ const SbWroksWrapper = styled(Box)`
   }
 `;
 
-const TodayWorks = ({ title }) => {
-  // const [works, setWorks] = useState({ myPage: "12313", admin: "123123123123" });
-  const [tagList, setTagList] = useState(["홈", "마이페이지", "전체메뉴", "관리자"]);
+const TodayDesignWorks = ({ title }) => {
+  const [tagList, setTagList] = useState(["디자인 미팅", "디자인 일정관리", "UXUI 리서치", "UX WRITING"]);
   const [works, setWorks] = useState({});
 
   const onClickTag = (name) => {
@@ -53,6 +53,7 @@ const TodayWorks = ({ title }) => {
   };
 
   return (
+    <>
     <SbWroksWrapper>
       <Row alignItems='center'>
         <Title className="headline-6" style={{ marginRight: "40px", minWidth: "193px" }}>
@@ -94,7 +95,7 @@ const TodayWorks = ({ title }) => {
       ) : (
         <Column gap="16px">
           {Object.keys(works).map((key) => (
-            <TextareaTitle
+            <TitleTextarea
               key={key}
               title={key}
               placeholder="업로드한 설계에 대해 고민한 부분을 작성해 주세요"
@@ -104,16 +105,26 @@ const TodayWorks = ({ title }) => {
               <PageTag className="button" colorCase={(tagList.indexOf(key) % 4) + 1}>
                 {key}
               </PageTag>
-            </TextareaTitle>
+            </TitleTextarea>
           ))}
         </Column>
       )}
     </SbWroksWrapper>
+    <span className="headline-6">디자인 업무 이미지(최대 5개)</span>
+    <input 
+        type="file" 
+        id="img-upload" 
+        // onChange={(e) => encodeFileToBase64(e.target.files[0])} 
+        accept="image/x-png,image/gif,image/jpeg"
+    />
+    <button className="subtitle-2" style={{marginLeft: '12px', color: '#FF5A00', textDecorationLine:'underline'}}>+ 이미지 업로드하기</button>
+
+    </>
   );
 };
 
-export default TodayWorks;
+export default TodayDesignWorks;
 
-TodayWorks.propTypes = {
+TodayDesignWorks.propTypes = {
   title: PropTypes.string,
 };
