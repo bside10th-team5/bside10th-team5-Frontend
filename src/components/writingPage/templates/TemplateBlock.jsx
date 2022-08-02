@@ -8,7 +8,7 @@ import SbTemplate from "./sbTemplate/SbTemplate";
 import WorkflowTemplate from "./workflowTemplate/WorkflowTemplate";
 import QaTemplate from "./qaTemplate/Qatemplate";
 import IaTemplate from "./iaTemplate/IaTemplate";
-import DesignTemplate from "./designTemplate/designTemplate";
+import DesignTemplate from "./designTemplate/DesignTemplate";
 const FreeTemplate = dynamic(() => import("./freeTemplate/FreeTemplate"), { ssr: false });
 
 const BlockWrapper = styled.div.attrs((props) => ({
