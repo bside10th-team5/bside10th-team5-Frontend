@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Checkbox from "../../../articles/Checkbox";
 import { Row } from "../../../elements/Wrapper.style";
-import IaWorkHistory from "./iaWorkHistory";
+import IaWorkHistory from "./IaWorkHistory";
 import TodayEval from "../../components/TodayEval";
 
 const IaTemplate = () => {
@@ -17,7 +17,7 @@ const IaTemplate = () => {
     <div className="open-tab">
       <Row marginBottom="36px">
         <Checkbox id="history" isChecked={checkedHistory} marginRight="1rem" onChange={handleCheckBox} name="IA 작업기록" />
-        <Checkbox id="eval" isChecked={checkedEval} onChange={handleCheckBox} name="오늘 진행한 업무"/>
+        <Checkbox id="eval" isChecked={checkedEval} onChange={handleCheckBox} name="오늘의 업무평가"/>
       </Row>
       {checkedHistory && <IaWorkHistory />}
       {checkedEval && <TodayEval />}
