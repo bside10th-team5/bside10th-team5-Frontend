@@ -28,7 +28,7 @@ const DesignTemplate = () => {
         <Checkbox id="communicationTemp" isChecked={checkedCommunicationTemp} onChange={handleCheckBox} name="커뮤니케이션 온도체크" />
       </Row>
       {checkedDesign && <TodayDesignWorks title="오늘 진행한 디자인 업무"/>}
-      {checkedInsight && <TodayInsight subTitle="오늘 디자인 업무를 통해 배우고 느낀 점을 자유롭게 써주세요" />}
+      {checkedInsight && <TodayInsight subTitle="오늘 디자인 업무를 통해 배우고 느낀 점을 자유롭게 써주세요" marginTop='36px' />}
       {checkedEval && <TodayEval />}
     </div>
   );

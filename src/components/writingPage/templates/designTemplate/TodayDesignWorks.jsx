@@ -1,13 +1,13 @@
 import { useState } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import { GRAY300, GRAY500 } from "../../../../styles/theme";
+import { GRAY300, GRAY500, ORANGE } from "../../../../styles/theme";
 import TitleTextarea from "../../../articles/TextareaTitle";
 import { Box, PageTag, Title } from "../Templates.style";
 import { Row, Column } from "../../../elements/Wrapper.style";
 // import { UploadBox } from "../Templates.style";
 
-const SbWroksWrapper = styled(Box)`
+const DesignWorksWrapper = styled(Box)`
   & .empty-box {
     width: 100%;
     padding: 16px;
@@ -30,9 +30,33 @@ const SbWroksWrapper = styled(Box)`
   }
 `;
 
+const ImageWrapper = styled.div`
+  margin-top: 28px;
+  display: flex;
+  justify-content: flex-start;
+
+  & .image-container {
+    width: 208px;
+    height: 118px;
+  }
+`
+
 const TodayDesignWorks = ({ title }) => {
   const [tagList, setTagList] = useState(["디자인 미팅", "디자인 일정관리", "UXUI 리서치", "UX WRITING"]);
   const [works, setWorks] = useState({});
+  // const [srData, setSrData] = useState({
+  //   todayDesign: "",
+  //   imgSrc: {
+  //     1: "",
+  //     2: "",
+  //     3: "",
+  //     4: "",
+  //     5: "",
+  //   },
+  //   insight: "",
+  // });
+  const [imageUrl, setImageUrl] = useState([])
+  const imageUrlList = []
 
   const onClickTag = (name) => {
     if (!Object.keys(works).includes(name)) {
@@ -52,9 +76,30 @@ const TodayDesignWorks = ({ title }) => {
     });
   };
 
+  const encodeFileToBase64 = (files) => {
+    if (files.length > 5) {
+      alert('한번에 업로드 가능한 사진은 최대 5장 까지 입니다.')
+    }
+    else {
+      for (let i = 0; i < files.length; i++) {
+        let fileReader = new FileReader();
+       
+        fileReader.onload = () => {
+          imageUrlList[i] = fileReader.result
+          setImageUrl([...imageUrlList])
+        };
+        fileReader.readAsDataURL(files[i]);
+      }
+    }    
+  };
+
+  // const ThumbnailImage = imageUrlList.map(fileUrl => <img className="image-container" key={fileUrl} src={fileUrl} />)
+
+
+
   return (
     <>
-    <SbWroksWrapper>
+    <DesignWorksWrapper>
       <Row alignItems='center'>
         <Title className="headline-6" style={{ marginRight: "40px", minWidth: "193px" }}>
           {title}
@@ -109,15 +154,34 @@ const TodayDesignWorks = ({ title }) => {
           ))}
         </Column>
       )}
-    </SbWroksWrapper>
-    <span className="headline-6">디자인 업무 이미지(최대 5개)</span>
-    <input 
+    </DesignWorksWrapper>
+    <Row>
+      <span className="headline-6">디자인 업무 이미지(최대 5개)</span>
+      <input 
         type="file" 
+        multiple
         id="img-upload" 
-        // onChange={(e) => encodeFileToBase64(e.target.files[0])} 
+        style={{display: 'none'}}
+        onChange={(e) => encodeFileToBase64(e.target.files)} 
         accept="image/x-png,image/gif,image/jpeg"
-    />
-    <button className="subtitle-2" style={{marginLeft: '12px', color: '#FF5A00', textDecorationLine:'underline'}}>+ 이미지 업로드하기</button>
+      />
+      <label htmlFor="img-upload" className="custom">
+        <span 
+          className="body-2" 
+          style={{marginLeft: '12px', color: `${ORANGE}`, textDecorationLine:'underline', cursor: 'pointer'}}
+        >
+          + 이미지 업로드하기
+        </span>
+      </label>
+      {imageUrlList ? (
+        <ImageWrapper>
+          {imageUrlList.map(fileUrl => <img className="image-container" key={fileUrl} src={fileUrl} />)}
+        </ImageWrapper>
+      ) : (
+        <div>hiadsfasdf</div>
+      )}
+    </Row>
+    
 
     </>
   );
@@ -125,6 +189,12 @@ const TodayDesignWorks = ({ title }) => {
 
 export default TodayDesignWorks;
 
-TodayDesignWorks.propTypes = {
-  title: PropTypes.string,
+TodayDesignWorks.PropTypes = {
+  todayDesign: PropTypes.string,
+  imgSrc1: PropTypes.string,
+  imgSrc2: PropTypes.string,
+  imgSrc3: PropTypes.string,
+  imgSrc4: PropTypes.string,
+  imgSrc5: PropTypes.string,
+  insight: PropTypes.string,
 };

@@ -4,9 +4,10 @@ import TextareaBasic from "../../articles/TextareaBasic";
 import { Row } from "../../elements/Wrapper.style";
 import { Box, Title } from "../templates/Templates.style";
 
-const TodayInsight = ({ subTitle }) => {
+//TODO: placeholder 바꿀 수 있도록 변경
+const TodayInsight = ({ subTitle, marginTop }) => {
   return (
-    <Box>
+    <Box marginTop={marginTop}>
       <Row>
         <Title className="headline-6">인사이트</Title>
         <span className="body-2" style={{ marginBottom: "32px", marginLeft: "12px" }}>
@@ -22,4 +23,5 @@ export default TodayInsight;
 
 TodayInsight.propTypes = {
   subTitle: PropTypes.string,
+  marginTop: PropTypes.number,
 };

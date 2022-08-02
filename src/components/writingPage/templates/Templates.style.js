@@ -2,11 +2,13 @@ import styled, { css } from "styled-components";
 import { BLUE, GRAY300, GRAY500, GRAY900, GREEN, INPUT_H, ORANGE, YELLOW } from "../../../styles/theme";
 
 export const Box = styled.div.attrs((props) => ({
+  marginTop: props.marginTop,
   marginBottom: props.marginBottom || "36px",
 }))`
   display: flex;
   flex-direction: column;
   margin-bottom: ${(props) => props.marginBottom};
+  margin-top: ${(props) => props.marginTop};
 `;
 
 export const Title = styled.span`
