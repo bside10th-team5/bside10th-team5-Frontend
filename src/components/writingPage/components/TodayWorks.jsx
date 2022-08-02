@@ -5,6 +5,9 @@ import { GRAY300, GRAY500 } from "../../../styles/theme";
 import TextareaTitle from "../../articles/TextareaTitle";
 import { Box, PageTag, Title } from "../templates/Templates.style";
 import { Row, Column } from "../../elements/Wrapper.style";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { modalListState } from "../../../state/modalState";
+import { sbWorkTagState } from "../../../state/sbTemplateState";
 
 const SbWroksWrapper = styled(Box)`
   & .empty-box {
@@ -31,8 +34,9 @@ const SbWroksWrapper = styled(Box)`
 
 const TodayWorks = ({ title }) => {
   // const [works, setWorks] = useState({ myPage: "12313", admin: "123123123123" });
-  const [tagList, setTagList] = useState(["홈", "마이페이지", "전체메뉴", "관리자"]);
+  const [tagList, setTagList] = useRecoilState(sbWorkTagState);
   const [works, setWorks] = useState({});
+  const setModalList = useSetRecoilState(modalListState);
 
   const onClickTag = (name) => {
     if (!Object.keys(works).includes(name)) {
@@ -50,6 +54,12 @@ const TodayWorks = ({ title }) => {
       delete newWorks[name];
       return newWorks;
     });
+  };
+
+  const AddTagCallback = (tagName) => {
+    if (!tagList.includes(tagName)) {
+      setTagList((prev) => prev.concat(tagName));
+    }
   };
 
   return (
@@ -76,8 +86,7 @@ const TodayWorks = ({ title }) => {
             className="body-2 add-tag"
             style={{}}
             onClick={() => {
-              const tagName = prompt("추가등록");
-              setTagList((prev) => prev.concat(tagName));
+              setModalList((prev) => prev.concat({ id: "add-today-work-modal", callback: AddTagCallback }));
             }}
           >
             + 추가등록

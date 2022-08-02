@@ -4,7 +4,9 @@ import { useRecoilValue } from "recoil";
 import styled from "styled-components";
 import { modalListState } from "../../state/modalState";
 import AddTagModal, { Modal } from "./modal/AddTagModal";
-import BasicTwoBtnModal from "./modal/BasicTwoBtnModal";
+import AddTodayWorkModal from "./modal/AddTodayWorkModal";
+import DeleteProjectModal from "./modal/DeleteProjectModal";
+import DeleteTemplateModal from "./modal/DeleteTemplateModal";
 
 const ModalWrapper = styled("article")`
   position: fixed;
@@ -38,14 +40,25 @@ const ModalContainer = () => {
     <ModalWrapper>
       {modalList.map((modalRegister) => {
         if (modalRegister.id === "add-tag-modal") return <AddTagModal key={modalRegister.id} />;
+        if (modalRegister.id === "add-today-work-modal")
+          return <AddTodayWorkModal key={modalRegister.id} callback={modalRegister.callback} />;
         if (modalRegister.id === "delete-project-modal")
           return (
-            <BasicTwoBtnModal
+            <DeleteProjectModal
               key={modalRegister.id}
               deleteId={modalRegister.deleteId}
               callback={modalRegister.callback}
             />
-          ); // TODO : 이거를 커스텀 해서 쓸지 아님 각각 만들어서 쓸지 고민 해봐야 됨
+          );
+
+        if (modalRegister.id === "delete-template-modal")
+          return (
+            <DeleteTemplateModal
+              key={modalRegister.id}
+              deleteId={modalRegister.deleteId}
+              callback={modalRegister.callback}
+            />
+          );
       })}
     </ModalWrapper>,
     document.body,

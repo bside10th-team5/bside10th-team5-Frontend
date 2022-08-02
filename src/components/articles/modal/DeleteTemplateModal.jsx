@@ -41,8 +41,7 @@ const BtnWrapper = styled.div`
   margin-top: 1.5rem;
 `;
 
-// TODO: custom 하게 쓸수있게 수정해야댐
-const BasicTwoBtnModal = ({ deleteId, callback }) => {
+const DeleteTemplateModal = ({ deleteId, callback }) => {
   const setModalList = useSetRecoilState(modalListState);
   const { deleteFunc } = useProjectList();
   const deleteProject = useMutation(deleteFunc, {
@@ -66,8 +65,8 @@ const BasicTwoBtnModal = ({ deleteId, callback }) => {
       <CloseIconWrapper onClick={onClickCloseModal}>
         <CloseIcon width={16.33} height={16.33} />
       </CloseIconWrapper>
-      <Title className="headline-6">해당 회고록을 정말 삭제하시겠습니까?</Title>
-      <SubTitle>데이터는 복구가 불가능합니다</SubTitle>
+      <Title className="headline-6">템플릿을 정말 삭제하시겠어요?</Title>
+      <SubTitle>입력하신 내용은 복구가 불가능해요.</SubTitle>
       <BtnWrapper>
         <CustomBtn
           text="취소"
@@ -77,15 +76,15 @@ const BasicTwoBtnModal = ({ deleteId, callback }) => {
           border={`1px solid ${GRAY300}`}
           color={GRAY700}
         />
-        <CustomBtn text="확인" onClick={onClickDelteProject} width="99px" borderRadius="5px" bgColor={ORANGE} />
+        <CustomBtn text="삭제" onClick={onClickDelteProject} width="99px" borderRadius="5px" bgColor={ORANGE} />
       </BtnWrapper>
     </Modal>
   );
 };
 
-export default BasicTwoBtnModal;
+export default DeleteTemplateModal;
 
-BasicTwoBtnModal.propTypes = {
+DeleteTemplateModal.propTypes = {
   deleteId: PropTypes.number,
   callback: PropTypes.func,
 };
