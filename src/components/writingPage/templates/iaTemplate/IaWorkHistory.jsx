@@ -29,25 +29,26 @@ const IaWorkHistory = () => {
         1: {
           title: "",
           imgSrc: "",
+          excelSrc: "",
           review1: "",
           review2: "",
           review3: "",
         },
       });
-    const nowPage = 1;
+    // const nowPage = 1;
     const [dataList, setDataList] = useState([]);
     const [maxLen, setMaxLen] = useState(0);
     const length_list = [];
 
     const handleRadioBox = (e) => {
-        setUploadTypeRadio(e.target.value)
+      setUploadTypeRadio(e.target.value)
     }
 
     const onChangeReview1 = (e) => {
         const newReview = e.target.value;
         setSrData((data) => {
           const newData = { ...data };
-          newData[nowPage].review1 = newReview;
+          newData[1].review1 = newReview;
           return newData;
         });
       };
@@ -55,7 +56,7 @@ const IaWorkHistory = () => {
       const newReview = e.target.value;
       setSrData((data) => {
         const newData = { ...data };
-        newData[nowPage].review2 = newReview;
+        newData[1].review2 = newReview;
         return newData;
       });
     };
@@ -63,12 +64,15 @@ const IaWorkHistory = () => {
       const newReview = e.target.value;
       setSrData((data) => {
         const newData = { ...data };
-        newData[nowPage].review3 = newReview;
+        newData[1].review3 = newReview;
         return newData;
       });
     };
 
     const handleExcelFile = async (fileBlob) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(fileBlob)
+
       const data = await fileBlob.arrayBuffer();
       const workbook = XLSX.readFile(data);
       const worksheet = workbook.Sheets[workbook.SheetNames[0]];
@@ -79,25 +83,37 @@ const IaWorkHistory = () => {
         setDataList((previousData) => [...previousData, jsonData[i]]);
       }
 
+      setMaxLen(Math.max(...length_list))
+
       for (let i = 0; i < Math.max(...length_list); i++) {
         if (jsonData[0][i] == undefined) {
           jsonData[0][i] = " ";
         }
       }
 
-      setMaxLen(Math.max(...length_list))
+
+      return new Promise((resolve) => {
+        fileReader.onload = () => {
+          setSrData((data) => {
+            const newData = { ...data };
+            newData[1].excelSrc = fileReader.result;
+            return newData;
+          });
+          resolve();
+        };
+      });
     }
      
     
     const encodeFileToBase64 = (fileBlob) => {
         const fileReader = new FileReader();
-        fileReader.readAsDataURL(fileBlob);
+        fileReader.readAsDataURL(fileBlob); 
     
         return new Promise((resolve) => {
           fileReader.onload = () => {
             setSrData((data) => {
               const newData = { ...data };
-              newData[nowPage].imgSrc = fileReader.result;
+              newData[1].imgSrc = fileReader.result;
               return newData;
             });
             resolve();
@@ -171,8 +187,8 @@ const IaWorkHistory = () => {
                         onChange={(e) => encodeFileToBase64(e.target.files[0])}
                         accept="image/x-png,image/gif,image/jpeg"
                     />
-                    {srData[nowPage].imgSrc ? (
-                        <img className="preview" src={srData[nowPage].imgSrc} alt="이미지" />
+                    {srData[1].imgSrc ? (
+                        <img className="preview" src={srData[1].imgSrc} alt="이미지" />
                     ) : (
                     <>
                         <img src="/img/icon/upload.png" alt="업로드 이미지" />
@@ -183,14 +199,14 @@ const IaWorkHistory = () => {
                     )}
                 </UploadBox>
             )}
-                {srData[nowPage].imgSrc && (
+                {uploadTypeRadio == "image" && srData[1].imgSrc && (
                     <Row justifyContent="center" marginTop="20px">
                       <UploadButton className="button" htmlFor="img-upload">
                         이미지 변경하기
                       </UploadButton>
                     </Row>
                 )}
-                {dataList.length > 0 && (
+                {uploadTypeRadio == "excel" && dataList.length > 0 && (
                     <Row justifyContent="center" marginTop="20px">
                       <UploadButton className="button" htmlFor="img-upload">
                         엑셀 파일 변경하기
@@ -201,19 +217,19 @@ const IaWorkHistory = () => {
                 <TitleTextarea
                 title="화면의 정의가 무엇인가요?"
                 placeholder="홈 화면과 쇼핑 화면, 마이페이지 화면 설계"
-                text={srData[nowPage].review1}
+                text={srData[1].review1}
                 handleTextarea={onChangeReview1}
                 />
                 <TitleTextarea
                 title="사용자에게 어떤 행동을 유도하는 것이 목표인가요?"
                 placeholder="홈 화면 메인배너를 통해 쇼핑하기 진입 유도"
-                text={srData[nowPage].review2}
+                text={srData[1].review2}
                 handleTextarea={onChangeReview2}
                 />
                 <TitleTextarea
                 title="목표를 달성하기 위해, 화면 설계에서 중점적으로 고민했던 부분은 무엇인가요?"
                 placeholder="메인 배너 크기와 위치 조절"
-                text={srData[nowPage].review3}
+                text={srData[1].review3}
                 handleTextarea={onChangeReview3}
                 />          
             </ReviewBox>
