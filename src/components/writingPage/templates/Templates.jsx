@@ -14,9 +14,9 @@ const Templates = () => {
     setTemplateList((prev) => {
       // TODO : 아래꺼랑 묶어서 리팩토링 필요
       const templates = [...prev];
-      if (!templates.includes(templateName)) {
-        templates.push(templateName);
-      }
+      // if (!templates.includes(templateName)) {
+      templates.push(templateName);
+      // }
       return templates;
     });
     setToggleAddTemplate(false); // 템플릿 추가 영역 닫아주기

@@ -41,6 +41,9 @@ export const CalendarTab = styled.div.attrs((props) => ({
 
   & .btn {
     color: ${ORANGE};
+    display: flex;
+    align-items: center;
+    gap: 12px;
   }
 
   ${({ isOpen }) =>

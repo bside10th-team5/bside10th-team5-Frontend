@@ -12,6 +12,7 @@ import CustomBtn from "../elements/CustomBtn";
 import { ORANGE } from "../../styles/theme";
 import { format } from "date-fns";
 import WritePageHeader from "./components/WritePageHeader";
+import OpenArrowIcon from "../elements/OpenArrowIcon";
 
 const wrtingPage = () => {
   const [selectedDate, setSelectedDate] = useRecoilState(selectedDateState);
@@ -41,9 +42,10 @@ const wrtingPage = () => {
         <CalendarBox>
           <CalendarTab isOpen={toggleCalendar}>
             <span className="headline-6">{format(selectedDate, "yyyy-MM-dd")}</span>
-            <span className="subtitle-1 btn" onClick={handleToggleCalendar}>
-              {toggleCalendar ? "캘린더 닫기" : "캘린더 열기"}
-            </span>
+            <div className="btn" onClick={handleToggleCalendar}>
+              <span className="subtitle-1">{toggleCalendar ? "캘린더 닫기" : "캘린더 열기"}</span>
+              <OpenArrowIcon color={ORANGE} rotate={toggleCalendar ? 180 : 0} />
+            </div>
           </CalendarTab>
           {toggleCalendar && <CustomFullCalendar handleDate={handleDate} />}
         </CalendarBox>

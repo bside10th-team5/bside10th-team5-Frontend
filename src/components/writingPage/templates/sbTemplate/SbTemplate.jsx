@@ -23,7 +23,6 @@ const SbTemplate = () => {
     <div className="open-tab">
       <Row marginBottom="36px">
         <Checkbox id="goal" isChecked={checkedGoal} marginRight="1rem" onChange={handleCheckBox} name="설계 목표" />
-
         <Checkbox
           id="work"
           isChecked={checkedWork}
@@ -31,7 +30,6 @@ const SbTemplate = () => {
           onChange={handleCheckBox}
           name="오늘 진행한 업무"
         />
-
         <Checkbox
           id="review"
           isChecked={checkedReview}
@@ -39,7 +37,6 @@ const SbTemplate = () => {
           onChange={handleCheckBox}
           name="주요 설계 화면 회고"
         />
-
         <Checkbox id="eval" isChecked={checkedEval} onChange={handleCheckBox} name="오늘의 업무평가" />
       </Row>
       {/* //TODO: 컴포넌트 있다없이 말고 css 로 처리하는게 편하려나? */}

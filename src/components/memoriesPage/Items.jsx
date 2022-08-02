@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { useQuery } from "react-query";
+import { useQuery, useQueryClient } from "react-query";
 import { useSetRecoilState } from "recoil";
 import { useProjectList } from "../../state/memoriesState";
 import { modalListState } from "../../state/modalState";
@@ -12,12 +12,13 @@ import { Observer } from "../elements/Wrapper.style";
 
 const Items = () => {
   const target = useRef();
+  const queryClient = useQueryClient();
   const setModalList = useSetRecoilState(modalListState);
   const [page, setPage] = useState(0);
   const [projectList, setProjectList] = useState([]);
   const { fetchFunc } = useProjectList();
   // TODO: //useInfiniteQeury 로 리팩토린
-  const { data, refetch, isPreviousData } = useQuery(["projectList", page], fetchFunc, {
+  const { data, isPreviousData } = useQuery(["projectList", page], fetchFunc, {
     select: (data) => {
       const { content } = data.data;
       const normalized = content.map((el) => {
@@ -34,17 +35,14 @@ const Items = () => {
     },
   });
 
-  console.log(isPreviousData);
-
   const callback = () => {
     setProjectList([]);
-    refetch();
+    queryClient.invalidateQueries(["projectList"]);
   };
 
   const openDeleteProjectModal = (e) => {
     e.stopPropagation();
     const deleteId = e.currentTarget.value;
-    console.log(deleteId, "1");
     setModalList((prev) => prev.concat({ id: "delete-project-modal", deleteId: Number(deleteId), callback: callback }));
   };
 
