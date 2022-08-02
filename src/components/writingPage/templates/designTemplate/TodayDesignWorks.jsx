@@ -46,15 +46,15 @@ const ImageWrapper = styled.div`
     position: relative;
     left: -24px;
     top: 8px;
-    cursor: pointer
+    cursor: pointer;
   }
-`
+`;
 
 const TodayDesignWorks = ({ title }) => {
   const [tagList, setTagList] = useState(["디자인 미팅", "디자인 일정관리", "UXUI 리서치", "UX WRITING"]);
   const [works, setWorks] = useState({});
-  const [imageUrl, setImageUrl] = useState([])
-  const imageUrlList = []
+  const [imageUrl, setImageUrl] = useState([]);
+  const imageUrlList = [];
 
   const onClickTag = (name) => {
     if (!Object.keys(works).includes(name)) {
@@ -63,7 +63,7 @@ const TodayDesignWorks = ({ title }) => {
         newWorks[name] = "";
         return newWorks;
       });
-    } 
+    }
   };
 
   const handleCloseTag = (name) => {
@@ -76,9 +76,8 @@ const TodayDesignWorks = ({ title }) => {
 
   const encodeFileToBase64 = (files) => {
     if (files.length > 5) {
-      alert('한번에 업로드 가능한 사진은 최대 5장 까지 입니다.')
-    }
-    else {
+      alert("한번에 업로드 가능한 사진은 최대 5장 까지 입니다.");
+    } else {
       for (let i = 0; i < files.length; i++) {
         let fileReader = new FileReader();
 
@@ -86,115 +85,106 @@ const TodayDesignWorks = ({ title }) => {
           imageUrlList[i] = fileReader.result;
           setImageUrl([...imageUrlList]);
         };
-        fileReader.readAsDataURL(files[i]);      
+        fileReader.readAsDataURL(files[i]);
       }
-    }    
+    }
   };
 
   const onClickCloseButton = (e) => {
-    const fileUrlId = e.target.id
-    setImageUrl(imageUrl.filter(item => item !== fileUrlId))
-  }
+    const fileUrlId = e.target.id;
+    setImageUrl(imageUrl.filter((item) => item !== fileUrlId));
+  };
 
   return (
     <>
-    <DesignWorksWrapper>
-      <Row alignItems='center'>
-        <Title className="headline-6" style={{ marginRight: "40px", minWidth: "193px" }}>
-          {title}
-        </Title>
-        <Row marginBottom="28px">
-          <div className="tag-box">
-            {tagList.map((key, i) => (
-              <PageTag
-                key={key}
-                className="button"
-                onClick={(e) => onClickTag(e.currentTarget.value)}
-                value={key}
-                colorCase={(i % 4) + 1}
-              >
-                {key}
-              </PageTag>
-            ))}
-          </div>
-          <span
-            className="body-2 add-tag"
-            style={{}}
-            onClick={() => {
-              const tagName = prompt("추가등록");
-              setTagList((prev) => prev.concat(tagName));
-            }}
-          >
-            + 추가등록
-          </span>
-        </Row>
-      </Row>
-      {Object.keys(works).length === 0 ? (
-        <div className="body-2 empty-box">오늘 작업한 설계 업무 내용 중 하나를 선택해 주세요</div>
-      ) : (
-        <Column gap="16px">
-          {Object.keys(works).map((key) => (
-            <TitleTextarea
-              key={key}
-              title={key}
-              placeholder="업로드한 설계에 대해 고민한 부분을 작성해 주세요"
-              text={works[key]}
-              handleClose={handleCloseTag}
+      <DesignWorksWrapper>
+        <Row alignItems="center">
+          <Title className="headline-6" style={{ marginRight: "40px", minWidth: "193px" }}>
+            {title}
+          </Title>
+          <Row marginBottom="28px">
+            <div className="tag-box">
+              {tagList.map((key, i) => (
+                <PageTag
+                  key={key}
+                  className="button"
+                  onClick={(e) => onClickTag(e.currentTarget.value)}
+                  value={key}
+                  colorCase={(i % 4) + 1}
+                >
+                  {key}
+                </PageTag>
+              ))}
+            </div>
+            <span
+              className="body-2 add-tag"
+              style={{}}
+              onClick={() => {
+                const tagName = prompt("추가등록");
+                setTagList((prev) => prev.concat(tagName));
+              }}
             >
-              <PageTag className="button" colorCase={(tagList.indexOf(key) % 4) + 1}>
-                {key}
-              </PageTag>
-            </TitleTextarea>
-          ))}
-        </Column>
-      )}
-    </DesignWorksWrapper>
-    <Row>
-      <span className="headline-6">
-        디자인 업무 이미지(최대 5개)
-      </span>
-      <input 
-        type="file" 
-        multiple
-        id="img-upload" 
-        style={{display: 'none'}}
-        onChange={(e) => encodeFileToBase64(e.target.files)} 
-        accept="image/x-png,image/gif,image/jpeg"
-      />
-      <label htmlFor="img-upload" className="custom">
-        <span 
-          className="body-2" 
-          style={{marginLeft: '12px', color: `${ORANGE}`, textDecorationLine:'underline', cursor: 'pointer'}}
-        >
-          + 이미지 업로드하기
-        </span>
-      </label>
-    </Row>
-    {imageUrlList ? (
+              + 추가등록
+            </span>
+          </Row>
+        </Row>
+        {Object.keys(works).length === 0 ? (
+          <div className="body-2 empty-box">오늘 작업한 설계 업무 내용 중 하나를 선택해 주세요</div>
+        ) : (
+          <Column gap="16px">
+            {Object.keys(works).map((key) => (
+              <TitleTextarea
+                key={key}
+                title={key}
+                placeholder="업로드한 설계에 대해 고민한 부분을 작성해 주세요"
+                text={works[key]}
+                handleClose={handleCloseTag}
+              >
+                <PageTag className="button" colorCase={(tagList.indexOf(key) % 4) + 1}>
+                  {key}
+                </PageTag>
+              </TitleTextarea>
+            ))}
+          </Column>
+        )}
+      </DesignWorksWrapper>
+      <Row>
+        <span className="headline-6">디자인 업무 이미지(최대 5개)</span>
+        <input
+          type="file"
+          multiple
+          id="img-upload"
+          style={{ display: "none" }}
+          onChange={(e) => encodeFileToBase64(e.target.files)}
+          accept="image/x-png,image/gif,image/jpeg"
+        />
+        <label htmlFor="img-upload" className="custom">
+          <span
+            className="body-2"
+            style={{ marginLeft: "12px", color: `${ORANGE}`, textDecorationLine: "underline", cursor: "pointer" }}
+          >
+            + 이미지 업로드하기
+          </span>
+        </label>
+      </Row>
+      {imageUrlList ? (
         <ImageWrapper>
-          {imageUrl.map((fileUrl) => 
+          {imageUrl.map((fileUrl) => (
             <>
-              <img 
-                className="image-container"
-                key={fileUrl} 
-                src={fileUrl} 
-              />
+              <img className="image-container" key={fileUrl} src={fileUrl} />
               <img
                 className="close-button"
                 id={fileUrl}
-                src='/img/design/btn/close_bk.svg' 
-                height='16px'
+                src="/img/design/btn/close_bk.svg"
+                height="16px"
                 onClick={onClickCloseButton}
               />
             </>
-            )
-          }
+          ))}
         </ImageWrapper>
       ) : (
         <span></span>
       )}
-    
-
     </>
   );
 };
