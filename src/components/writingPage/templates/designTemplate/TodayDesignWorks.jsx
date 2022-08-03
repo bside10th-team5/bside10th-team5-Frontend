@@ -5,7 +5,6 @@ import { GRAY300, GRAY500, ORANGE } from "../../../../styles/theme";
 import TitleTextarea from "../../../articles/TextareaTitle";
 import { Box, PageTag, Title } from "../Templates.style";
 import { Row, Column } from "../../../elements/Wrapper.style";
-// import { UploadBox } from "../Templates.style";
 
 const DesignWorksWrapper = styled(Box)`
   & .empty-box {
@@ -39,22 +38,18 @@ const ImageWrapper = styled.div`
     width: 208px;
     height: 118px;
   }
+
+  & .close-button {
+    position: relative;
+    left: -24px;
+    top: 8px;
+    cursor: pointer
+  }
 `
 
 const TodayDesignWorks = ({ title }) => {
   const [tagList, setTagList] = useState(["디자인 미팅", "디자인 일정관리", "UXUI 리서치", "UX WRITING"]);
   const [works, setWorks] = useState({});
-  // const [srData, setSrData] = useState({
-  //   todayDesign: "",
-  //   imgSrc: {
-  //     1: "",
-  //     2: "",
-  //     3: "",
-  //     4: "",
-  //     5: "",
-  //   },
-  //   insight: "",
-  // });
   const [imageUrl, setImageUrl] = useState([])
   const imageUrlList = []
 
@@ -83,19 +78,20 @@ const TodayDesignWorks = ({ title }) => {
     else {
       for (let i = 0; i < files.length; i++) {
         let fileReader = new FileReader();
-       
+
         fileReader.onload = () => {
-          imageUrlList[i] = fileReader.result
-          setImageUrl([...imageUrlList])
+          imageUrlList[i] = fileReader.result;
+          setImageUrl([...imageUrlList]);
         };
-        fileReader.readAsDataURL(files[i]);
+        fileReader.readAsDataURL(files[i]);      
       }
     }    
   };
 
-  // const ThumbnailImage = imageUrlList.map(fileUrl => <img className="image-container" key={fileUrl} src={fileUrl} />)
-
-
+  const onClickCloseButton = (e) => {
+    const fileUrlId = e.target.id
+    setImageUrl(imageUrl.filter(item => item !== fileUrlId))
+  }
 
   return (
     <>
@@ -129,11 +125,6 @@ const TodayDesignWorks = ({ title }) => {
             + 추가등록
           </span>
         </Row>
-        {/* <Row marginBottom="28px" alignItems='right'>
-          <span className="body-2">추가항목 펼치기</span>
-        </Row> */}
-
-
       </Row>
       {Object.keys(works).length === 0 ? (
         <div className="body-2 empty-box">오늘 작업한 설계 업무 내용 중 하나를 선택해 주세요</div>
@@ -156,7 +147,9 @@ const TodayDesignWorks = ({ title }) => {
       )}
     </DesignWorksWrapper>
     <Row>
-      <span className="headline-6">디자인 업무 이미지(최대 5개)</span>
+      <span className="headline-6">
+        디자인 업무 이미지(최대 5개)
+      </span>
       <input 
         type="file" 
         multiple
@@ -173,14 +166,30 @@ const TodayDesignWorks = ({ title }) => {
           + 이미지 업로드하기
         </span>
       </label>
-      {imageUrlList ? (
+    </Row>
+    {imageUrlList ? (
         <ImageWrapper>
-          {imageUrlList.map(fileUrl => <img className="image-container" key={fileUrl} src={fileUrl} />)}
+          {imageUrl.map((fileUrl) => 
+            <>
+              <img 
+                className="image-container"
+                key={fileUrl} 
+                src={fileUrl} 
+              />
+              <img
+                className="close-button"
+                id={fileUrl}
+                src='/img/design/btn/close_bk.svg' 
+                height='16px'
+                onClick={onClickCloseButton}
+              />
+            </>
+            )
+          }
         </ImageWrapper>
       ) : (
-        <div>hiadsfasdf</div>
+        <span></span>
       )}
-    </Row>
     
 
     </>
@@ -190,11 +199,6 @@ const TodayDesignWorks = ({ title }) => {
 export default TodayDesignWorks;
 
 TodayDesignWorks.PropTypes = {
+  title: PropTypes.string,
   todayDesign: PropTypes.string,
-  imgSrc1: PropTypes.string,
-  imgSrc2: PropTypes.string,
-  imgSrc3: PropTypes.string,
-  imgSrc4: PropTypes.string,
-  imgSrc5: PropTypes.string,
-  insight: PropTypes.string,
 };
