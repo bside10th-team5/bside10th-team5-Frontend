@@ -31,6 +31,7 @@ const DesignWorksWrapper = styled(Box)`
 
 const ImageWrapper = styled.div`
   margin-top: 28px;
+  margin-bottom: 36px;
   display: flex;
   justify-content: flex-start;
 
@@ -198,7 +199,7 @@ const TodayDesignWorks = ({ title }) => {
 
 export default TodayDesignWorks;
 
-TodayDesignWorks.PropTypes = {
+TodayDesignWorks.propTypes = {
   title: PropTypes.string,
   todayDesign: PropTypes.string,
 };

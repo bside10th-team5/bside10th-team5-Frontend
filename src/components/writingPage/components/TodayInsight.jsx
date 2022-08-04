@@ -14,7 +14,7 @@ const TodayInsight = ({ subTitle, marginTop }) => {
           {subTitle}
         </span>
       </Row>
-      <TextareaBasic />
+      <TextareaBasic placeholder="유저 기반의 UIUX 중요성&#13;&#10;[회원가입] 버튼의 위치변경을 통한 회원가입 비율 10% 확대"/>
     </Box>
   );
 };
