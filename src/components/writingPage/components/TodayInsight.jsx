@@ -4,8 +4,8 @@ import TextareaBasic from "../../articles/TextareaBasic";
 import { Row } from "../../elements/Wrapper.style";
 import { Box, Title } from "../templates/Templates.style";
 
-//TODO: placeholder 바꿀 수 있도록 변경
-const TodayInsight = ({ subTitle, marginTop }) => {
+//placeholder 바꿀 수 있도록 변경
+const TodayInsight = ({ subTitle, marginTop, placeholder }) => {
   return (
     <Box marginTop={marginTop}>
       <Row>
@@ -14,7 +14,7 @@ const TodayInsight = ({ subTitle, marginTop }) => {
           {subTitle}
         </span>
       </Row>
-      <TextareaBasic placeholder="유저 기반의 UIUX 중요성&#13;&#10;[회원가입] 버튼의 위치변경을 통한 회원가입 비율 10% 확대"/>
+      <TextareaBasic placeholder={placeholder}/>
     </Box>
   );
 };
@@ -24,4 +24,5 @@ export default TodayInsight;
 TodayInsight.propTypes = {
   subTitle: PropTypes.string,
   marginTop: PropTypes.number,
+  placeholder: PropTypes.string,
 };

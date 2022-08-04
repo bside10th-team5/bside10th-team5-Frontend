@@ -8,7 +8,7 @@ import { Row, Column } from "../../../elements/Wrapper.style";
 
 //TODO: 나중에 TodayWorks 컴포넌트로 변환
 
-const DesignWorksWrapper = styled(Box)`
+const DevWorksWrapper = styled(Box)`
   & .empty-box {
     width: 100%;
     padding: 16px;
@@ -50,8 +50,8 @@ const ImageWrapper = styled.div`
   }
 `
 
-const TodayDesignWorks = ({ title }) => {
-  const [tagList, setTagList] = useState(["디자인 미팅", "디자인 일정관리", "UXUI 리서치", "UX WRITING"]);
+const TodayDevWorks = ({ title }) => {
+  const [tagList, setTagList] = useState(["개발 미팅", "개발 일정관리", "기획서 Q&A", "백로그 관리"]);
   const [works, setWorks] = useState({});
   const [imageUrl, setImageUrl] = useState([])
   const imageUrlList = []
@@ -98,7 +98,7 @@ const TodayDesignWorks = ({ title }) => {
 
   return (
     <>
-    <DesignWorksWrapper>
+    <DevWorksWrapper>
       <Row alignItems='center'>
         <Title className="headline-6" style={{ marginRight: "40px", minWidth: "193px" }}>
           {title}
@@ -148,10 +148,10 @@ const TodayDesignWorks = ({ title }) => {
           ))}
         </Column>
       )}
-    </DesignWorksWrapper>
+    </DevWorksWrapper>
     <Row>
       <span className="headline-6">
-        디자인 업무 이미지(최대 5개)
+        개발 업무 이미지(최대 5개)
       </span>
       <input 
         type="file" 
@@ -199,9 +199,9 @@ const TodayDesignWorks = ({ title }) => {
   );
 };
 
-export default TodayDesignWorks;
+export default TodayDevWorks;
 
-TodayDesignWorks.propTypes = {
+TodayDevWorks.propTypes = {
   title: PropTypes.string,
   todayDesign: PropTypes.string,
 };

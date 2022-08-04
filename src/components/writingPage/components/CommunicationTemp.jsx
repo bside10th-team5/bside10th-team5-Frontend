@@ -6,7 +6,7 @@ import { Box, Title } from "../templates/Templates.style";
 import styled from "styled-components";
 import { Slider } from "@mui/material";
 
-//TODO: placeholder 바꿀 수 있도록 변경
+//TODO: 온도 색상 변경 및 placeholder bold 부분 변경
 
 const TempSlider = styled(Slider)({
   color: "black",
