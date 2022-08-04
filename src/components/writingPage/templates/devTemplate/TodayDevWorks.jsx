@@ -180,14 +180,22 @@ const TodayDevWorks = ({ title }) => {
                 key={fileUrl} 
                 src={fileUrl} 
               />
+<<<<<<< HEAD
               <CloseIcon className="close-button" color="black" width={16} height={16} onClick={onClickCloseButton} />
               {/* <img
+=======
+              <img
+>>>>>>> Feat: 개발 템플릿 작업 완료
                 className="close-button"
                 id={fileUrl}
                 src='/img/design/btn/close_bk.svg' 
                 height='16px'
                 onClick={onClickCloseButton}
+<<<<<<< HEAD
               /> */}
+=======
+              />
+>>>>>>> Feat: 개발 템플릿 작업 완료
             </>
             )
           }
