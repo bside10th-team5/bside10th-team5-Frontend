@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import styled from "styled-components";
+import PropTypes from 'prop-types'
 import { GRAY500, GRAY300 } from "../../styles/theme";
 
 const Wrapper = styled.div.attrs((props) => ({ textareaHeight: props.textareaHeight }))`
@@ -28,7 +29,9 @@ const Wrapper = styled.div.attrs((props) => ({ textareaHeight: props.textareaHei
   }
 `;
 
-const TextareaBasic = () => {
+// placeholder 변경 가능하도록 수정
+
+const TextareaBasic = ({placeholder}) => {
   const [value, setValue] = useState("");
   const textRef = useRef(null);
   const handleKeyDown = (e) => {
@@ -47,7 +50,7 @@ const TextareaBasic = () => {
         rows={1}
         onKeyDown={handleKeyDown}
         className="body-2"
-        placeholder="메인화면부터 결제화면까지의 사용자 워크플로우 제작"
+        placeholder={placeholder}
         value={value}
         onChange={handleTextarea}
       />
@@ -56,3 +59,7 @@ const TextareaBasic = () => {
 };
 
 export default TextareaBasic;
+
+TextareaBasic.propTypes = {
+  placeholder: PropTypes.string,
+}

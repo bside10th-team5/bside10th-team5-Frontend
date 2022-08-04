@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import Checkbox from "../../../articles/Checkbox";
 import { Row } from "../../../elements/Wrapper.style";
 import TodayDesignWorks from "./TodayDesignWorks";
-// import Design from "./Design";
-import TodayEval from "../../components/TodayEval";
 import TodayInsight from "../../components/TodayInsight";
+import TodayEval from "../../components/TodayEval";
+import CommunicationTemp from "../../components/CommunicationTemp";
+
 
 const DesignTemplate = () => {
   const [checkedDesign, setCheckedDesign] = useState(true);
@@ -28,7 +29,8 @@ const DesignTemplate = () => {
         <Checkbox id="communicationTemp" isChecked={checkedCommunicationTemp} onChange={handleCheckBox} name="커뮤니케이션 온도체크" />
       </Row>
       {checkedDesign && <TodayDesignWorks title="오늘 진행한 디자인 업무"/>}
-      {checkedInsight && <TodayInsight subTitle="오늘 디자인 업무를 통해 배우고 느낀 점을 자유롭게 써주세요" marginTop='36px' />}
+      {checkedInsight && <TodayInsight subTitle="오늘 디자인 업무를 통해 배우고 느낀 점을 자유롭게 써주세요" />}
+      {checkedCommunicationTemp && <CommunicationTemp />}
       {checkedEval && <TodayEval />}
     </div>
   );
