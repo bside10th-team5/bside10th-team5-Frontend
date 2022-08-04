@@ -9,6 +9,8 @@ import WorkflowTemplate from "./workflowTemplate/WorkflowTemplate";
 import QaTemplate from "./qaTemplate/Qatemplate";
 import IaTemplate from "./iaTemplate/IaTemplate";
 import DesignTemplate from "./designTemplate/DesignTemplate";
+import DevTemplate from "./devTemplate/DevTemplate";
+
 const FreeTemplate = dynamic(() => import("./freeTemplate/FreeTemplate"), { ssr: false });
 
 const BlockWrapper = styled.div.attrs((props) => ({
@@ -44,6 +46,7 @@ const TemplateBlock = ({ type }) => {
     if (typeName === "free") return <FreeTemplate />;
     if (typeName === "qa") return <QaTemplate />;
     if (typeName === "design") return <DesignTemplate />;
+    if (typeName === "develop") return <DevTemplate />
     return <div>tbd</div>;
   };
 
