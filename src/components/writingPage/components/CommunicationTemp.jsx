@@ -52,24 +52,22 @@ const CommunicationTemp = ({ marginTop }) => {
   return (
     <Box marginTop={marginTop}>
       <Row>
-        <Row>
-          <Title className="headline-6">커뮤니케이션 온도체크</Title>
-          <Row justifyContent='center'>
-            <div style={{width: '220px', marginBottom: '20px', marginLeft:'12px'}} >
-              <TempSlider 
-                value={typeof temp === 'number' ? temp : 0} 
-                onChange={handleSliderChange} 
-                aria-label="custom thumb label"
-                aria-labelledby="input-slider" 
-                style={{height: '12px'}}
-              />
-            </div>
-            <TempTextArea 
-              className="subtitle-2"
-            >
-              {temp}&#8451;
-            </TempTextArea>
-          </Row>
+        <Title className="headline-6">커뮤니케이션 온도체크</Title>
+        <Row justifyContent='center'>
+          <div style={{width: '220px', marginBottom: '20px', marginLeft:'12px'}} >
+            <TempSlider 
+              value={typeof temp === 'number' ? temp : 0} 
+              onChange={handleSliderChange} 
+              aria-label="custom thumb label"
+              aria-labelledby="input-slider" 
+              style={{height: '12px'}}
+            />
+          </div>
+          <TempTextArea 
+            className="subtitle-2"
+          >
+            {temp}&#8451;
+          </TempTextArea>
         </Row>
       </Row>
       <TextareaBasic placeholder="회원가입에 대한 열띤 토론! 디자인팀 덕분에 오늘도 좋은 에너지를 받았다."/>
