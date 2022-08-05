@@ -5,6 +5,7 @@ import { GRAY300, GRAY500, ORANGE } from "../../../../styles/theme";
 import TitleTextarea from "../../../articles/TextareaTitle";
 import { Box, PageTag, Title } from "../Templates.style";
 import { Row, Column } from "../../../elements/Wrapper.style";
+import CloseIcon from "../../../elements/CloseIcon";
 
 //TODO: 나중에 TodayWorks 컴포넌트로 변환
 
@@ -179,13 +180,14 @@ const TodayDevWorks = ({ title }) => {
                 key={fileUrl} 
                 src={fileUrl} 
               />
-              <img
+              <CloseIcon className="close-button" color="black" width={16} height={16} onClick={onClickCloseButton} />
+              {/* <img
                 className="close-button"
                 id={fileUrl}
                 src='/img/design/btn/close_bk.svg' 
                 height='16px'
                 onClick={onClickCloseButton}
-              />
+              /> */}
             </>
             )
           }
