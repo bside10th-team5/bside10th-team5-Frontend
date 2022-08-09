@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import { GRAY300, GRAY500 } from "../../../styles/theme";
+import { BLUE, GRAY300, GRAY500, GREEN, ORANGE, WHITE, YELLOW } from "../../../styles/theme";
 import TextareaTitle from "../../articles/TextareaTitle";
 import { Box, PageTag, Title } from "../templates/Templates.style";
 import { Row, Column } from "../../elements/Wrapper.style";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { modalListState } from "../../../state/modalState";
-import { sbWorkTagState } from "../../../state/sbTemplateState";
+import CloseIcon from "../../elements/CloseIcon";
+import OpenArrowIcon from "../../elements/OpenArrowIcon";
 
 const SbWroksWrapper = styled(Box)`
   & .empty-box {
@@ -32,11 +33,13 @@ const SbWroksWrapper = styled(Box)`
   }
 `;
 
-const TodayWorks = ({ title }) => {
-  // const [works, setWorks] = useState({ myPage: "12313", admin: "123123123123" });
-  const [tagList, setTagList] = useRecoilState(sbWorkTagState);
+const TodayWorks = ({ title, placeholder, defaultHolder, tagListState, secondTagListState }) => {
+  const [tagList, setTagList] = useRecoilState(tagListState);
+  const [secondTagList, setSecondTagList] = useRecoilState(secondTagListState);
   const [works, setWorks] = useState({});
+  const [isOpenSecondary, setIsOpenSecondary] = useState(false);
   const setModalList = useSetRecoilState(modalListState);
+  const ref = useRef(null);
 
   const onClickTag = (name) => {
     if (!Object.keys(works).includes(name)) {
@@ -45,7 +48,7 @@ const TodayWorks = ({ title }) => {
         newWorks[name] = "";
         return newWorks;
       });
-    } 
+    }
   };
 
   const handleCloseTag = (name) => {
@@ -57,18 +60,81 @@ const TodayWorks = ({ title }) => {
   };
 
   const AddTagCallback = (tagName) => {
-    if (!tagList.includes(tagName)) {
-      setTagList((prev) => prev.concat(tagName));
+    if (secondTagList.length === 0) {
+      if (!tagList.includes(tagName)) {
+        setTagList((prev) => prev.concat(tagName));
+      }
+    } else {
+      if (!tagList.includes(tagName) && !secondTagList.includes(tagName)) {
+        setSecondTagList((prev) => prev.concat(tagName));
+      }
     }
   };
 
+  const getColor = (colorCase) => {
+    if (colorCase === 1) return ORANGE;
+    if (colorCase === 2) return GREEN;
+    if (colorCase === 3) return BLUE;
+    if (colorCase === 4) return YELLOW;
+  };
+
+  const deleteTagList = (e, value) => {
+    e.stopPropagation();
+    const isInFirstTagList = tagList.includes(value);
+    const hasSecondTagList = secondTagList.length > 0;
+
+    if (isInFirstTagList && hasSecondTagList) {
+      let target;
+      setSecondTagList((prev) => {
+        const newTagList = [...prev];
+        target = newTagList[0];
+        newTagList.shift();
+        return newTagList;
+      });
+      setTagList((prev) => {
+        const newTagList = prev.filter((el) => el !== value);
+        newTagList.push(target);
+        return newTagList;
+      });
+    } else if (isInFirstTagList && !hasSecondTagList) {
+      setTagList((prev) => {
+        const newTagList = prev.filter((el) => el !== value);
+        return newTagList;
+      });
+    } else {
+      setSecondTagList((prev) => {
+        const newTagList = prev.filter((el) => el !== value);
+        return newTagList;
+      });
+    }
+
+    setWorks((prev) => {
+      const newWorks = { ...prev };
+      delete newWorks[value];
+      return newWorks;
+    });
+  };
+
+  useEffect(() => {
+    const listWidth = ref.current.clientWidth;
+    if (secondTagList.length === 0 && listWidth > 685) {
+      let tagName;
+      setTagList((prev) => {
+        tagName = prev[prev.length - 1];
+        const newTagList = prev.slice(0, -1);
+        return newTagList;
+      });
+      setSecondTagList((prev) => prev.concat(tagName));
+    }
+  }, [ref.current?.clientWidth, tagList]);
+
   return (
     <SbWroksWrapper>
-      <Row alignItems='center'>
+      <Row alignItems="center">
         <Title className="headline-6" style={{ marginRight: "40px", minWidth: "193px" }}>
           {title}
         </Title>
-        <Row marginBottom="28px">
+        <Row marginBottom="28px" ref={ref}>
           <div className="tag-box">
             {tagList.map((key, i) => (
               <PageTag
@@ -79,6 +145,9 @@ const TodayWorks = ({ title }) => {
                 colorCase={(i % 4) + 1}
               >
                 {key}
+                <i className="close-wrapper" onClick={(e) => deleteTagList(e, key)}>
+                  <CloseIcon width={9.33} height={9.33} color={getColor((i % 4) + 1)} />
+                </i>
               </PageTag>
             ))}
           </div>
@@ -92,21 +161,73 @@ const TodayWorks = ({ title }) => {
             + 추가등록
           </span>
         </Row>
-        {/* <Row marginBottom="28px" alignItems='right'>
-          <span className="body-2">추가항목 펼치기</span>
-        </Row> */}
-
-
+        {secondTagList.length > 0 ? (
+          <div
+            className="body-2"
+            style={{
+              marginBottom: "28px",
+              justifyContent: "flex-end",
+              display: "flex",
+              flex: 1,
+              alignItems: "center",
+              position: "relative",
+            }}
+          >
+            {isOpenSecondary ? "추가항목 숨기기" : "추가항목 펼치기"}
+            <OpenArrowIcon
+              rotate={isOpenSecondary ? 180 : 0}
+              onClick={() => {
+                console.log("click");
+                setIsOpenSecondary((prev) => !prev);
+              }}
+            />
+            <div
+              className="tag-box"
+              style={{
+                display: isOpenSecondary ? "flex" : "none",
+                alignItems: "flex-start",
+                position: "absolute",
+                top: "38px",
+                right: 0,
+                width: "600px",
+                maxHeight: "172px",
+                overflowY: "scroll",
+                backgroundColor: WHITE,
+                border: `1px solid ${GRAY300}`,
+                borderRadius: "4px",
+                zIndex: 2,
+                padding: "16px 34px 16px 20px",
+              }}
+            >
+              {secondTagList.map((key, i) => (
+                <PageTag
+                  key={key}
+                  className="button"
+                  onClick={(e) => onClickTag(e.currentTarget.value)}
+                  value={key}
+                  colorCase={(i % 4) + 1}
+                >
+                  {key}
+                  <i className="close-wrapper" onClick={(e) => deleteTagList(e, key)}>
+                    <CloseIcon width={9.33} height={9.33} color={getColor((i % 4) + 1)} />
+                  </i>
+                </PageTag>
+              ))}
+            </div>
+          </div>
+        ) : (
+          ""
+        )}
       </Row>
       {Object.keys(works).length === 0 ? (
-        <div className="body-2 empty-box">오늘 작업한 설계 업무 내용 중 하나를 선택해 주세요</div>
+        <div className="body-2 empty-box">{defaultHolder}</div>
       ) : (
         <Column gap="16px">
           {Object.keys(works).map((key) => (
             <TextareaTitle
               key={key}
               title={key}
-              placeholder="업로드한 설계에 대해 고민한 부분을 작성해 주세요"
+              placeholder={placeholder}
               text={works[key]}
               handleClose={handleCloseTag}
             >
@@ -125,4 +246,8 @@ export default TodayWorks;
 
 TodayWorks.propTypes = {
   title: PropTypes.string,
+  defaultHolder: PropTypes.string,
+  placeholder: PropTypes.string,
+  tagListState: PropTypes.any,
+  secondTagListState: PropTypes.any,
 };

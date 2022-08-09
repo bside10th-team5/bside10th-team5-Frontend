@@ -5,6 +5,7 @@ import SbScreenReview from "./SbScreenReview";
 import TodayWorks from "../../components/TodayWorks";
 import SbGoal from "./SbGoal";
 import { Row } from "../../../elements/Wrapper.style";
+import { sbWorkTagState, sbWorkSecondTagState } from "../../../../state/sbTemplateState";
 
 const SbTemplate = () => {
   const [checkedGoal, setCheckedGoal] = useState(true);
@@ -41,7 +42,15 @@ const SbTemplate = () => {
       </Row>
       {/* //TODO: 컴포넌트 있다없이 말고 css 로 처리하는게 편하려나? */}
       {checkedGoal && <SbGoal />}
-      {checkedWork && <TodayWorks title="오늘 진행한 설계 업무" />}
+      {checkedWork && (
+        <TodayWorks
+          title="오늘 진행한 설계 업무"
+          defaultHolder="오늘 작업한 설계 업무 내용 중 하나를 선택해 주세요"
+          placeholder="업로드한 설계에 대해 고민한 부분을 작성해 주세요"
+          tagListState={sbWorkTagState}
+          secondTagListState={sbWorkSecondTagState}
+        />
+      )}
       {checkedReview && <SbScreenReview />}
       {checkedEval && <TodayEval />}
     </div>

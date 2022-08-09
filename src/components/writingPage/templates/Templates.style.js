@@ -101,4 +101,8 @@ export const PageTag = styled.button.attrs((props) => ({
       background-color: rgba(255, 159, 0, 0.16);
       color: ${YELLOW};
     `};
+
+  & > .close-wrapper {
+    margin-left: 12px;
+  }
 `;

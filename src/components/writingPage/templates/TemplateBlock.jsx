@@ -86,8 +86,8 @@ const TemplateBlock = ({ type }) => {
           <button className="delete-btn" onClick={onClickDeleteTemplate}>
             삭제
           </button>
-          <div className="open-btn">
-            <button onClick={() => setIsOpen((el) => !el)}>{isOpen ? "닫기" : "열기"}</button>
+          <div className="open-btn" onClick={() => setIsOpen((el) => !el)}>
+            <button>{isOpen ? "닫기" : "열기"}</button>
             <OpenArrowIcon rotate={isOpen ? 180 : 0} />
           </div>
         </div>
