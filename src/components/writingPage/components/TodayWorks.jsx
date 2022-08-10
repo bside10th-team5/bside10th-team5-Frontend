@@ -179,7 +179,7 @@ const TodayWorks = ({ title, placeholder, defaultHolder, tagListState, secondTag
               text={works[key]}
               handleClose={handleCloseTag}
             >
-              <PageTag className="button" colorCase={(tagList.indexOf(key) % 4) + 1}>
+              <PageTag className="button" colorCase={([...tagList, ...secondTagList].indexOf(key) % 4) + 1}>
                 {key}
               </PageTag>
             </TextareaTitle>
