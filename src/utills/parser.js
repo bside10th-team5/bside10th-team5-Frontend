@@ -1,3 +1,5 @@
+import { BLUE, GREEN, ORANGE, YELLOW } from "../styles/theme";
+
 export function parseTemplateName(value) {
   if (value === "workflow") return "워크플로우";
   if (value === "ia") return "IA";
@@ -30,3 +32,10 @@ Object.freeze(thumbnailIdObj);
 export function parseThumnailId(value) {
   return thumbnailIdObj[value];
 }
+
+export const getColor = (colorCase) => {
+  if (colorCase === 1) return ORANGE;
+  if (colorCase === 2) return GREEN;
+  if (colorCase === 3) return BLUE;
+  if (colorCase === 4) return YELLOW;
+};
