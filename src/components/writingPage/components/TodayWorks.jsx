@@ -1,16 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import { BLUE, GRAY300, GRAY500, GREEN, ORANGE, WHITE, YELLOW } from "../../../styles/theme";
+import { GRAY300, GRAY500 } from "../../../styles/theme";
 import TextareaTitle from "../../articles/TextareaTitle";
 import { Box, PageTag, Title } from "../templates/Templates.style";
 import { Row, Column } from "../../elements/Wrapper.style";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { modalListState } from "../../../state/modalState";
 import CloseIcon from "../../elements/CloseIcon";
-import OpenArrowIcon from "../../elements/OpenArrowIcon";
+import { getColor } from "../../../utills/parser";
+import AdditionalTags from "./AdditionalTags";
 
-const SbWroksWrapper = styled(Box)`
+const Wrapper = styled(Box)`
   & .empty-box {
     width: 100%;
     padding: 16px;
@@ -41,6 +42,10 @@ const TodayWorks = ({ title, placeholder, defaultHolder, tagListState, secondTag
   const setModalList = useSetRecoilState(modalListState);
   const ref = useRef(null);
 
+  const toggleSecondaryTags = () => {
+    setIsOpenSecondary((prev) => !prev);
+  };
+
   const onClickTag = (name) => {
     if (!Object.keys(works).includes(name)) {
       setWorks((prev) => {
@@ -69,13 +74,6 @@ const TodayWorks = ({ title, placeholder, defaultHolder, tagListState, secondTag
         setSecondTagList((prev) => prev.concat(tagName));
       }
     }
-  };
-
-  const getColor = (colorCase) => {
-    if (colorCase === 1) return ORANGE;
-    if (colorCase === 2) return GREEN;
-    if (colorCase === 3) return BLUE;
-    if (colorCase === 4) return YELLOW;
   };
 
   const deleteTagList = (e, value) => {
@@ -129,7 +127,7 @@ const TodayWorks = ({ title, placeholder, defaultHolder, tagListState, secondTag
   }, [ref.current?.clientWidth, tagList]);
 
   return (
-    <SbWroksWrapper>
+    <Wrapper>
       <Row alignItems="center">
         <Title className="headline-6" style={{ marginRight: "40px", minWidth: "193px" }}>
           {title}
@@ -161,63 +159,13 @@ const TodayWorks = ({ title, placeholder, defaultHolder, tagListState, secondTag
             + 추가등록
           </span>
         </Row>
-        {secondTagList.length > 0 ? (
-          <div
-            className="body-2"
-            style={{
-              marginBottom: "28px",
-              justifyContent: "flex-end",
-              display: "flex",
-              flex: 1,
-              alignItems: "center",
-              position: "relative",
-            }}
-          >
-            {isOpenSecondary ? "추가항목 숨기기" : "추가항목 펼치기"}
-            <OpenArrowIcon
-              rotate={isOpenSecondary ? 180 : 0}
-              onClick={() => {
-                console.log("click");
-                setIsOpenSecondary((prev) => !prev);
-              }}
-            />
-            <div
-              className="tag-box"
-              style={{
-                display: isOpenSecondary ? "flex" : "none",
-                alignItems: "flex-start",
-                position: "absolute",
-                top: "38px",
-                right: 0,
-                width: "600px",
-                maxHeight: "172px",
-                overflowY: "scroll",
-                backgroundColor: WHITE,
-                border: `1px solid ${GRAY300}`,
-                borderRadius: "4px",
-                zIndex: 2,
-                padding: "16px 34px 16px 20px",
-              }}
-            >
-              {secondTagList.map((key, i) => (
-                <PageTag
-                  key={key}
-                  className="button"
-                  onClick={(e) => onClickTag(e.currentTarget.value)}
-                  value={key}
-                  colorCase={(i % 4) + 1}
-                >
-                  {key}
-                  <i className="close-wrapper" onClick={(e) => deleteTagList(e, key)}>
-                    <CloseIcon width={9.33} height={9.33} color={getColor((i % 4) + 1)} />
-                  </i>
-                </PageTag>
-              ))}
-            </div>
-          </div>
-        ) : (
-          ""
-        )}
+        <AdditionalTags
+          isOpen={isOpenSecondary}
+          secondTagList={secondTagList}
+          handleTags={toggleSecondaryTags}
+          deleteTagList={deleteTagList}
+          onClickTag={onClickTag}
+        />
       </Row>
       {Object.keys(works).length === 0 ? (
         <div className="body-2 empty-box">{defaultHolder}</div>
@@ -238,7 +186,7 @@ const TodayWorks = ({ title, placeholder, defaultHolder, tagListState, secondTag
           ))}
         </Column>
       )}
-    </SbWroksWrapper>
+    </Wrapper>
   );
 };
 
