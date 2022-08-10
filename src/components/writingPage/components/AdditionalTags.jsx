@@ -16,10 +16,7 @@ const AdditionalTagsToggle = styled.div`
   margin-bottom: 28px;
 `;
 
-const AdditionalTagsWrapper = styled.div.attrs((props) => ({
-  isOpen: props.isOpen || false,
-}))`
-  display: ${(props) => (props.isOpen ? "flex" : "none")};
+const AdditionalTagsWrapper = styled.div`
   align-items: flex-start;
   position: absolute;
   top: 38px;
@@ -42,23 +39,25 @@ const AdditionalTags = ({ secondTagList, isOpen, handleTags, onClickTag, deleteT
   return (
     <AdditionalTagsToggle className="body-2">
       {isOpen ? "추가항목 숨기기" : "추가항목 펼치기"}
-      <OpenArrowIcon rotate={isOpen ? 180 : 0} onClick={handleTags} />
-      <AdditionalTagsWrapper className="tag-box" isOpen={isOpen}>
-        {secondTagList.map((key, i) => (
-          <PageTag
-            key={key}
-            className="button"
-            onClick={(e) => onClickTag(e.currentTarget.value)}
-            value={key}
-            colorCase={(i % 4) + 1}
-          >
-            {key}
-            <i className="close-wrapper" onClick={(e) => deleteTagList(e, key)}>
-              <CloseIcon width={9.33} height={9.33} color={getColor((i % 4) + 1)} />
-            </i>
-          </PageTag>
-        ))}
-      </AdditionalTagsWrapper>
+      <OpenArrowIcon rotate={isOpen ? 180 : 0} onClick={() => handleTags()} />
+      {isOpen && (
+        <AdditionalTagsWrapper className="tag-box">
+          {secondTagList.map((key, i) => (
+            <PageTag
+              key={key}
+              className="button"
+              onClick={(e) => onClickTag(e.currentTarget.value)}
+              value={key}
+              colorCase={(i % 4) + 1}
+            >
+              {key}
+              <i className="close-wrapper" onClick={(e) => deleteTagList(e, key)}>
+                <CloseIcon width={9.33} height={9.33} color={getColor((i % 4) + 1)} />
+              </i>
+            </PageTag>
+          ))}
+        </AdditionalTagsWrapper>
+      )}
     </AdditionalTagsToggle>
   );
 };

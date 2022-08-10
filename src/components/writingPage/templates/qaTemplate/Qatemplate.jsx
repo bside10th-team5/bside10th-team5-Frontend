@@ -5,6 +5,7 @@ import TodayWorks from "../../components/TodayWorks";
 import TodayEval from "../../components/TodayEval";
 import TodayInsight from "../../components/TodayInsight";
 import QaTestReview from "./QaTestReview";
+import { qaWorkTagState, qaWorkSecondTagState } from "../../../../state/qaTemplateState";
 
 const QaTemplate = () => {
   const [checkedWork, setCheckedWork] = useState(true);
@@ -47,7 +48,15 @@ const QaTemplate = () => {
 
         <Checkbox id="eval" isChecked={checkedEval} onChange={handleCheckBox} name="오늘의 업무평가" />
       </Row>
-      {checkedWork && <TodayWorks title="오늘 진행한 QA 업무" />}
+      {checkedWork && (
+        <TodayWorks
+          title="오늘 진행한 QA 업무"
+          defaultHolder="오늘 작업한 QA 업무 내용 중 하나를 선택해 주세요"
+          placeholder="오늘 작업한 QA 업무를 작성해 주세요"
+          tagListState={qaWorkTagState}
+          secondTagListState={qaWorkSecondTagState}
+        />
+      )}
       {checkedTest && <QaTestReview />}
       {checkedInsight && <TodayInsight subTitle="오늘 QA 업무를 통해 배우고 느낀 점을 자유롭게 써주세요" />}
       {checkedEval && <TodayEval />}
