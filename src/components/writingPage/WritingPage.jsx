@@ -13,8 +13,10 @@ import { ORANGE } from "../../styles/theme";
 import { format } from "date-fns";
 import WritePageHeader from "./components/WritePageHeader";
 import OpenArrowIcon from "../elements/OpenArrowIcon";
+import { useRouter } from "next/router";
 
 const wrtingPage = () => {
+  const id = useRouter().query.id;
   const [selectedDate, setSelectedDate] = useRecoilState(selectedDateState);
   const [toggleCalendar, setToggleCalendar] = useState(false);
   const templateList = useRecoilValue(templateListState);
@@ -24,7 +26,7 @@ const wrtingPage = () => {
   const { saveRetrospective } = useHandleTemplate();
 
   const onClickSave = () => {
-    saveRetrospective(54); //board 정보 받으면 수정해야됨
+    saveRetrospective(id); //board 정보 받으면 수정해야됨
   };
 
   const handleDate = (e) => {
