@@ -16,7 +16,7 @@ const TemplateViews = () => {
   return (
     <div style={{ height: "auto" }}>
       {templateList.map((el) => (
-        <TemplateBlock key={el} type={el} />
+        <TemplateBlock key={el.id} type={el.type} id={el.id} />
       ))}
       {!toggleAddTemplate && (
         <AddTemplateBtn className="headline-6" onClick={handleToggleAddTemplate}>

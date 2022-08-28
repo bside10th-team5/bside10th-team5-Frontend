@@ -54,7 +54,7 @@ const BlockWrapper = styled.div.attrs((props) => ({
   }
 `;
 
-const TemplateBlock = ({ type }) => {
+const TemplateBlock = ({ type, id }) => {
   const [isOpen, setIsOpen] = useState(false);
   const setModalList = useSetRecoilState(modalListState);
 
@@ -68,13 +68,13 @@ const TemplateBlock = ({ type }) => {
   };
 
   const getTemplate = (typeName) => {
-    if (typeName === "sb") return <SbTemplate />;
-    if (typeName === "ia") return <IaTemplate />;
-    if (typeName === "workflow") return <WorkflowTemplate />;
-    if (typeName === "free") return <FreeTemplate />;
-    if (typeName === "qa") return <QaTemplate />;
-    if (typeName === "design") return <DesignTemplate />;
-    if (typeName === "develop") return <DevTemplate />;
+    if (typeName === "sb") return <SbTemplate id={id} />;
+    if (typeName === "ia") return <IaTemplate id={id} />;
+    if (typeName === "workflow") return <WorkflowTemplate id={id} />;
+    if (typeName === "free") return <FreeTemplate id={id} />;
+    if (typeName === "qa") return <QaTemplate id={id} />;
+    if (typeName === "design") return <DesignTemplate id={id} />;
+    if (typeName === "develop") return <DevTemplate id={id} />;
     return <div>tbd</div>;
   };
 
@@ -101,4 +101,5 @@ export default TemplateBlock;
 
 TemplateBlock.propTypes = {
   type: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
 };

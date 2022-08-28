@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import { Row } from "../../../elements/Wrapper.style";
 import Checkbox from "../../../articles/Checkbox";
 import TodayWorks from "../../components/TodayWorks";
@@ -65,3 +66,7 @@ const QaTemplate = () => {
 };
 
 export default QaTemplate;
+
+QaTemplate.propTypes = {
+  id: PropTypes.string.isRequired,
+};

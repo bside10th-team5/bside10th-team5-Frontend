@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import Checkbox from "../../../articles/Checkbox";
 import TodayEval from "../../components/TodayEval";
 import SbScreenReview from "./SbScreenReview";
@@ -58,3 +59,7 @@ const SbTemplate = () => {
 };
 
 export default SbTemplate;
+
+SbTemplate.propTypes = {
+  id: PropTypes.string.isRequired,
+};

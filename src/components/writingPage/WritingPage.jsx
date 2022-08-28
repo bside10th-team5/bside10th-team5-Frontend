@@ -5,7 +5,7 @@ import Gnb from "../articles/Gnb";
 import { CalendarBox, CalendarTab, Section } from "./WritingPage.style";
 import Footer from "../articles/Footer";
 import Templates from "./templates/Templates";
-import { templateListState, selectedDateState } from "../../state/writeDiaryState";
+import { templateListState, selectedDateState, useHandleTemplate } from "../../state/writeDiaryState";
 import TemplateViews from "./templates/TemplateViews";
 import CustomFullCalendar from "./components/FullCalendar";
 import CustomBtn from "../elements/CustomBtn";
@@ -21,8 +21,10 @@ const wrtingPage = () => {
   const openTemplateMenu = templateList.length === 0 && !toggleCalendar;
   const openMyTemplates = templateList.length > 0 && !toggleCalendar;
 
+  const { saveRetrospective } = useHandleTemplate();
+
   const onClickSave = () => {
-    console.log("저장");
+    saveRetrospective(54); //board 정보 받으면 수정해야됨
   };
 
   const handleDate = (e) => {

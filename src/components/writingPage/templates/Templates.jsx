@@ -1,5 +1,6 @@
 import React from "react";
 import { useSetRecoilState } from "recoil";
+import uuid from "react-uuid";
 import { templateListState, toggleAddTemplateState } from "../../../state/writeDiaryState";
 import TemplateBox from "./TemplateBox";
 import { TemplateTitle, TemplateWrapper } from "../WritingPage.style";
@@ -10,13 +11,12 @@ const Templates = () => {
   const setToggleAddTemplate = useSetRecoilState(toggleAddTemplateState);
 
   const handleTemplateList = (e) => {
-    const templateName = e.currentTarget.value;
     setTemplateList((prev) => {
-      // TODO : 아래꺼랑 묶어서 리팩토링 필요
       const templates = [...prev];
-      // if (!templates.includes(templateName)) {
-      templates.push(templateName);
-      // }
+      const templateType = e.currentTarget.value;
+      const templateId = uuid();
+      const newTemplateObj = { id: templateId, type: templateType };
+      templates.push(newTemplateObj);
       return templates;
     });
     setToggleAddTemplate(false); // 템플릿 추가 영역 닫아주기
