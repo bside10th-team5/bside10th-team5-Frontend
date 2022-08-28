@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import Checkbox from "../../../articles/Checkbox";
 import { Row } from "../../../elements/Wrapper.style";
 import TodayDesignWorks from "./TodayDesignWorks";
@@ -59,3 +60,7 @@ const DesignTemplate = () => {
 };
 
 export default DesignTemplate;
+
+DesignTemplate.propTypes = {
+  id: PropTypes.string.isRequired,
+};

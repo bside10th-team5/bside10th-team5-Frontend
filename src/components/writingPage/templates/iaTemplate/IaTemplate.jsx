@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import Checkbox from "../../../articles/Checkbox";
 import { Row } from "../../../elements/Wrapper.style";
 import IaWorkHistory from "./IaWorkHistory";
@@ -32,3 +33,7 @@ const IaTemplate = () => {
 };
 
 export default IaTemplate;
+
+IaTemplate.propTypes = {
+  id: PropTypes.string.isRequired,
+};

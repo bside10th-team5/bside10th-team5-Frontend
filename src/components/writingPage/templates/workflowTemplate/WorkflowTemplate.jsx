@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import Checkbox from "../../../articles/Checkbox";
 import TodayEval from "../../components/TodayEval";
 import SbScreenReview from "../sbTemplate/SbScreenReview";
@@ -43,3 +44,7 @@ const WorkflowTemplate = () => {
 };
 
 export default WorkflowTemplate;
+
+WorkflowTemplate.propTypes = {
+  id: PropTypes.string.isRequired,
+};
