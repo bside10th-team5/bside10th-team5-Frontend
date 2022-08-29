@@ -45,6 +45,8 @@ const Wrapper = styled.div.attrs((props) => ({
 
 const Input = styled.input.attrs((props) => ({
   height: props.height,
+  textAlign: props.textAlign || "left",
+  hasValue: props.hasValue,
 }))`
   border: none;
   outline: none;
@@ -53,6 +55,8 @@ const Input = styled.input.attrs((props) => ({
   border-radius: 4px;
   color: ${GRAY900};
   padding: 0;
+  text-align: ${({ textAlign }) => textAlign};
+
   &::placeholder {
     color: ${GRAY500};
   }
@@ -64,6 +68,13 @@ const Input = styled.input.attrs((props) => ({
   &:-webkit-autofill:active {
     -webkit-box-shadow: 0 0 0 500px white inset;
   }
+
+  ${({ hasValue, textAlign }) =>
+    !hasValue &&
+    textAlign === "right" &&
+    css`
+      width: 100%;
+    `};
 `;
 
 const Description = styled.p`
@@ -74,7 +85,20 @@ const Description = styled.p`
   color: rgba(255, 90, 0, 0.7);
 `;
 
-const CustomTextInput = ({ id, width, height, placeholder, value, onChange, isError, disabled, maxLength, desc }) => {
+const CustomTextInput = ({
+  id,
+  width,
+  height,
+  placeholder,
+  value,
+  onChange,
+  isError,
+  disabled,
+  maxLength,
+  desc,
+  textAlign,
+  onClickDelete,
+}) => {
   return (
     <Wrapper width={width} height={height} isError={isError} hasValue={value.length > 0}>
       <Input
@@ -87,6 +111,8 @@ const CustomTextInput = ({ id, width, height, placeholder, value, onChange, isEr
         onChange={onChange}
         disabled={disabled}
         maxLength={maxLength}
+        textAlign={textAlign}
+        hasValue={value.length > 0}
       />
       {isError && (
         <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -98,7 +124,14 @@ const CustomTextInput = ({ id, width, height, placeholder, value, onChange, isEr
         </svg>
       )}
       {!isError && value.length > 0 && (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          onClick={onClickDelete}
+        >
           <circle cx="12" cy="12" r="12" fill="#111111" />
           <path
             d="M16.6666 8.27325L15.7266 7.33325L11.9999 11.0599L8.27325 7.33325L7.33325 8.27325L11.0599 11.9999L7.33325 15.7266L8.27325 16.6666L11.9999 12.9399L15.7266 16.6666L16.6666 15.7266L12.9399 11.9999L16.6666 8.27325Z"
@@ -125,4 +158,6 @@ CustomTextInput.propTypes = {
   isError: PropTypes.bool,
   disabled: PropTypes.bool,
   maxLength: PropTypes.number,
+  textAlign: PropTypes.string,
+  onClickDelete: PropTypes.func,
 };

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { GNB_H, GRAY300, GRAY700, GRAY900, ORANGE, WHITE } from "../../styles/theme";
 
 export const Section = styled.section`
@@ -26,7 +26,9 @@ export const CalendarBox = styled.div`
   margin-bottom: 20px;
 `;
 
-export const CalendarTab = styled.div`
+export const CalendarTab = styled.div.attrs((props) => ({
+  isOpen: props.isOpen,
+}))`
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -39,7 +41,17 @@ export const CalendarTab = styled.div`
 
   & .btn {
     color: ${ORANGE};
+    display: flex;
+    align-items: center;
+    gap: 12px;
   }
+
+  ${({ isOpen }) =>
+    isOpen &&
+    css`
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    `}
 `;
 
 export const TemplateTitle = styled.div`
@@ -71,4 +83,6 @@ export const CancelAddTemplateBtn = styled(AddTemplateBtn)`
   display: flex;
   align-items: center;
   justify-content: center;
+  border: none;
+  border-bottom: 1px solid ${GRAY300};
 `;

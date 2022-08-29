@@ -1,31 +1,32 @@
 import React, { useState } from "react";
-// import { useRouter } from "next/router";
-import { WideWrapper } from "../elements/Wrapper.style";
+import { useRecoilValue, useRecoilState } from "recoil";
+import { WideWrapper, Row } from "../elements/Wrapper.style";
 import Gnb from "../articles/Gnb";
 import { CalendarBox, CalendarTab, Section } from "./WritingPage.style";
 import Footer from "../articles/Footer";
 import Templates from "./templates/Templates";
-import { useRecoilValue, useRecoilState } from "recoil";
-import { templateListState, selectedDateState } from "../../state/writeDiaryState";
+import { templateListState, selectedDateState, useHandleTemplate } from "../../state/writeDiaryState";
 import TemplateViews from "./templates/TemplateViews";
-import CustomFullCalendar from "./FullCalendar";
-import { Row } from "../settingPage/AddProjectPage.style";
+import CustomFullCalendar from "./components/FullCalendar";
 import CustomBtn from "../elements/CustomBtn";
 import { ORANGE } from "../../styles/theme";
-import WritePageHeader from "./WritePageHeader";
 import { format } from "date-fns";
+import WritePageHeader from "./components/WritePageHeader";
+import OpenArrowIcon from "../elements/OpenArrowIcon";
+import { useRouter } from "next/router";
 
 const wrtingPage = () => {
-  // const router = useRouter();
-  // const { id } = router.query;
+  const id = useRouter().query.id;
   const [selectedDate, setSelectedDate] = useRecoilState(selectedDateState);
   const [toggleCalendar, setToggleCalendar] = useState(false);
   const templateList = useRecoilValue(templateListState);
   const openTemplateMenu = templateList.length === 0 && !toggleCalendar;
   const openMyTemplates = templateList.length > 0 && !toggleCalendar;
 
+  const { saveRetrospective } = useHandleTemplate();
+
   const onClickSave = () => {
-    console.log("저장");
+    saveRetrospective(id); //board 정보 받으면 수정해야됨
   };
 
   const handleDate = (e) => {
@@ -43,11 +44,12 @@ const wrtingPage = () => {
       <Section>
         <WritePageHeader />
         <CalendarBox>
-          <CalendarTab>
+          <CalendarTab isOpen={toggleCalendar}>
             <span className="headline-6">{format(selectedDate, "yyyy-MM-dd")}</span>
-            <span className="subtitle-1 btn" onClick={handleToggleCalendar}>
-              {toggleCalendar ? "캘린더 닫기" : "캘린더 열기"}
-            </span>
+            <div className="btn" onClick={handleToggleCalendar}>
+              <span className="subtitle-1">{toggleCalendar ? "캘린더 닫기" : "캘린더 열기"}</span>
+              <OpenArrowIcon color={ORANGE} rotate={toggleCalendar ? 180 : 0} />
+            </div>
           </CalendarTab>
           {toggleCalendar && <CustomFullCalendar handleDate={handleDate} />}
         </CalendarBox>

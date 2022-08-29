@@ -1,9 +1,13 @@
 import React from "react";
+import { useRecoilState } from "recoil";
 import PropTypes from "prop-types";
 import LogoIcon from "../elements/LogoIcon";
 import styled from "styled-components";
 import { useRouter } from "next/router";
 import { GNB_H, WHITE, GRAY100 } from "../../styles/theme";
+import { isLoggedInState } from "../../state";
+import useAutoLogin from "../../hooks/useAutoLogin";
+import { removeCookie } from "../../utills/cookie";
 
 const GnbWrapper = styled.header.attrs((props) => ({
   isVisible: props.isVisible,
@@ -28,13 +32,22 @@ const GnbWrapper = styled.header.attrs((props) => ({
 `;
 
 const Gnb = ({ isVisible }) => {
+  useAutoLogin();
+
   const router = useRouter();
+  const [isLoggedIn, setIsLoggedIn] = useRecoilState(isLoggedInState);
 
   const onClick = (e) => {
     const { value } = e.currentTarget;
     if (value === "list-page") router.push("/memories");
-    if (value === "logout") router.push("/");
     if (value === "logo") router.push("/");
+    if (value === "logout") {
+      removeCookie("token");
+      setIsLoggedIn(false);
+    }
+    if (value === "login") {
+      router.push("/login");
+    }
   };
 
   return (
@@ -47,9 +60,11 @@ const Gnb = ({ isVisible }) => {
           회고록 리스트
         </button>
       </div>
-      <button value="logout" className="subtitle-2" onClick={onClick}>
-        로그아웃
-      </button>
+      <div>
+        <button className="subtitle-2" value={isLoggedIn ? "logout" : "login"} onClick={onClick}>
+          {isLoggedIn ? "로그아웃" : "로그인"}
+        </button>
+      </div>
     </GnbWrapper>
   );
 };

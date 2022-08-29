@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
+import { useRecoilState } from "recoil";
 import styled, { css } from "styled-components";
+import { boardSummaryState } from "../../state/addProjectState";
 import { GRAY300, GRAY500, GRAY900 } from "../../styles/theme";
 import { Box, Title } from "./AddProjectPage.style";
 
@@ -60,8 +62,8 @@ const Description = styled.p`
 `;
 
 const ProjectSummary = () => {
-  const [summaryText, setSummaryText] = useState("");
-  const isError = summaryText.length > 99; // TODO: usememo
+  const [summaryText, setSummaryText] = useRecoilState(boardSummaryState);
+  const isError = summaryText.length > 99;
 
   const onChange = (e) => {
     setSummaryText(e.target.value);

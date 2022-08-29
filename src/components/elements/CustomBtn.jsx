@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import { INPUT_H, WHITE, ORANGE } from "../../styles/theme";
+import { INPUT_H, WHITE, ORANGE, GRAY700, GRAY300 } from "../../styles/theme";
 
 const Button = styled.button.attrs((props) => ({
   width: props.width || "10rem",
@@ -22,9 +22,16 @@ const Button = styled.button.attrs((props) => ({
   color: ${(props) => props.color};
   background-color: ${(props) => props.bgColor};
   margin: ${(props) => props.margin};
+
+  &:disabled {
+    border: 1px solid ${GRAY300};
+    background-color: ${WHITE};
+    color: ${GRAY700};
+    cursor: not-allowed;
+  }
 `;
 
-const CustomBtn = ({ text, onClick, width, height, borderRadius, color, bgColor, border, margin }) => {
+const CustomBtn = ({ text, onClick, width, height, borderRadius, color, bgColor, border, margin, disabled }) => {
   return (
     <Button
       className="button"
@@ -36,6 +43,7 @@ const CustomBtn = ({ text, onClick, width, height, borderRadius, color, bgColor,
       onClick={onClick}
       border={border}
       margin={margin}
+      disabled={disabled}
     >
       {text}
     </Button>
@@ -54,4 +62,5 @@ CustomBtn.propTypes = {
   bgColor: PropTypes.string,
   border: PropTypes.string,
   margin: PropTypes.string,
+  disabled: PropTypes.bool,
 };

@@ -1,21 +1,21 @@
 // @ts-nocheck
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useRecoilState } from "recoil";
-import { projectStartDateState, projectEndDateState } from "../../state/addProjectState";
+import { projectStartDateState, projectEndDateState, isOngoingState } from "../../state/addProjectState";
 import ToggleCheckbox from "../articles/ToggleCheckbox";
 import CustomInput from "./CustomInput";
-import { Row, Box, Title } from "./AddProjectPage.style";
+import { Box, Title } from "./AddProjectPage.style";
+import { Row } from "../elements/Wrapper.style";
 
 const DatePickerWrapper = styled.div``;
 
 const ProjectDate = () => {
-  const [isOngingChecked, setIsOngingChecked] = useState(true);
-
   const [startDate, setStartDate] = useRecoilState(projectStartDateState);
   const [endDate, setEndDate] = useRecoilState(projectEndDateState);
+  const [isOngingChecked, setIsOngingChecked] = useRecoilState(isOngoingState);
 
   const handleCheckBox = (e) => {
     if (e.target.id === "ongoing") setIsOngingChecked((prev) => !prev);
@@ -33,6 +33,7 @@ const ProjectDate = () => {
             onChange={(date) => setStartDate(date)}
             customInput={<CustomInput />}
             dateFormat="yyyy-MM-dd"
+            maxDate={endDate}
           />
         </DatePickerWrapper>
         <span style={{ margin: "0 16px" }}>~</span>
@@ -43,6 +44,7 @@ const ProjectDate = () => {
             customInput={<CustomInput disabled />}
             dateFormat="yyyy-MM-dd"
             disabled={isOngingChecked}
+            minDate={startDate}
           />
         </DatePickerWrapper>
         <ToggleCheckbox id="ongoing" isChecked={isOngingChecked} width="124px" onChange={handleCheckBox}>
