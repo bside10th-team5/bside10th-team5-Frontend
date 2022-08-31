@@ -9,7 +9,9 @@ import {
   ItemWrapper,
   StartButton,
   BigText,
+  BigTextSpan,
   SmallText,
+  MiddleText,
   BgItemWrapper,
   BgTitleWrapper,
   EmogiImage,
@@ -105,7 +107,7 @@ const HomePage = () => {
             <div>
               <MainTitleWrapper>
                 <BackgroundImageContainer src={"/img/home/main_bg.png"} />
-                <div className="main-title-1 headline-6-rg">오늘 무슨 일이 일어났나요?</div>
+                <SmallText className="headline-6-rg">오늘 무슨 일이 일어났나요?</SmallText>
                 <BigText className="subtitle-1 ">
                   서비스 기획자를 위한<BigText className="subtitle-2">회고록 서비스</BigText>
                 </BigText>
@@ -132,7 +134,7 @@ const HomePage = () => {
               <BigText className="subtitle-2" style={{ color: GRAY900 }}>
                 미리 준비하는 포트폴리오
               </BigText>
-              <SmallText className="subtitle-1">중요 정보와 자료를 미리미리 기록!</SmallText>
+              <MiddleText className="headline-5">중요 정보와 자료를 미리미리 기록!</MiddleText>
             </BgTitleWrapper>
             <PageImage src="/img/home/img_LT.svg" />
           </ResponsiveWrapper>
@@ -147,25 +149,25 @@ const HomePage = () => {
                   다양한 템플릿 이용 가능
                 </BigText>
               </BigText>
-              <SmallText className="subtitle-1">설계서형, IA형 등 다양한 템플릿</SmallText>
+              <MiddleText className="headline-5" >설계서형, IA형 등 다양한 템플릿</MiddleText>
             </BgTitleWrapper>
             <PageImage src="/img/home/img_WR.svg" />
           </ResponsiveWrapper>
         </BgItemWrapper>
         <BgItemWrapper>
           <ResponsiveWrapper gap="4.6vw">
-            <BgTitleWrapper maxWidth="40%">
+            <BgTitleWrapper maxWidth="50%">
               <EmogiImage src="/img/home/emoji/worker.svg" />
               <BigText className="subtitle-2">
                 디자이너, 개발자 등
                 <BigText className="subtitle-2" style={{ color: "#FF9F00" }}>
-                  다양한 협업 히스토리{" "}
-                  <BigText className="subtitle-2" style={{ color: GRAY900 }}>
-                    기록
-                  </BigText>
+                  다양한 협업 히스토리
+                  <BigTextSpan className="subtitle-2" style={{ color: GRAY900}}>
+                    {" "}기록
+                  </BigTextSpan>
                 </BigText>
               </BigText>
-              <SmallText className="subtitle-1">왓헤픈과 함께 커뮤니케이션 스킬도 UP!</SmallText>
+              <MiddleText className="headline-5">왓헤픈과 함께 커뮤니케이션 스킬도 UP!</MiddleText>
             </BgTitleWrapper>
             <PageImage src="/img/home/img_WR.2.svg" />
           </ResponsiveWrapper>

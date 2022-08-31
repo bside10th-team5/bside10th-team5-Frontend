@@ -78,16 +78,16 @@ export const BackgroundImageContainer = styled.img`
   top: -39.5px;
   left: -58vw;
   z-index: -999;
+
+  @media screen and (max-width: 1000px) {
+    /* position: absolute; */
+
+    z-index: -999;
+  }
 `;
 
 export const MainTitleWrapper = styled.div`
   position: relative;
-
-  & .main-title-1 {
-    font-size: 20px;
-    font-weight: 300;
-    margin-bottom: 12px;
-  }
 
   @media screen and (max-width: 1000px) {
     display: flex;
@@ -97,11 +97,13 @@ export const MainTitleWrapper = styled.div`
 `;
 
 export const BigText = styled.div`
-  font-size: 48px;
-  line-height: 68px;
+  font-size: 3.35vw;
+  line-height: 141%;
   word-break: keep-all;
 
   @media screen and (max-width: 1000px) {
+    font-size: 48px;
+    line-height: 68px;
     text-align: center;
   }
   @media screen and (max-width: 600px) {
@@ -110,20 +112,87 @@ export const BigText = styled.div`
   }
 `;
 
-export const SmallText = styled.div`
-  font-size: 24px;
-  line-height: 44px;
+export const BigTextSpan = styled.span`
+  font-size: 3.35vw;
+  line-height: 141%;
+  word-break: keep-all;
+
+  @media screen and (max-width: 1000px) {
+    font-size: 48px;
+    line-height: 68px;
+    text-align: center;
+  }
+  @media screen and (max-width: 600px) {
+    font-size: 40px;
+    line-height: 60px;
+  }
+`;
+
+export const MiddleText = styled.div`
+  font-size: 1.8vw;
+  line-height: 183%;
+  word-break: keep-all;
   margin-top: 12px;
+
+  @media screen and (max-width: 1000px) {
+    font-size: 24px;
+    line-height: 44px;
+    text-align: center;
+    margin-top: 12px;
+  }
+  @media screen and (max-width: 600px) {
+    font-size: 24px;
+    line-height: 44px;
+    margin-top: 12px;
+  }
+`;
+
+export const SmallText = styled.div`
+  font-size: 1.5vw;
+  line-height: 160%;
+  word-break: keep-all;
+  margin-bottom: 12px;
+
+  @media screen and (max-width: 1000px) {
+    font-size: 20px;
+    line-height: 160%;
+    text-align: center;
+    margin-bottom: 12px;
+  }
+  @media screen and (max-width: 600px) {
+    font-size: 20px;
+    line-height: 160%;
+    margin-bottom: 12px;
+  }
 `;
 
 export const StartButton = styled.button`
-  width: 374px;
+  width: 27vw;
   height: 48px;
   background-color: #ff5a00;
   border-radius: 4px;
   text-align: center;
   margin-top: 64px;
   color: white;
+
+  @media screen and (max-width: 1000px) {
+    width: 374px;
+    height: 48px;
+    background-color: #ff5a00;
+    border-radius: 4px;
+    text-align: center;
+    margin-top: 64px;
+    color: white;
+  }
+  @media screen and (max-width: 600px) {
+    width: 374px;
+    height: 48px;
+    background-color: #ff5a00;
+    border-radius: 4px;
+    text-align: center;
+    margin-top: 64px;
+    color: white;
+  }
 `;
 
 export const BgTitleWrapper = styled.div.attrs((props) => ({ maxWidth: props.maxWidth || "none" }))`
@@ -182,13 +251,13 @@ export const SliderArrowContainer = styled.div`
 export const Dot = styled.div`
   width: 12px;
   height: 12px;
-  background-color: #bbb;
+  background-color: #efefef;
   border-radius: 50%;
 `;
 
 export const SelectedDot = styled.div`
   width: 12px;
   height: 12px;
-  background-color: #000;
+  background-color: #111111;
   border-radius: 50%;
 `;
