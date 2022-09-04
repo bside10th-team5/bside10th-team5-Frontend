@@ -57,7 +57,7 @@ const BlockWrapper = styled.div.attrs((props) => ({
   }
 `;
 
-const TemplateBlock = ({ type, id, info }) => {
+const TemplateBlock = ({ id, info }) => {
   const [isOpen, setIsOpen] = useState(false);
   const setModalList = useSetRecoilState(modalListState);
 
@@ -105,7 +105,6 @@ const TemplateBlock = ({ type, id, info }) => {
 export default TemplateBlock;
 
 TemplateBlock.propTypes = {
-  type: PropTypes.string.isRequired,
   id: PropTypes.any,
   info: PropTypes.any,
 };

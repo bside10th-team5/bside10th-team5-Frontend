@@ -52,13 +52,7 @@ const ModalContainer = () => {
           );
 
         if (modalRegister.id === "delete-template-modal")
-          return (
-            <DeleteTemplateModal
-              key={modalRegister.id}
-              deleteId={modalRegister.deleteId}
-              callback={modalRegister.callback}
-            />
-          );
+          return <DeleteTemplateModal key={modalRegister.id} callback={modalRegister.callback} />;
       })}
     </ModalWrapper>,
     document.body,

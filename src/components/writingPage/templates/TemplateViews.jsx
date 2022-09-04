@@ -17,7 +17,7 @@ const TemplateViews = () => {
     <div style={{ height: "auto" }}>
       {console.log("list", templateList)}
       {templateList.map((el) => (
-        <TemplateBlock key={el.id} type={el.retrospectiveType} id={el.id} info={el} />
+        <TemplateBlock key={el.id} id={el.id} info={el} />
       ))}
       {!toggleAddTemplate && (
         <AddTemplateBtn className="headline-6" onClick={handleToggleAddTemplate}>

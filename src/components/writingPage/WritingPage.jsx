@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useRecoilValue, useRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import { useRouter } from "next/router";
 import { useQuery } from "react-query";
 import { format } from "date-fns";
