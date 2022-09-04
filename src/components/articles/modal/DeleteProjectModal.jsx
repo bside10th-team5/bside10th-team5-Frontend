@@ -47,7 +47,6 @@ const DeleteProjectModal = ({ deleteId, callback }) => {
   const { deleteFunc } = useProjectList();
   const deleteProject = useMutation(deleteFunc, {
     onSuccess: () => {
-      console.log("onSuccess");
       callback();
     },
   });

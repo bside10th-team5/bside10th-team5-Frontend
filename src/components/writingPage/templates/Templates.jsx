@@ -26,7 +26,7 @@ const Templates = () => {
     <article>
       <TemplateTitle>
         <span className="headline-5">어떤 작업을 하셨나요?</span>
-        <button className="subtitle-1 free-btn" onClick={handleTemplateList} value="free">
+        <button className="subtitle-1 free-btn" onClick={handleTemplateList} value="FREESTYLE">
           자유형으로 작성하기 &gt;
         </button>
       </TemplateTitle>

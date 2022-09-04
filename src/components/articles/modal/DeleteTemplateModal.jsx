@@ -6,8 +6,6 @@ import { modalListState } from "../../../state/modalState";
 import CustomBtn from "../../elements/CustomBtn";
 import { GRAY300, GRAY500, GRAY700, GRAY900, ORANGE, WHITE } from "../../../styles/theme";
 import CloseIcon from "../../elements/CloseIcon";
-import { useProjectList } from "../../../state/memoriesState";
-import { useMutation } from "react-query";
 
 export const Modal = styled.div`
   position: relative;
@@ -41,18 +39,11 @@ const BtnWrapper = styled.div`
   margin-top: 1.5rem;
 `;
 
-const DeleteTemplateModal = ({ deleteId, callback }) => {
+const DeleteTemplateModal = ({ callback }) => {
   const setModalList = useSetRecoilState(modalListState);
-  const { deleteFunc } = useProjectList();
-  const deleteProject = useMutation(deleteFunc, {
-    onSuccess: () => {
-      console.log("onSuccess");
-      callback();
-    },
-  });
 
   const onClickDelteProject = () => {
-    deleteProject.mutate(deleteId);
+    callback();
     setModalList([]);
   };
 

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import { GRAY500, GRAY900, GRAY700, GRAY100, ORANGE } from "../../../styles/theme";
 import CustomBtn from "../../elements/CustomBtn";
@@ -34,7 +35,7 @@ export const HeaderWrapper = styled.div`
   }
 `;
 
-const WritePageHeader = () => {
+const WritePageHeader = ({ title, type, fromDate, toDate }) => {
   const onClickEdit = () => {
     console.log("수정");
   };
@@ -43,10 +44,12 @@ const WritePageHeader = () => {
     <HeaderWrapper>
       <LeftBox>
         <Title>
-          <span className="headline-45 title">비사이드 프로젝트 회고록</span>
-          <span className="body-2 tag">프로젝트형</span>
+          <span className="headline-45 title">{title}</span>
+          <span className="body-2 tag">{type}</span>
         </Title>
-        <span className="subtitle-1 date">22.05.03 ~ 22.08.09</span>
+        <span className="subtitle-1 date">
+          {fromDate} ~ {toDate ? toDate : "진행중"}
+        </span>
       </LeftBox>
       <Row alignItems="center">
         <CustomBtn text="정보 수정하기" onClick={onClickEdit} width="157px" borderRadius="5px" color={ORANGE} />
@@ -56,3 +59,10 @@ const WritePageHeader = () => {
 };
 
 export default WritePageHeader;
+
+WritePageHeader.propTypes = {
+  title: PropTypes.string,
+  type: PropTypes.string,
+  fromDate: PropTypes.string,
+  toDate: PropTypes.string,
+};
