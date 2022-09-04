@@ -1,5 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRecoilValue, useRecoilState } from "recoil";
+import { useRouter } from "next/router";
+import { useQuery } from "react-query";
+import { format } from "date-fns";
 import { WideWrapper, Row } from "../elements/Wrapper.style";
 import Gnb from "../articles/Gnb";
 import { CalendarBox, CalendarTab, Section } from "./WritingPage.style";
@@ -10,23 +13,33 @@ import TemplateViews from "./templates/TemplateViews";
 import CustomFullCalendar from "./components/FullCalendar";
 import CustomBtn from "../elements/CustomBtn";
 import { ORANGE } from "../../styles/theme";
-import { format } from "date-fns";
 import WritePageHeader from "./components/WritePageHeader";
 import OpenArrowIcon from "../elements/OpenArrowIcon";
-import { useRouter } from "next/router";
 
 const wrtingPage = () => {
   const id = useRouter().query.id;
   const [selectedDate, setSelectedDate] = useRecoilState(selectedDateState);
   const [toggleCalendar, setToggleCalendar] = useState(false);
-  const templateList = useRecoilValue(templateListState);
+  const [templateList, setTemplateList] = useRecoilState(templateListState);
   const openTemplateMenu = templateList.length === 0 && !toggleCalendar;
   const openMyTemplates = templateList.length > 0 && !toggleCalendar;
-
-  const { saveRetrospective } = useHandleTemplate();
+  const { saveRetrospective, fetchRetrospective } = useHandleTemplate();
+  const { data } = useQuery(["retroSpective", id], fetchRetrospective, {
+    select: (data) => {
+      const { board, retrospective } = data.data;
+      return {
+        boardInfo: { ...board, type: board.projectType === "PROJECT" ? "프로젝트형" : "자유형" },
+        retroList: retrospective.map((el) => {
+          if (el.retrospectiveType === "FREESTYLE")
+            return { id: el.id, type: el.retrospectiveType, content: "123", date: el.retrospectiveDate };
+          return el;
+        }),
+      };
+    },
+  });
 
   const onClickSave = () => {
-    saveRetrospective(id); //board 정보 받으면 수정해야됨
+    saveRetrospective(id); //use query 로 변경해야댐
   };
 
   const handleDate = (e) => {
@@ -38,11 +51,28 @@ const wrtingPage = () => {
     setToggleCalendar((prev) => !prev);
   };
 
+  useEffect(() => {
+    if (data) {
+      const date = format(selectedDate, "yyyy-MM-dd");
+      const sortedList = data.retroList.filter((retro) => retro.date === date);
+      setTemplateList(sortedList);
+    }
+  }, [selectedDate, data]);
+
+  if (!data) {
+    return null;
+  }
+
   return (
     <WideWrapper>
       <Gnb isVisible />
       <Section>
-        <WritePageHeader />
+        <WritePageHeader
+          title={data.boardInfo.title}
+          type={data.boardInfo.type}
+          toDate={data.boardInfo.toDate}
+          fromDate={data.boardInfo.fromDate}
+        />
         <CalendarBox>
           <CalendarTab isOpen={toggleCalendar}>
             <span className="headline-6">{format(selectedDate, "yyyy-MM-dd")}</span>

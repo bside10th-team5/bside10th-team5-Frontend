@@ -43,16 +43,16 @@ const BtnWrapper = styled.div`
 
 const DeleteTemplateModal = ({ deleteId, callback }) => {
   const setModalList = useSetRecoilState(modalListState);
-  const { deleteFunc } = useProjectList();
-  const deleteProject = useMutation(deleteFunc, {
-    onSuccess: () => {
-      console.log("onSuccess");
-      callback();
-    },
-  });
+  // const { deleteFunc } = useProjectList();
+  // const deleteProject = useMutation(deleteFunc, {
+  //   onSuccess: () => {
+  //     console.log("onSuccess");
+  //     callback();
+  //   },
+  // });
 
   const onClickDelteProject = () => {
-    deleteProject.mutate(deleteId);
+    callback();
     setModalList([]);
   };
 

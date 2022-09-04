@@ -7,7 +7,7 @@ export function parseTemplateName(value) {
   if (value === "design") return "디자인 관련";
   if (value === "develop") return "개발 관련";
   if (value === "qa") return "QA";
-  if (value === "free") return "자유형";
+  if (value === "FREESTYLE") return "자유형";
 }
 
 export function parseProjectType(value) {

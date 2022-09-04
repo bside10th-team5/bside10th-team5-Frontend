@@ -8,10 +8,12 @@ import { templateListState } from "../../../../state/writeDiaryState";
 const FreeTemplate = ({ id }) => {
   const editorRef = useRef(null);
   const [templateList, setTemplateList] = useRecoilState(templateListState);
-
+  console.log("templateList", templateList);
   useLayoutEffect(() => {
     const freeTemplate = templateList.filter((el) => el.id === id)[0];
     const markDown = freeTemplate.content;
+    // console.log("markdown", markDown, templateList, freeTemplate);
+    console.log(id);
     if (markDown) {
       editorRef.current.getInstance().setMarkdown(markDown);
     }
@@ -19,7 +21,7 @@ const FreeTemplate = ({ id }) => {
 
   const onChangeEditor = () => {
     const editorMarkDownData = editorRef.current.getInstance().getMarkdown();
-    const changedObj = { id, type: "free", content: editorMarkDownData };
+    const changedObj = { id, type: "FREESTYLE", content: editorMarkDownData };
     setTemplateList((prev) => {
       const newTemplateList = [...prev].filter((el) => el.id !== id);
       newTemplateList.push(changedObj);

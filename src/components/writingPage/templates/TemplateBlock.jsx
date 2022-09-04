@@ -13,6 +13,9 @@ import DesignTemplate from "./designTemplate/DesignTemplate";
 import DevTemplate from "./devTemplate/DevTemplate";
 import { modalListState } from "../../../state/modalState";
 import OpenArrowIcon from "../../elements/OpenArrowIcon";
+import axios from "axios";
+import { deleteRetrospectiveUrl } from "../../../utills/url";
+import { getCookie } from "../../../utills/cookie";
 const FreeTemplate = dynamic(() => import("./freeTemplate/FreeTemplate"), { ssr: false });
 
 const BlockWrapper = styled.div.attrs((props) => ({
@@ -54,16 +57,18 @@ const BlockWrapper = styled.div.attrs((props) => ({
   }
 `;
 
-const TemplateBlock = ({ type, id }) => {
+const TemplateBlock = ({ type, id, info }) => {
   const [isOpen, setIsOpen] = useState(false);
   const setModalList = useSetRecoilState(modalListState);
 
   const callback = () => {
-    console.log("callback");
+    const token = getCookie("token");
+    axios.defaults.headers.common["Authorization"] = "Bearer " + token;
+    console.log("callback", id);
+    axios.delete(deleteRetrospectiveUrl(id));
   };
 
   const onClickDeleteTemplate = () => {
-    console.log("삭제");
     setModalList((prev) => prev.concat({ id: "delete-template-modal", deleteId: 1, callback: callback }));
   };
 
@@ -71,7 +76,7 @@ const TemplateBlock = ({ type, id }) => {
     if (typeName === "sb") return <SbTemplate id={id} />;
     if (typeName === "ia") return <IaTemplate id={id} />;
     if (typeName === "workflow") return <WorkflowTemplate id={id} />;
-    if (typeName === "free") return <FreeTemplate id={id} />;
+    if (typeName === "FREESTYLE") return <FreeTemplate id={id} />;
     if (typeName === "qa") return <QaTemplate id={id} />;
     if (typeName === "design") return <DesignTemplate id={id} />;
     if (typeName === "develop") return <DevTemplate id={id} />;
@@ -81,7 +86,7 @@ const TemplateBlock = ({ type, id }) => {
   return (
     <BlockWrapper isOpen={isOpen}>
       <div className="tab">
-        <span className="headline-6">{parseTemplateName(type)}</span>
+        <span className="headline-6">{parseTemplateName(info.type)}</span>
         <div className="subtitle-1 buttons">
           <button className="delete-btn" onClick={onClickDeleteTemplate}>
             삭제
@@ -92,7 +97,7 @@ const TemplateBlock = ({ type, id }) => {
           </div>
         </div>
       </div>
-      {isOpen && getTemplate(type)}
+      {isOpen && getTemplate(info.type)}
     </BlockWrapper>
   );
 };
@@ -101,5 +106,6 @@ export default TemplateBlock;
 
 TemplateBlock.propTypes = {
   type: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
+  id: PropTypes.any,
+  info: PropTypes.any,
 };

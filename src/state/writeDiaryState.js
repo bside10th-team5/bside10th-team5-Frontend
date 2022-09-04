@@ -20,14 +20,22 @@ export const toggleAddTemplateState = atom({
 });
 
 export const useHandleTemplate = () => {
+  const token = getCookie("token");
+  axios.defaults.headers.common["Authorization"] = "Bearer " + token;
+
   const templateList = useRecoilValue(templateListState);
   const date = useRecoilValue(selectedDateState);
-  const saveRetrospective = async (id) => {
-    const token = getCookie("token");
-    axios.defaults.headers.common["Authorization"] = "Bearer " + token;
 
+  const fetchRetrospective = async (config) => {
+    const id = config.queryKey[1];
+    if (id) {
+      return await axios.get(createRetrospectiveUrl(id));
+    }
+  };
+
+  const saveRetrospective = async (id) => {
     const convertedTemplateList = templateList.map((el) => {
-      if (el.type === "free") {
+      if (el.type === "FREESTYLE") {
         return {
           retrospectiveType: "FREESTYLE",
           retrospectiveDate: format(date, "yyyy-MM-dd"),
@@ -36,9 +44,9 @@ export const useHandleTemplate = () => {
       }
       return el;
     });
-    console.log(convertedTemplateList, "저장전");
+
     return await axios.post(createRetrospectiveUrl(id), convertedTemplateList);
   };
 
-  return { saveRetrospective };
+  return { saveRetrospective, fetchRetrospective };
 };
