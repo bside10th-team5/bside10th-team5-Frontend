@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRecoilValue, useRecoilState } from "recoil";
 import { WideWrapper, Row } from "../elements/Wrapper.style";
 import Gnb from "../articles/Gnb";
@@ -23,7 +23,7 @@ const wrtingPage = () => {
   const openTemplateMenu = templateList.length === 0 && !toggleCalendar;
   const openMyTemplates = templateList.length > 0 && !toggleCalendar;
 
-  const { saveRetrospective } = useHandleTemplate();
+  const { saveRetrospective, getRetrospective } = useHandleTemplate();
 
   const onClickSave = () => {
     saveRetrospective(id); //board 정보 받으면 수정해야됨
@@ -37,6 +37,12 @@ const wrtingPage = () => {
   const handleToggleCalendar = () => {
     setToggleCalendar((prev) => !prev);
   };
+  console.log(templateList);
+  useEffect(() => {
+    if (id) {
+      getRetrospective(id);
+    }
+  }, [id]);
 
   return (
     <WideWrapper>
