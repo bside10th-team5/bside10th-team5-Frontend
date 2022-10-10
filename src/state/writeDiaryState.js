@@ -26,8 +26,12 @@ export const useHandleTemplate = () => {
   const templateList = useRecoilValue(templateListState);
   const date = useRecoilValue(selectedDateState);
 
-  const getRetrospective = async (id) => {
-    await axios.get(getRetrospectiveUrl(id, format(date, "yyyy-MM-dd")));
+  const getRetrospective = async (config) => {
+    const id = config.queryKey[1];
+    if (id) {
+      const data = await axios.get(getRetrospectiveUrl(id, format(date, "yyyy-MM-dd")));
+      return data.data;
+    }
   };
 
   const saveRetrospective = async (id) => {

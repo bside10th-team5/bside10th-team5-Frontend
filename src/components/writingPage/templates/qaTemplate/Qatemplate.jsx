@@ -68,5 +68,5 @@ const QaTemplate = () => {
 export default QaTemplate;
 
 QaTemplate.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.any.isRequired,
 };

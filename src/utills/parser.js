@@ -10,6 +10,12 @@ export function parseTemplateName(value) {
   if (value === "free") return "자유형";
 }
 
+export function parseTemplateType(value) {
+  if (value === "FREESTYLE") return "free";
+  if (value === "SB") return "sb";
+  return "?"
+}
+
 export function parseProjectType(value) {
   if (value === "PROJECT") return "프로젝트형";
   return "자유형";

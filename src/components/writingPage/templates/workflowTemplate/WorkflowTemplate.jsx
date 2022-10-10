@@ -46,5 +46,5 @@ const WorkflowTemplate = () => {
 export default WorkflowTemplate;
 
 WorkflowTemplate.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.any.isRequired,
 };
