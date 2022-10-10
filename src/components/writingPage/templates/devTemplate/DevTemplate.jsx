@@ -62,5 +62,5 @@ const DevTemplate = () => {
 export default DevTemplate;
 
 DevTemplate.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.any.isRequired,
 };

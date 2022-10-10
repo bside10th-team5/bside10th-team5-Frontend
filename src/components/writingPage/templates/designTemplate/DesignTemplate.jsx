@@ -62,5 +62,5 @@ const DesignTemplate = () => {
 export default DesignTemplate;
 
 DesignTemplate.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.any.isRequired,
 };

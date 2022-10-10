@@ -35,5 +35,5 @@ const IaTemplate = () => {
 export default IaTemplate;
 
 IaTemplate.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.any.isRequired,
 };

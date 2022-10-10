@@ -61,5 +61,5 @@ const SbTemplate = () => {
 export default SbTemplate;
 
 SbTemplate.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.any.isRequired,
 };

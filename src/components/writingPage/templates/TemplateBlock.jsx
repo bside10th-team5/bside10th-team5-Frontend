@@ -101,5 +101,5 @@ export default TemplateBlock;
 
 TemplateBlock.propTypes = {
   type: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
+  id: PropTypes.any.isRequired,
 };
